@@ -11,3 +11,18 @@
  * When defining the function, you can use a regular loop to do the actual
  * looping.
  */
+
+function loop(value, testFunc, updateFunc, bodyFunc) {
+    while (true) {
+        if (! testFunc(value)) {
+            return;
+        }
+        bodyFunc(value);
+        value = updateFunc(value);
+    }
+}
+
+loop(0,
+    i => i < 10,
+    i => i + 1,
+    i => console.log(i))
