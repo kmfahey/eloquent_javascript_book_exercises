@@ -10,3 +10,7 @@
  * Can you think of a way to call hasOwnProperty on an object that has its own
  * property by that name?
  */
+
+foo = {a: 1, b:2, c:3, hasOwnProperty: true};
+
+console.log(Object.getPrototypeOf(foo).hasOwnProperty.call(foo, 'a'));
