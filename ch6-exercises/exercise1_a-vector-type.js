@@ -12,3 +12,30 @@
  * vector—that is, the distance of the point (x, y) from the origin (0, 0).
  */
 
+class Vec {
+    x = null;
+    y = null;
+
+    constructor(x, y) {
+        if (!typeof x === "number" && !typeof x === "bigint") {
+            throw new Error("value for x not a number or bigint");
+        } else if (!typeof y === "number" && !typeof y === "bigint") {
+            throw new Error("value for y not a number or bigint");
+        }
+        this.x = x
+        this.y = y
+    }
+
+    get length() {
+        return Math.sqrt(this.x**2 + this.y**2);
+    }
+
+    toString() {
+        return `Vec(${this.x}, ${this.y})`;
+    }
+}
+
+let vector = new Vec(3,4);
+
+console.log(vector.toString());
+console.log(vector.length);
