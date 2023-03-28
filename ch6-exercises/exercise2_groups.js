@@ -21,3 +21,42 @@
  * it.
  */
 
+class Group {
+    constructor() {
+        this.array = []
+    }
+
+    add(value) {
+        if (this.array.indexOf(value) == -1) {
+            this.array.push(value);
+        }
+    }
+
+    delete(value) {
+        let valueIndex = this.array.indexOf(value);
+        if (valueIndex == -1) return false;
+        this.array.splice(valueIndex, 1);
+        return true;
+    }
+
+    has(value) {
+        return this.array.indexOf(value) != -1;
+    }
+
+    static from(iterable) {
+        let group = new Group();
+        for (let value of iterable) {
+            group.add(value);
+        }
+        return group;
+    }
+}
+
+let group = new Group();
+group.add('a');
+group.add('b');
+group.add('c');
+console.log(group);
+
+let group2 = Group.from(['a', 'b', 'c'])
+console.log(group2);
