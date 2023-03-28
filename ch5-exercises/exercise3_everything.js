@@ -10,3 +10,23 @@
  * as parameters. Write two versions, one using a loop and one using the some
  * method.
  */
+
+function every1(array, func) {
+    for (let elem of array) {
+        if (! func(elem)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+console.log(every1([1,2,3,4,5], elem => elem > 0))
+console.log(every1([0,1,2,3,4,5], elem => elem > 0))
+
+function every2(array, func) {
+    return ! array.some(elem => !func(elem));
+}
+
+console.log(every2([1,2,3,4,5], elem => elem > 0))
+console.log(every2([0,1,2,3,4,5], elem => elem > 0))
+
