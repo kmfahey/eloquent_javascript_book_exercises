@@ -15,7 +15,7 @@
  * instance without a given member.
  *
  * The class should work for values of any type, not just strings. It does not
- * have to be eﬀicient when used with large amounts of values.
+ * have to be efficient when used with large amounts of values.
  *
  * The constructor shouldn’t be part of the class’s interface (though
  * you’ll definitely want to use it internally). Instead, there is an empty
@@ -27,3 +27,58 @@
 
 require('./eloqjs_ch7-robot_module.js');
 
+class PGroup {
+    constructor() {
+        this.obj = Object.create(null);
+    }
+
+    add(value) {
+        if (value in this.obj) {
+            return this;
+        }
+        let other = new PGroup();
+        Object.assign(other.obj, this.obj);
+        other.obj[value] = true;
+        return other;
+    }
+
+    delete(value) {
+        if (!value in this.obj) {
+            return this;
+        }
+        let other = new PGroup();
+        for (let key of Object.keys(this.obj)) {
+            if (key === value) continue;
+            other.obj[key] = true;
+        }
+        return other;
+    }
+
+    has(value) {
+        return value in this.obj;
+    }
+
+    static from(iterable) {
+        let group = new PGroup();
+        for (let value of iterable) {
+            group = group.add(value);
+        }
+        return group;
+    }
+
+    empty = constructor();
+}
+
+let group = new PGroup();
+group = group.add('a');
+group = group.add('b');
+group = group.add('c');
+console.log(group);
+
+let group2 = PGroup.from(['a', 'b', 'c'])
+console.log(group2);
+
+// Only 1 empty instance is needed as a starting point bc none of the methods on
+// the class mutate the object's state; if they would normally be mutators in
+// this case they instance a new object and populate it the same values as the
+// current object has before operating on it.
