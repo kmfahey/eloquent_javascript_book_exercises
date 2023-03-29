@@ -10,3 +10,26 @@
  * Make sure you handle only the exceptions you are trying to handle.
  */
 
+class MultiplicatorUnitFailure extends Error {};
+
+function primitiveMultiply(a, b) {
+    if (Math.random() < 0.20) {
+        return a*b;
+    } else {
+        throw new MultiplicatorUnitFailure("something went wrong");
+    }
+}
+
+function multiplyOrElse(a, b) {
+    let c = null;
+    while (c === null) {
+        try {
+            c = primitiveMultiply(a, b);
+        } catch (e) {
+            continue;
+        }
+    }
+    return c;
+}
+
+console.log(multiplyOrElse(4,5));
