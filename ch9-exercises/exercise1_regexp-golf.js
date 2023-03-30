@@ -23,3 +23,18 @@
  * Refer to the table in the chapter summary for help. Test each solution with a
  * few test strings.
  */
+
+console.log("matching car and cat");
+console.log(["car", "cat"].every(s => /ca[rt]/.test(s)));
+console.log("matching pop and prop");
+console.log(["pop", "prop"].every(s => /pr?op/));
+console.log("matching ferret, ferry, and ferrari");
+console.log(["ferret", "ferry", "ferrari"].every(s => /ferr(et|y|ari)/.test(s)));
+console.log("matching words ending in ious");
+console.log(["egregious", "prestigious", "avaricious", "unpretentious", "contentious"].every(s => /ious\b/.test(s)));
+console.log("matching a whitespace character followed by a period, comma, colon, or semicolon");
+console.log([" .", " ,", " :", " ;", "\t.", "\t,", "\t:", "\t;"].every(s => /\s[.,:;]/.test(s)));
+console.log("matching a word longer than six letters");
+console.log(["disinters", "plenary", "happens", "learned", "adhered"].every(s => /\w{7,}/i.test(s)));
+console.log("matching a word without the letter e (or E)");
+console.log(["virtuoso", "crisp", "scoldings", "Hippocratic", "Prohibition"].every(s => /\b[a-df-z]+\b/i.test(s)));
