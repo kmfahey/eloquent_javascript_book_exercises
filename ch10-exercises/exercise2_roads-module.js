@@ -19,6 +19,7 @@
 let {mailRoute, routeRobot} = require('./graph-robots-examples.js');
 let {compareRobots, nearestParcelFindingRobot} = require('./robots-kmf.js');
 
+let competitors = [routeRobot.name, nearestParcelFindingRobot.name];
 let winners = [];
 
 for (j = 0; j < 100; j++) {
@@ -26,4 +27,14 @@ for (j = 0; j < 100; j++) {
     winners.push(outcome.fastest);
 }
 
-console.log(winners);
+let zeroWonCount = 0, oneWonCount = 0, tieCount = 0;
+
+for (let trit of winners) {
+    if (trit === 1) oneWonCount += 1
+    else if (trit === 0) zeroWonCount += 1
+    // -1 signifies a tie
+    else tieCount += 1;
+}
+
+if (oneWonCount >= zeroWonCount) console.log(`${competitors[1]} beat ${competitors[0]}, ${oneWonCount} to ${zeroWonCount} with ${tieCount} ties`);
+else console.log(`${competitors[0]} beat ${competitors[1]}, ${zeroWonCount} to ${oneWonCount} with ${tieCount} ties`);

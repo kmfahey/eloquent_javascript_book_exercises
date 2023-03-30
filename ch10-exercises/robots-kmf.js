@@ -11,7 +11,7 @@ function compareRobots(robot0, memory0, robot1, memory1) {
     let times0 = [], times1 = [];
     for (i = 0; i < 100; i++) {
         let state = VillageState.random();
-        console.log(state.parcels);
+        //console.log(state.parcels);
         let startTime0 = epochSeconds();
         runRobot(state, robot0, memory0);
         let endTime0 = epochSeconds();
