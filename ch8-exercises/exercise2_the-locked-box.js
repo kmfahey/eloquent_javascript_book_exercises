@@ -31,3 +31,33 @@
  * already unlocked, the box stays unlocked.
  */
 
+const box = {
+    locked: true,
+    unlock() {
+        this.locked = false;
+    },
+    lock() {
+        this.locked = true;
+    },
+    _content: [],
+    get content() {
+        if (this.locked) throw new Error("Locked!");
+        return this._content;
+    }
+};
+
+function withBoxUnlocked(funcArg) {
+    let retval = null;
+    try {
+        box.unlock();
+        retval = funcArg(box);
+    } catch (e) {
+        box.lock();
+        return null;
+    }
+    box.lock();
+    return retval;
+}
+
+console.log(withBoxUnlocked(box => box.content.push(true)));
+console.log(withBoxUnlocked(box => { throw new Error("foo"); }));
