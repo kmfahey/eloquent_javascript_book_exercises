@@ -22,4 +22,33 @@
  * versions? How?
  */
 
+let {bigOak} = require('./crow-tech.js');
+let {anyStorage} = require('./11_async.js');
 
+// The following code is M. Haverbecke's, adapted from
+// <https://eloquentjavascript.net/code/#11.1> having pressed the [Look at
+// Solution] button, since I found myself completely at sea on this exercise.
+//
+async function locateScalpel(nest) {
+  let current = nest.name;
+  for (;;) {
+    let next = await anyStorage(nest, current, "scalpel");
+    if (next == current) return current;
+    current = next;
+  }
+}
+
+function locateScalpel2(nest) {
+  function loop(current) {
+    return anyStorage(nest, current, "scalpel").then(next => {
+      if (next == current) return current;
+      else return loop(next);
+    });
+  }
+  return loop(nest.name);
+}
+
+locateScalpel(bigOak).then(console.log);
+// → Butcher's Shop
+locateScalpel2(bigOak).then(console.log);
+// → Butcher's Shop
