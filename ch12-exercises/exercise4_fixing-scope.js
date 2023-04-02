@@ -26,3 +26,39 @@ Object.prototype.hasOwnProperty.call(scope, name);
 
  */
 
+let {run, evaluate, specialForms} = require('./12_language.js');
+
+let _frame_to_value = (frame, scope) => {
+    switch (frame.type) {
+        case "value":
+            return frame.value;
+        case "word":
+            if (frame.name in scope) return scope[frame.name];
+            else throw new ReferenceError(`symbol '${frame.name}' not defined in current scope`);
+        case "apply":
+            return evaluate(frame, scope);
+        default:
+            throw new Error(`unexpected stack frame type ${frame.type}`);
+    }
+}
+
+specialForms.set = (args, scope) => {
+    let name = args[0].name;
+    let value = _frame_to_value(args[1], scope);
+    while (!Object.prototype.hasOwnProperty.call(scope, name)
+           && Object.getPrototypeOf(scope) != null) {
+        scope = Object.getPrototypeOf(scope);
+    }
+    if (Object.getPrototypeOf(scope) == null) {
+        throw new ReferenceError(`name ${name} not defined in the current scope or any enclosing scope`);
+    }
+    scope[name] = value;
+    return value;
+}
+
+run(`
+do(define(a, 1),
+   define(p, fun(b, print(b))),
+   set(a, 2),
+   p(2))
+`);
