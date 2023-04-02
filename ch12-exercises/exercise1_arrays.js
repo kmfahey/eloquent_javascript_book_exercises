@@ -29,7 +29,6 @@ specialForms.array = (args, scope) => {
 
 specialForms.length = (args, scope) => {
     let array = _frame_to_value(args[0], scope);
-    console.log(array);
     return array.length;
 }
 
@@ -39,7 +38,6 @@ specialForms.element = (args, scope) => {
     return _frame_to_value(array[index]);
 }
 
-/*
 run(`do(define(f, fun(a, fun(b, +(a, b)))), print(f(4)(5)))`);
 
 run(`do(print(element(array(1,2,3),0)))`);
@@ -47,6 +45,5 @@ run(`do(print(element(array(1,2,3),0)))`);
 run(`do(define(a, array(1,2,3)), print(element(a, 0)))`);
 
 run(`do(define(a, array(1,2,3)), print(length(a)))`);
-*/
 
-export.specialForms = specialForms;
+exports.specialForms = specialForms;
