@@ -48,9 +48,8 @@ Reproducing the code of the fun form as follows:
     23 };
 
 The fun form returns a function that's a closure that has access to the scope
-object it was called with. That function copies the scope object for its use
-then returns the results of evaluating the body it was defined around in the
-context of the copied scope. The returned function is a closure in the local
-scope it was called with, so when it evaluates the body that body has access to
-that scope as well.
+object it was called with. That function creates a new scope object that uses
+the enclosing scope's object as a prototype. It explicitly sets the values of
+the parameters in that scope; but any other lookup would fall through to the
+prototype object. In this way it has access to the scope it was called in.
 
