@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Build a Table</title>
+        <!--
+Build a Table
+
+An HTML table is built with the following tag structure:
+
+<html>
+ <body>
+  <table>
+   <tr>
+    <th> name </th>
+    <th> height </th>
+    <th> place </th>
+   </tr>
+   <tr>
+    <td> Kilimanjaro </td>
+    <td> 5895 </td>
+    <td> Tanzania </td>
+   </tr>
+  </table>
+ </body>
+</html>
+
+For each row, the <table> tag contains a <tr> tag. Inside of these <tr >
+tags, we can put cell elements: either heading cells (<th>) or regular cells
+(<td>).
+
+Given a data set of mountains, an array of objects with name, height, and
+place properties, generate the DOM structure for a table that enumerates the
+objects. It should have one column per key and one row per object, plus a
+header row with <th> elements at the top, listing the column names.
+
+Write this so that the columns are automatically derived from the objects, by
+taking the property names of the first object in the data. Add the resulting
+table to the element with an id attribute of "mountains" so that it becomes
+visible in the document.
+
+Once you have this working, right-align cells that contain number values by
+setting their style.textAlign property to "right".
+        -->
+        <script src="./exercise1.js">
+document.body = document.createElement("body");
+let columnNames = ['name', 'height', 'place'];
+let tableNode = document.createElement("table");
+tableNode.setAttribute("id", document.createAttribute("id"));
+tableNode.id = "mountains";
+let trHeaderNode = document.createElement("tr");
+for (let columnName of columnNames) {
+    let thNode = document.createElement("th");
+    thNode.innerHTML = columnName;
+    trHeaderNode.appendChild(thNode);
+}
+tableNode.appendChild(trHeaderNode);
+for (let mountain of mountains) {
+    let trNode = document.createElement("tr");
+    for (let columnName of columnNames) {
+        let tdNode = document.createElement("td");
+        tdNode.innerHTML = mountain[columnName];
+        if (typeof mountain[columnName] == "number") {
+            tdNode.setAttribute("style", document.createAttribute("style"));
+            tdNode.style.textAlign = "right";
+        }
+        trNode.appendChild(tdNode);
+    }
+    tableNode.appendChild(trNode);
+}
+document.body.appendChild(tableNode);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
