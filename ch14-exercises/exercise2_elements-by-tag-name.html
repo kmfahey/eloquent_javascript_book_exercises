@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Elements by Tag Name</title>
+        <!--
+Elements by Tag Name
+
+The document.getElementsByTagName method returns all child elements with a
+given tag name. Implement your own version of this as a function that takes a
+node and a string (the tag name) as arguments and returns an array containing
+all descendant element nodes with the given tag name.
+
+To find the tag name of an element, use its nodeName property. But note
+that this will return the tag name in all uppercase. Use the toLowerCase or
+toUpperCase string methods to compensate for this.
+        -->
+        <script>
+function getElementsByTagName(node, tagName) {
+    let nodeAndTagAreEqual = (node, tag) => 
+    let retval = [];
+    if (node.nodeName.toLowerCase() === tag.toLowerCase()) {
+        retval.push(node);
+    }
+    let rootTag = node.nodeName.toLowerCase();
+    let selectedNodes = node.querySelectorAll(`${rootTag} ${tagName}`);
+    retval.push(...selectedNodes);
+    return retval;
+}
+        </script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th> name </th>
+                <th> height </th>
+                <th> place </th>
+            </tr>
+            <tr>
+                <td> Mount Everest </td>
+                <td style="text-align: right;"> 8848 </td>
+                <td> Nepal, China </td>
+            </tr>
+            <tr>
+                <td> K2 </td>
+                <td style="text-align: right;"> 8611 </td>
+                <td> Pakistan, China </td>
+            </tr>
+            <tr>
+                <td> Kangchenjunga </td>
+                <td style="text-align: right;"> 8586 </td>
+                <td> Nepal, India </td>
+            </tr>
+            <tr>
+                <td> Lhotse </td>
+                <td style="text-align: right;"> 8516 </td>
+                <td> China, Nepal </td>
+            </tr>
+            <tr>
+                <td> Makalu </td>
+                <td style="text-align: right;"> 8485 </td>
+                <td> Nepal, China </td>
+            </tr>
+            <tr>
+                <td> Cho Oyu </td>
+                <td style="text-align: right;"> 8188 </td>
+                <td> China, Nepal </td>
+            </tr>
+            <tr>
+                <td> Dhaulagiri I </td>
+                <td style="text-align: right;"> 8167 </td>
+                <td> Nepal </td>
+            </tr>
+            <tr>
+                <td> Manaslu </td>
+                <td style="text-align: right;"> 8163 </td>
+                <td> Nepal </td>
+            </tr>
+            <tr>
+                <td> Nanga Parbat </td>
+                <td style="text-align: right;"> 8126 </td>
+                <td> Pakistan </td>
+            </tr>
+            <tr>
+                <td> Annapurna I </td>
+                <td style="text-align: right;"> 8091 </td>
+                <td> Nepal </td>
+            </tr>
+        </table>
+        <p id="output"></p>
+        <script>
+            let outputHtml = "searching for th tags, contents of tags found: ";
+            let innerHtmlOfTagsFound = [];
+            for (let node of getElementsByTagName(document.body, "th")) {
+                innerHtmlOfTagsFound.push(node.innerHTML.trim());
+            }
+            outputHtml += innerHtmlOfTagsFound.join(", ");
+            document.getElementById("output").innerHTML = outputHtml;
+        </script>
+    </body>
+</html>
