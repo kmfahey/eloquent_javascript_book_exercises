@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Cat's Hat</title>
+        <!--
+The Cat's Hat
+
+Extend the cat animation defined earlier so that both the cat and his hat
+(<img src="img/hat.png">) orbit at opposite sides of the ellipse. Or make the
+hat circle around the cat. Or alter the animation in some other interesting
+way.
+
+To make positioning multiple objects easier, it is probably a good idea
+to switch to absolute positioning. This means that top and left are
+counted relative to the top left of the document. To avoid using negative
+coordinates, which would cause the image to move outside of the visible page,
+you can add a fixed number of pixels to the position values.
+        -->
+    </head>
+    <body style="text-align: center;">
+        <img src="cat.png" style="position: absolute;" id="catImage"/>
+        <img src="hat.png" style="position: absolute;" id="hatImage"/>
+    </body>
+    <script>
+        // Because the animation is now using position: absolute, to put the
+        // cat and hat animations at the top center again, I calculate the
+        // horizontal center of the viewable area, and an arbitrary vertical
+        // offset from the top of the viewable area.
+        const windowCenterXOrd = window.innerWidth / 2;
+        const topRowYOrd = window.innerHeight / 10;
+
+        let cat = document.getElementById("catImage");
+        let hat = document.getElementById("hatImage");
+        let catAngle = 0;
+        let hatAngle = Math.PI;
+
+        // Accepts an image node and an angle, and updates its .style.left and
+        // .style.top values with its new position on the ellipse.
+        function setImageAngleCoords(image, angle) {
+            image.style.left = (windowCenterXOrd + Math.cos(angle) * 200) + "px";
+            image.style.top = (topRowYOrd + Math.sin(angle) * 50) + "px";
+        }
+
+        setImageAngleCoords(cat, catAngle);
+        setImageAngleCoords(hat, hatAngle);
+
+        function animate(time, lastTime) {
+            if (lastTime != null) {
+                catAngle += (time - lastTime) * 0.001;
+                hatAngle += (time - lastTime) * 0.001;
+            }
+            setImageAngleCoords(cat, catAngle);
+            setImageAngleCoords(hat, hatAngle);
+            requestAnimationFrame(newTime => animate(newTime, time));
+        }
+
+        requestAnimationFrame(animate);
+    </script>
+</html>
