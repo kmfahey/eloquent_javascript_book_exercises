@@ -44,7 +44,8 @@ setting their style.textAlign property to "right".
     <body>
     </body>
     <script>
-mountains = [
+const columnNames = ['name', 'height', 'place'];
+const mountains = [
     {"name": "Mount Everest", "height": 8848, "place": "Nepal, China"},
     {"name": "K2", "height": 8611, "place": "Pakistan, China"},
     {"name": "Kangchenjunga", "height": 8586, "place": "Nepal, India"},
@@ -56,28 +57,33 @@ mountains = [
     {"name": "Nanga Parbat", "height": 8126, "place": "Pakistan"},
     {"name": "Annapurna I", "height": 8091, "place": "Nepal"}
 ];
-let columnNames = ['name', 'height', 'place'];
+
 let tableNode = document.createElement("table");
 tableNode.setAttribute("id", document.createAttribute("id"));
 tableNode.id = "mountains";
+
 let trHeaderNode = document.createElement("tr");
 for (let columnName of columnNames) {
-    let thNode = document.createElement("th"); thNode.innerHTML = columnName; trHeaderNode.appendChild(thNode);
+    let thNode = document.createElement("th");
+    thNode.innerHTML = columnName;
+    trHeaderNode.appendChild(thNode);
 }
 tableNode.appendChild(trHeaderNode);
+
 for (let mountain of mountains) {
     let trNode = document.createElement("tr");
     for (let columnName of columnNames) {
         let tdNode = document.createElement("td");
         tdNode.innerHTML = mountain[columnName];
         if (typeof mountain[columnName] == "number") {
-            tdNode.setAttribute("style", document.createAttribute("style"));
+            tdNode.style = document.createAttribute("style");
             tdNode.style.textAlign = "right";
         }
         trNode.appendChild(tdNode);
     }
     tableNode.appendChild(trNode);
 }
+
 document.body.appendChild(tableNode);
     </script>
 </html>
