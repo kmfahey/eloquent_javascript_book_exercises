@@ -18,7 +18,20 @@ feature where, if you blow up the balloon past a certain size, it explodes. In
 this case, exploding means that it is replaced with an 💥 emoji, and the event
 handler is removed (so that you can’t inflate or deflate the explosion).
         -->
+        <style>
+            div.balloonHolder {
+                text-align: center;
+            }
+
+            span#balloon {
+                font-size: 100%;
+            }
+        </style>
     </head>
     <body>
+        <div class="balloonHolder">
+            <span id="balloon">🎈</span>
+        </div>
     </body>
+    <script src="./exercise1.js"></script>
 </html>
