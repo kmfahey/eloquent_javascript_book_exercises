@@ -4,8 +4,11 @@ let tabsById = new Map();
 function switchVisibleTab(event) {
     let buttonTabId = event.target.getAttribute("data-assoc-tab-id");
     for (let [tabId, tabNode] of tabsById.entries()) {
-        if (tabId === buttonTabId) tabNode.style.display = "block";
-        else tabNode.style.display = "none";
+        if (tabId === buttonTabId) {
+            tabNode.style.display = "block";
+        } else {
+            tabNode.style.display = "none";
+        }
     }
 }
 
@@ -19,6 +22,11 @@ function asTabs(tabsParentNode) {
         tabNode.style = document.createAttribute("style");
         if (tabId !== tabSelected) tabNode.style.display = "none";
     }
+
+    let hrNode = document.createElement("hr");
+    hrNode.width = "25%";
+    tabsParentNode.insertBefore(hrNode, tabsParentNode.firstChild);
+
     let buttonNodes = [];
     for (let [tabId, tabNode] of tabsById.entries()) {
         let buttonNode = document.createElement("button");
@@ -27,9 +35,17 @@ function asTabs(tabsParentNode) {
         buttonNode.addEventListener("click", switchVisibleTab);
         buttonNodes.push(buttonNode);
     }
+
     let buttonRowDiv = document.createElement("div");
-    for (let buttonNode of buttonNodes) {
-        buttonRowDiv.appendChild(buttonNode);
+    buttonRowDiv.style = document.createElement("style");
+    buttonRowDiv.style.textAlign = "center";
+    for (i = 0; i < buttonNodes.length; i++) {
+        buttonRowDiv.appendChild(buttonNodes[i]);
+        if (i < buttonNodes.length - 1) {
+            let bulletNode = document.createTextNode(" • ");
+            buttonRowDiv.appendChild(bulletNode);
+        }
     }
+
     tabsParentNode.insertBefore(buttonRowDiv, tabsParentNode.firstChild);
 }
