@@ -29,6 +29,10 @@ var Level = class Level {
 }
 
 var State = class State {
+	// These two variables added while completing exercise 1.
+  static DEFAULT_LIVES_NUMBER = 3;
+  static playerLivesRemaining = this.DEFAULT_LIVES_NUMBER;
+
   constructor(level, actors, status) {
     this.level = level;
     this.actors = actors;
@@ -350,10 +354,39 @@ function runLevel(level, Display) {
 }
 
 async function runGame(plans, Display) {
-  for (let level = 0; level < plans.length;) {
-    let status = await runLevel(new Level(plans[level]),
-                                Display);
-    if (status == "won") level++;
+	/*
+   * Modified while completing exercise 1. Original function as written by
+	 * author was as follows.
+	 *
+	 * async function runGame(plans, Display) {
+	 * 	for (let level = 0; level < plans.length;) {
+	 * 		let status = await runLevel(new Level(plans[level]),
+	 * 																Display);
+	 * 		if (status == "won") level++;
+	 * 	}
+	 * 	console.log("You've won!");
+	 * }
+	 */
+    
+  let playerHasWon = false;
+  while (!playerHasWon) {
+    for (let level = 0; level < plans.length;) {
+      let lifeNoun = State.playerLivesRemaining === 1 ? "life" : "lives";
+      console.log(`${State.playerLivesRemaining} ${lifeNoun} left`);
+      let status = await runLevel(new Level(plans[level]),
+                                  Display);
+      if (status == "won") {
+        level++;
+        playerHasWon = level === plans.length;
+      } else {
+        State.playerLivesRemaining--;
+        if (State.playerLivesRemaining === 0) {
+          State.playerLivesRemaining = State.DEFAULT_LIVES_NUMBER;
+          break;
+        }
+      }
+    }
+    if (!playerHasWon) console.log("Game over!");
   }
   console.log("You've won!");
 }
