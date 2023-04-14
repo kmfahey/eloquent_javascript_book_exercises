@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 1: Shapes</title>
+<!--
+Shapes
+
+Write a program that draws the following shapes on a canvas:
+
+1. A trapezoid (a rectangle that is wider on one side)
+2. A red diamond (a rectangle rotated 45 degrees or ¼π radians)
+3. A zigzagging line
+4. A spiral made up of 100 straight line segments
+5. A yellow star
+
+When drawing the last two, you may want to refer to the explanation of
+Math.cos and Math.sin in Chapter 14, which describes how to get coordinates
+on a circle using these functions.
+
+I recommend creating a function for each shape. Pass the position, and
+optionally other properties such as the size or the number of points, as
+parameters. The alternative, which is to hard-code numbers all over your
+code, tends to make the code needlessly hard to read and modify.
+-->
+        <style>
+canvas#canvas {
+    width: 640px;
+    height: 480px;
+    border: 3px solid black;
+}
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width=640 height=480></canvas>
+        <dl>
+            <dt> <button id="draw-trapezoid-button">Draw Trapezoid</button> </dt>
+            <dt> <button id="draw-red-diamond-button">Draw Red Diamond</button> </dt>
+            <dt> <button id="draw-zigzag-button">Draw Zigzag</button> </dt>
+            <dt> <button id="draw-spiral-button">Draw Spiral</button> </dt>
+            <dt> <button id="draw-yellow-star-button">Draw Yellow Star</button> </dt>
+        </dl>
+    </body>
+    <script>
+let canvas = document.getElementById("canvas");
+let context = canvas.getContext("2d");
+
+function clearCanvas() {
+    context.clearRect(0,0,640,480);
+}
+
+// upper left corner: (203,110)
+// upper right corner: (437,110)
+// lower right corner: (551,343)
+// lower left corner: (87,343)
+function drawTrapezoid(event) {
+    clearCanvas();
+    context.strokeStyle = "black";
+    context.beginPath();
+    context.moveTo(203,110); // upper left corner
+    context.lineTo(437,110); // upper right corner
+    context.stroke();
+    context.lineTo(551,343); // lower right corner
+    context.stroke();
+    context.lineTo(87,343); // lower left corner
+    context.stroke();
+    context.lineTo(203,110); // lower left corner
+    context.stroke();
+}
+
+// top vertex: (320,43)
+// left vertex: (120,243)
+// bottom vertex: (320, 443)
+// right vertex: (520,243)
+
+function drawRedDiamond(event) {
+    clearCanvas();
+    context.fillStyle = "red";
+    context.strokeStyle = "red";
+    context.beginPath();
+    context.moveTo(320,43); // top vertex
+    context.lineTo(120,243); // left vertex
+    context.stroke();
+    context.lineTo(320,443); // bottom vertex
+    context.stroke();
+    context.lineTo(520,243); // right vertex
+    context.stroke();
+    context.lineTo(320,43); // top vertex
+    context.stroke();
+    context.fill();
+}
+
+/*
+vertexes: (110,27), (530,62), (110,97), (530,132), (110,167), (530,202),
+          (110,237), (530,272), (110,307), (530,342), (110,377), (530,412),
+          (110,447)
+*/
+function drawZigzag(event) {
+    clearCanvas();
+    context.strokeStyle = "black";
+    context.beginPath();
+    context.moveTo(110, 27);
+    let xVertexes = [110, 530];
+    for (y = 62; y <= 447; y += 35) {
+        let x = xVertexes[((y - 27) % 70)/35];
+        context.lineTo(x, y);
+        context.stroke();
+    }
+}
+
+function drawSpiral(event) {
+    clearCanvas();
+    context.strokeStyle = "black";
+    context.beginPath();
+    let radius = 200;
+    let xCenter = 320;
+    let yCenter = 240;
+    context.beginPath();
+    context.moveTo(xCenter, yCenter);
+    for (let i = 0; i < 300; i++) {
+        let angle = i * Math.PI / 30;
+        let dist = radius * i / 300;
+        context.lineTo(xCenter + Math.cos(angle) * dist,
+                  yCenter + Math.sin(angle) * dist);
+    }
+    context.stroke();
+}
+
+function drawYellowStar(event) {
+    clearCanvas();
+    context.fillStyle = "rgb(254, 165, 0)";
+    context.strokeStyle = "rgb(254, 165, 0)";
+
+    // generate the vertexes of the star by plotting 8 equidistant points around a circle 
+    let centerX = 318, centerY = 240, radius = 218
+    let vertexes = [];
+    for (i = 0; i < 8; i++) {
+        let angle = i * 2 * Math.PI / 8;
+        let xCoord = centerX + Math.cos(angle) * radius;
+        let yCoord = centerY + Math.sin(angle) * radius;
+        vertexes.push({x: Math.round(xCoord), y: Math.round(yCoord)});
+    }
+
+    context.beginPath();
+    // start at the first vertex
+    context.moveTo(vertexes[0].x, vertexes[0].y);
+    // draw the first 7 quadratic curves, using the center of the circle the
+    // vertexes were plotted on as a control point
+    for (i = 1; i < 8; i++) {
+        let {x, y} = vertexes[i];
+        context.quadraticCurveTo(centerX, centerY, x, y);
+    }
+    // draw the final quadratic curve, which connects back to the first vertex
+    // in the array
+    context.quadraticCurveTo(centerX, centerY, vertexes[0].x, vertexes[0].y);
+    context.stroke();
+    context.fill();
+}
+
+let trapezoidButton = document.getElementById("draw-trapezoid-button");
+let redDiamondButton = document.getElementById("draw-red-diamond-button");
+let zigzagButton = document.getElementById("draw-zigzag-button");
+let spiralButton = document.getElementById("draw-spiral-button");
+let yellowStarButton = document.getElementById("draw-yellow-star-button");
+
+trapezoidButton.addEventListener("click", drawTrapezoid);
+redDiamondButton.addEventListener("click", drawRedDiamond);
+zigzagButton.addEventListener("click", drawZigzag);
+spiralButton.addEventListener("click", drawSpiral);
+yellowStarButton.addEventListener("click", drawYellowStar);
+    </script>
+</html>
