@@ -14,7 +14,72 @@ assume that categories are big enough to leave ample room for their labels.
 You might need Math.sin and Math.cos again, which are described in Chapter
 14.
 -->
+        <style>
+canvas#canvas {
+    width: 640px;
+    height: 480px;
+    border: 3px solid black;
+}
+        </style>
     </head>
     <body>
+        <canvas id="canvas" width=640 height=480></canvas>
     </body>
+    <script>
+const results = [
+    {name: "Satisfied", count: 1043, color: "lightblue"},
+    {name: "Neutral", count: 563, color: "lightgreen"},
+    {name: "Unsatisfied", count: 510, color: "pink"},
+    {name: "No comment", count: 175, color: "silver"}
+];
+
+let canvas = document.getElementById("canvas");
+let context = canvas.getContext("2d");
+let total = results.reduce((sum, {count}) => sum + count, 0);
+let xCenter = 320, yCenter = 240, radius = 200;
+// Start at the top
+let currentAngle = -0.5 * Math.PI;
+
+function placeTextAlongArc(startAngle, endAngle, textString) {
+    context.font = "12pt Verdana";
+    let midpointAngle = (startAngle + endAngle) / 2;
+    let textCoord = { x: xCenter + radius * Math.cos(midpointAngle),
+                      y: yCenter + radius * Math.sin(midpointAngle) };
+    console.log("placing string "+ textString);
+    if (midpointAngle > -Math.PI / 2 && midpointAngle < Math.PI / 2) {
+        context.textAlign = "left";
+        console.log("using left alignment");
+    } else {
+        context.textAlign = "right";
+        console.log("using right alignment");
+    }
+    if (midpointAngle < 0 || midpointAngle > Math.PI) {
+        context.textBaseline = "bottom";
+        console.log("using bottom baseline");
+    } else {
+        context.textBaseline = "top";
+        console.log("using top baseline");
+    }
+    context.fillText(textString, textCoord.x, textCoord.y);
+}
+
+function drawPieChart(chartSegments) {
+    for (let chartSegment of chartSegments) {
+        let sliceAngle = (chartSegment.count / total) * 2 * Math.PI;
+        context.beginPath();
+        // center=100,100, radius=100
+        // from current angle, clockwise by slice's angle
+        context.arc(xCenter, yCenter, radius, currentAngle, currentAngle + sliceAngle);
+        let startAngle = currentAngle, endAngle = currentAngle + sliceAngle;
+        currentAngle = endAngle;
+        context.lineTo(xCenter, yCenter);
+        context.fillStyle = chartSegment.color;
+        context.fill();
+        context.fillStyle = "black";
+        placeTextAlongArc(startAngle, endAngle, chartSegment.name);
+    }
+}
+
+drawPieChart(results);
+    </script>
 </html>
