@@ -45,20 +45,15 @@ function placeTextAlongArc(startAngle, endAngle, textString) {
     let midpointAngle = (startAngle + endAngle) / 2;
     let textCoord = { x: xCenter + radius * Math.cos(midpointAngle),
                       y: yCenter + radius * Math.sin(midpointAngle) };
-    console.log("placing string "+ textString);
     if (midpointAngle > -Math.PI / 2 && midpointAngle < Math.PI / 2) {
         context.textAlign = "left";
-        console.log("using left alignment");
     } else {
         context.textAlign = "right";
-        console.log("using right alignment");
     }
     if (midpointAngle < 0 || midpointAngle > Math.PI) {
         context.textBaseline = "bottom";
-        console.log("using bottom baseline");
     } else {
         context.textBaseline = "top";
-        console.log("using top baseline");
     }
     context.fillText(textString, textCoord.x, textCoord.y);
 }
@@ -66,11 +61,9 @@ function placeTextAlongArc(startAngle, endAngle, textString) {
 function drawPieChart(chartSegments) {
     for (let chartSegment of chartSegments) {
         let sliceAngle = (chartSegment.count / total) * 2 * Math.PI;
-        context.beginPath();
-        // center=100,100, radius=100
-        // from current angle, clockwise by slice's angle
-        context.arc(xCenter, yCenter, radius, currentAngle, currentAngle + sliceAngle);
         let startAngle = currentAngle, endAngle = currentAngle + sliceAngle;
+        context.beginPath();
+        context.arc(xCenter, yCenter, radius, startAngle, endAngle);
         currentAngle = endAngle;
         context.lineTo(xCenter, yCenter);
         context.fillStyle = chartSegment.color;
