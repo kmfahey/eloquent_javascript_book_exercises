@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 1: Shapes</title>
+<!--
+A Bouncing Ball
+
+Use the requestAnimationFrame technique that we saw in Chapter 14 and Chapter
+16 to draw a box with a bouncing ball in it. The ball moves at a constant
+speed and bounces off the box’s sides when it hits them.
+-->
+        <style>
+canvas#canvas {
+    width: 640px;
+    height: 480px;
+    border: 3px solid black;
+}
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width=640 height=480></canvas>
+        <script>
+const randint = (lower, upper) => lower + Math.floor(Math.random() * (upper + 1 - lower));
+const canvasWidth = 640, canvasHeight = 480;
+const ballRadius = 5, ballColor = "black";
+
+let canvas = document.getElementById("canvas");
+let context = canvas.getContext("2d");
+
+const ballBounds = {x: {lower: 5, upper: canvasWidth - 5}, y: {lower: 5, upper: canvasWidth - 5}};
+
+let prevBallLoc = undefined;
+let ballLoc = {x: randint(ballBounds.x.lower, ballBounds.x.upper),
+               y: randint(ballBounds.x.lower, ballBounds.x.upper)};
+
+console.log(ballLoc);
+
+function drawBall(newLoc, oldLoc) {
+    function _drawBall_inner(x, y, color) {
+        context.beginPath();
+        context.fillStyle = color;
+        context.start
+        context.arc(x, y, ballRadius, 0, 2*Math.PI);
+        context.fill();
+    }
+    if (oldLoc !== undefined) {
+        _drawBall_inner(oldLoc.x, oldLoc.y, "white");
+    }
+    _drawBall_inner(newLoc.x, newLoc.y, "black");
+}
+
+drawBall(ballLoc);
+        </script>
+    </body>
+</html>
