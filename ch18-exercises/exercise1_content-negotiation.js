@@ -7,7 +7,7 @@
  * of various ways to encode a resource, it can look at this header and send the
  * one that the client prefers.
  *
- * The URL https://eloquentjavascript.net/author is configured to re- spond with
+ * The URL https://eloquentjavascript.net/author is configured to respond with
  * either plaintext, HTML, or JSON, depending on what the client asks for. These
  * formats are identified by the standardized media types text/plain, text/html,
  * and application/json.
@@ -21,3 +21,47 @@
  */
 
 
+let contentTypes = ["text/plain", "text/html", "application/json"];
+let requestsArray = [];
+let allFetched = false;
+let outcomesDisplayed = false;
+let contentBodies = new Map();
+let url = "https://eloquentjavascript.net/author";
+
+for (let contentType of contentTypes) {
+    requestsArray.push(fetch(url, {headers: {Accept: contentType}}));
+}
+
+let allReqs = Promise.all(requestsArray);
+
+allReqs.then(responses => {
+    let textsArray = [];
+    for (let response of responses) {
+        textsArray.push(response.text());
+    };
+    let allTexts = Promise.all(textsArray);
+    allTexts.then(texts => {
+        for (i = 0; i < 3; i++) {
+            let contentType = contentTypes[i];
+            let reqText = texts[i];
+            contentBodies.set(contentType, reqText);
+        }
+        allFetched = true;
+    }).catch(error => {
+        console.log(error);
+    });
+});
+
+let intervalId = setInterval(() => {
+    if (allFetched) {
+        clearInterval(intervalId);
+        displayOutcomes();
+    };
+}, 100);
+
+function displayResolveOutcomes() {
+    for (let [contentType, reqBody] of contentBodies.entries()) {
+        console.log(`requesting ${url} with Accept: ${contentType} header yielded this body text:`);
+        console.log(reqBody);
+    }
+}
