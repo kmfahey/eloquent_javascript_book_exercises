@@ -18,4 +18,11 @@ every frame.
 
 ## Student Work
 
+In addition to image elements, the the context.drawImage() method can take a
+canvas element as its first argument. To transform an image once and then save
+that work and not need to repeat it, one can create a "clipboard" canvas element
+that's not going to be part of the DOM. Then draw the transformed image into the
+clipboard canvas element.
 
+The clipboard element can then be used as the first argument to drawImage calls
+to draw the transformed image repeatedly without having to recalculate it.
