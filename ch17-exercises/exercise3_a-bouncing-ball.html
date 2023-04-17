@@ -20,36 +20,79 @@ canvas#canvas {
     <body>
         <canvas id="canvas" width=640 height=480></canvas>
         <script>
-const randint = (lower, upper) => lower + Math.floor(Math.random() * (upper + 1 - lower));
+const randfloat = (lower, upper) => lower + (Math.random() * (upper - lower));
+
 const canvasWidth = 640, canvasHeight = 480;
 const ballRadius = 5, ballColor = "black";
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
-const ballBounds = {x: {lower: 5, upper: canvasWidth - 5}, y: {lower: 5, upper: canvasWidth - 5}};
+const ballBounds = {x: {lower: 5, upper: canvasWidth - 5}, y: {lower: 5, upper: canvasHeight - 5}};
 
-let prevBallLoc = undefined;
-let ballLoc = {x: randint(ballBounds.x.lower, ballBounds.x.upper),
-               y: randint(ballBounds.x.lower, ballBounds.x.upper)};
-
-console.log(ballLoc);
-
-function drawBall(newLoc, oldLoc) {
-    function _drawBall_inner(x, y, color) {
-        context.beginPath();
-        context.fillStyle = color;
-        context.start
-        context.arc(x, y, ballRadius, 0, 2*Math.PI);
-        context.fill();
+class Ball {
+    constructor(xFloat, yFloat, xSpeed, ySpeed) {
+        this.xFloat = xFloat;
+        this.yFloat = yFloat;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
     }
-    if (oldLoc !== undefined) {
-        _drawBall_inner(oldLoc.x, oldLoc.y, "white");
+
+    get xInt() {
+        return Math.floor(this.xFloat);
     }
-    _drawBall_inner(newLoc.x, newLoc.y, "black");
+
+    get yInt() {
+        return Math.floor(this.yFloat);
+    }
 }
 
-drawBall(ballLoc);
+let prevBallState = undefined;
+let ballState = new Ball(randfloat(ballBounds.x.lower, ballBounds.x.upper),
+                         randfloat(ballBounds.x.lower, ballBounds.x.upper),
+                         undefined, undefined);
+
+ballState.xSpeed = Math.random() >= 0.5 ? randfloat(1,2) : randfloat(-1,-2);
+ballState.ySpeed = Math.random() >= 0.5 ? randfloat(1,2) : randfloat(-1,-2);
+
+console.log(ballState);
+
+function drawBall(newState, oldState) {
+    if (oldState !== undefined) {
+        context.beginPath();
+        context.fillStyle = "red";
+        context.arc(oldState.xInt, oldState.yInt, ballRadius, 0, 2*Math.PI);
+        context.fill();
+    }
+    context.beginPath();
+    context.fillStyle = "black";
+    context.arc(newState.xInt, newState.yInt, ballRadius, 0, 2*Math.PI);
+    context.fill();
+}
+
+function animateBallStep(epochMs) {
+    //let delay = Math.ceil(epochMs/100) - Math.floor(epochMs/100)
+    let newBallState = new Ball(ballState.xFloat + ballState.xSpeed,
+                                ballState.yFloat + ballState.ySpeed,
+                                ballState.xSpeed, ballState.ySpeed);
+    if (ballState.xFloat < ballBounds.x.lower || ballState.xFloat > ballBounds.x.upper) {
+        newBallState.xSpeed *= -1;
+        newBallState.xFloat = ballState.xFloat + newBallState.xSpeed;
+    }
+    if (ballState.yFloat < ballBounds.y.lower || ballState.yFloat > ballBounds.y.upper) {
+        newBallState.ySpeed *= -1;
+        newBallState.yFloat = ballState.yFloat + newBallState.ySpeed;
+    }
+    prevBallState = ballState;
+    ballState = newBallState;
+    console.log(ballState);
+    drawBall(ballState, prevBallState);
+    requestAnimationFrame(animateBallStep);
+}
+
+drawBall(ballState);
+
+requestAnimationFrame(animateBallStep);
         </script>
     </body>
 </html>
