@@ -12,9 +12,86 @@ constructor we saw in Chapter 10 to wrap the text in a function and call it.
 Convert the return value of the function, or any error it raises, to a string
 and display it below the text field.
 -->
+        <style>
+div#inputOutputDiv {
+    width: min-content;
+    margin: 1em;
+}
+
+div#buttonDiv {
+    width: 100%;
+    text-align: right;
+    margin: 1em;
+}
+
+textarea#inputCode {
+    margin: 1em;
+}
+
+div#codeOutput {
+    height: 24cap;
+    width: 95%;
+    display: inline-block;
+    padding: 1em;
+}
+        </style>
     </head>
     <body>
+        <div id="inputOutputDiv">
+            <p>
+                Write code in the textarea as though you were writing a function
+                with 0 arguments. Use the return statement to commit the output
+                you want to see. When you click the button, the return value (or
+                any error raised) will be displayed below the textarea.
+            </p>
+            <form action="" method="GET">
+                <textarea id="inputCode" name="inputCode" rows="24" cols="80"></textarea><br/>
+                <div id="buttonDiv">
+                    <button type="submit" id="evalCode" name="evalCode">Evaluate Code</button>
+                </div>
+            </form>
+            <div id="codeOutput"></div>
+        </div>
         <script>
+// Retrieving the elements that the code needs to interact with.
+let inputTextarea = document.getElementById("inputCode");
+let inputButton = document.getElementById("evalCode");
+let outputDiv = document.getElementById("codeOutput");
+
+// Setting the code variable to the current value of the textarea.
+let inputtedCode = inputTextarea.value;
+
+// Listener to commit the current textarea contents to the code variable anytime
+// the textarea loses focus.
+inputTextarea.addEventListener("input", event => {
+    inputtedCode = inputTextarea.value;
+});
+
+// Listener that executes the code in the textarea and commits its output to the
+// display div below the form.
+inputButton.addEventListener("click", event => {
+    event.preventDefault();
+    let result = evalString(inputtedCode);
+    if (result instanceof Error) {
+        outputDiv.innerHTML = result.toString();
+    } else if (!(result instanceof Object)) {
+        outputDiv.innerHTML = JSON.stringify(result);
+    } else if ('toString' in result) {
+        outputDiv.innerHTML = result.toString();
+    } else {
+        outputDiv.innerHTML = Object.prototype.toString.call(result);
+    }
+});
+
+// Eval function.
+function evalString(codeString) {
+    let evalFunction = new Function("", codeString);
+    try {
+        return evalFunction();
+    } catch (exception) {
+        return exception;
+    }
+}
         </script>
     </body>
 </html>
