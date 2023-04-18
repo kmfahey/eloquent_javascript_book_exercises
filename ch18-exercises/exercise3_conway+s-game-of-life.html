@@ -29,9 +29,995 @@ as a grid of checkbox fields, with a button next to it to advance to the next
 generation. When the user checks or unchecks the checkboxes, their changes
 should be included when computing the next generation.
 -->
+        <style>
+input {
+    margin: 0;
+    padding: 0;
+}
+
+button#advance-generation {
+    margin: 1em;
+}
+
+div#cell-grid {
+    padding: 1em;
+}
+        </style>
     </head>
     <body>
+        <form>
+            <div id="cell-grid">
+                <div id="row-0">
+                    <input type="checkbox" id="cell-0:0"/> <input type="checkbox" id="cell-1:0"/> <input type="checkbox" id="cell-2:0"/> <input type="checkbox" id="cell-3:0"/>
+                    <input type="checkbox" id="cell-4:0"/> <input type="checkbox" id="cell-5:0"/> <input type="checkbox" id="cell-6:0"/> <input type="checkbox" id="cell-7:0"/>
+                    <input type="checkbox" id="cell-8:0"/> <input type="checkbox" id="cell-9:0"/> <input type="checkbox" id="cell-10:0"/> <input type="checkbox" id="cell-11:0"/>
+                    <input type="checkbox" id="cell-12:0"/> <input type="checkbox" id="cell-13:0"/> <input type="checkbox" id="cell-14:0"/> <input type="checkbox" id="cell-15:0"/>
+                    <input type="checkbox" id="cell-16:0"/> <input type="checkbox" id="cell-17:0"/> <input type="checkbox" id="cell-18:0"/> <input type="checkbox" id="cell-19:0"/>
+                    <input type="checkbox" id="cell-20:0"/> <input type="checkbox" id="cell-21:0"/> <input type="checkbox" id="cell-22:0"/> <input type="checkbox" id="cell-23:0"/>
+                    <input type="checkbox" id="cell-24:0"/> <input type="checkbox" id="cell-25:0"/> <input type="checkbox" id="cell-26:0"/> <input type="checkbox" id="cell-27:0"/>
+                    <input type="checkbox" id="cell-28:0"/> <input type="checkbox" id="cell-29:0"/> <input type="checkbox" id="cell-30:0"/> <input type="checkbox" id="cell-31:0"/>
+                    <input type="checkbox" id="cell-32:0"/> <input type="checkbox" id="cell-33:0"/> <input type="checkbox" id="cell-34:0"/> <input type="checkbox" id="cell-35:0"/>
+                    <input type="checkbox" id="cell-36:0"/> <input type="checkbox" id="cell-37:0"/> <input type="checkbox" id="cell-38:0"/> <input type="checkbox" id="cell-39:0"/>
+                    <input type="checkbox" id="cell-40:0"/> <input type="checkbox" id="cell-41:0"/> <input type="checkbox" id="cell-42:0"/> <input type="checkbox" id="cell-43:0"/>
+                    <input type="checkbox" id="cell-44:0"/> <input type="checkbox" id="cell-45:0"/> <input type="checkbox" id="cell-46:0"/> <input type="checkbox" id="cell-47:0"/>
+                    <input type="checkbox" id="cell-48:0"/> <input type="checkbox" id="cell-49:0"/> <input type="checkbox" id="cell-50:0"/> <input type="checkbox" id="cell-51:0"/>
+                    <input type="checkbox" id="cell-52:0"/> <input type="checkbox" id="cell-53:0"/> <input type="checkbox" id="cell-54:0"/> <input type="checkbox" id="cell-55:0"/>
+                    <input type="checkbox" id="cell-56:0"/> <input type="checkbox" id="cell-57:0"/> <input type="checkbox" id="cell-58:0"/> <input type="checkbox" id="cell-59:0"/>
+                    <input type="checkbox" id="cell-60:0"/> <input type="checkbox" id="cell-61:0"/> <input type="checkbox" id="cell-62:0"/> <input type="checkbox" id="cell-63:0"/>
+                    <input type="checkbox" id="cell-64:0"/> <input type="checkbox" id="cell-65:0"/> <input type="checkbox" id="cell-66:0"/> <input type="checkbox" id="cell-67:0"/>
+                    <input type="checkbox" id="cell-68:0"/> <input type="checkbox" id="cell-69:0"/> <input type="checkbox" id="cell-70:0"/> <input type="checkbox" id="cell-71:0"/>
+                    <input type="checkbox" id="cell-72:0"/> <input type="checkbox" id="cell-73:0"/> <input type="checkbox" id="cell-74:0"/> <input type="checkbox" id="cell-75:0"/>
+                    <input type="checkbox" id="cell-76:0"/> <input type="checkbox" id="cell-77:0"/> <input type="checkbox" id="cell-78:0"/> <input type="checkbox" id="cell-79:0"/>
+                </div>
+                <div id="row-1">
+                    <input type="checkbox" id="cell-0:1"/> <input type="checkbox" id="cell-1:1"/> <input type="checkbox" id="cell-2:1"/> <input type="checkbox" id="cell-3:1"/>
+                    <input type="checkbox" id="cell-4:1"/> <input type="checkbox" id="cell-5:1"/> <input type="checkbox" id="cell-6:1"/> <input type="checkbox" id="cell-7:1"/>
+                    <input type="checkbox" id="cell-8:1"/> <input type="checkbox" id="cell-9:1"/> <input type="checkbox" id="cell-10:1"/> <input type="checkbox" id="cell-11:1"/>
+                    <input type="checkbox" id="cell-12:1"/> <input type="checkbox" id="cell-13:1"/> <input type="checkbox" id="cell-14:1"/> <input type="checkbox" id="cell-15:1"/>
+                    <input type="checkbox" id="cell-16:1"/> <input type="checkbox" id="cell-17:1"/> <input type="checkbox" id="cell-18:1"/> <input type="checkbox" id="cell-19:1"/>
+                    <input type="checkbox" id="cell-20:1"/> <input type="checkbox" id="cell-21:1"/> <input type="checkbox" id="cell-22:1"/> <input type="checkbox" id="cell-23:1"/>
+                    <input type="checkbox" id="cell-24:1"/> <input type="checkbox" id="cell-25:1"/> <input type="checkbox" id="cell-26:1"/> <input type="checkbox" id="cell-27:1"/>
+                    <input type="checkbox" id="cell-28:1"/> <input type="checkbox" id="cell-29:1"/> <input type="checkbox" id="cell-30:1"/> <input type="checkbox" id="cell-31:1"/>
+                    <input type="checkbox" id="cell-32:1"/> <input type="checkbox" id="cell-33:1"/> <input type="checkbox" id="cell-34:1"/> <input type="checkbox" id="cell-35:1"/>
+                    <input type="checkbox" id="cell-36:1"/> <input type="checkbox" id="cell-37:1"/> <input type="checkbox" id="cell-38:1"/> <input type="checkbox" id="cell-39:1"/>
+                    <input type="checkbox" id="cell-40:1"/> <input type="checkbox" id="cell-41:1"/> <input type="checkbox" id="cell-42:1"/> <input type="checkbox" id="cell-43:1"/>
+                    <input type="checkbox" id="cell-44:1"/> <input type="checkbox" id="cell-45:1"/> <input type="checkbox" id="cell-46:1"/> <input type="checkbox" id="cell-47:1"/>
+                    <input type="checkbox" id="cell-48:1"/> <input type="checkbox" id="cell-49:1"/> <input type="checkbox" id="cell-50:1"/> <input type="checkbox" id="cell-51:1"/>
+                    <input type="checkbox" id="cell-52:1"/> <input type="checkbox" id="cell-53:1"/> <input type="checkbox" id="cell-54:1"/> <input type="checkbox" id="cell-55:1"/>
+                    <input type="checkbox" id="cell-56:1"/> <input type="checkbox" id="cell-57:1"/> <input type="checkbox" id="cell-58:1"/> <input type="checkbox" id="cell-59:1"/>
+                    <input type="checkbox" id="cell-60:1"/> <input type="checkbox" id="cell-61:1"/> <input type="checkbox" id="cell-62:1"/> <input type="checkbox" id="cell-63:1"/>
+                    <input type="checkbox" id="cell-64:1"/> <input type="checkbox" id="cell-65:1"/> <input type="checkbox" id="cell-66:1"/> <input type="checkbox" id="cell-67:1"/>
+                    <input type="checkbox" id="cell-68:1"/> <input type="checkbox" id="cell-69:1"/> <input type="checkbox" id="cell-70:1"/> <input type="checkbox" id="cell-71:1"/>
+                    <input type="checkbox" id="cell-72:1"/> <input type="checkbox" id="cell-73:1"/> <input type="checkbox" id="cell-74:1"/> <input type="checkbox" id="cell-75:1"/>
+                    <input type="checkbox" id="cell-76:1"/> <input type="checkbox" id="cell-77:1"/> <input type="checkbox" id="cell-78:1"/> <input type="checkbox" id="cell-79:1"/>
+                </div>
+                <div id="row-2">
+                    <input type="checkbox" id="cell-0:2"/> <input type="checkbox" id="cell-1:2"/> <input type="checkbox" id="cell-2:2"/> <input type="checkbox" id="cell-3:2"/>
+                    <input type="checkbox" id="cell-4:2"/> <input type="checkbox" id="cell-5:2"/> <input type="checkbox" id="cell-6:2"/> <input type="checkbox" id="cell-7:2"/>
+                    <input type="checkbox" id="cell-8:2"/> <input type="checkbox" id="cell-9:2"/> <input type="checkbox" id="cell-10:2"/> <input type="checkbox" id="cell-11:2"/>
+                    <input type="checkbox" id="cell-12:2"/> <input type="checkbox" id="cell-13:2"/> <input type="checkbox" id="cell-14:2"/> <input type="checkbox" id="cell-15:2"/>
+                    <input type="checkbox" id="cell-16:2"/> <input type="checkbox" id="cell-17:2"/> <input type="checkbox" id="cell-18:2"/> <input type="checkbox" id="cell-19:2"/>
+                    <input type="checkbox" id="cell-20:2"/> <input type="checkbox" id="cell-21:2"/> <input type="checkbox" id="cell-22:2"/> <input type="checkbox" id="cell-23:2"/>
+                    <input type="checkbox" id="cell-24:2"/> <input type="checkbox" id="cell-25:2"/> <input type="checkbox" id="cell-26:2"/> <input type="checkbox" id="cell-27:2"/>
+                    <input type="checkbox" id="cell-28:2"/> <input type="checkbox" id="cell-29:2"/> <input type="checkbox" id="cell-30:2"/> <input type="checkbox" id="cell-31:2"/>
+                    <input type="checkbox" id="cell-32:2"/> <input type="checkbox" id="cell-33:2"/> <input type="checkbox" id="cell-34:2"/> <input type="checkbox" id="cell-35:2"/>
+                    <input type="checkbox" id="cell-36:2"/> <input type="checkbox" id="cell-37:2"/> <input type="checkbox" id="cell-38:2"/> <input type="checkbox" id="cell-39:2"/>
+                    <input type="checkbox" id="cell-40:2"/> <input type="checkbox" id="cell-41:2"/> <input type="checkbox" id="cell-42:2"/> <input type="checkbox" id="cell-43:2"/>
+                    <input type="checkbox" id="cell-44:2"/> <input type="checkbox" id="cell-45:2"/> <input type="checkbox" id="cell-46:2"/> <input type="checkbox" id="cell-47:2"/>
+                    <input type="checkbox" id="cell-48:2"/> <input type="checkbox" id="cell-49:2"/> <input type="checkbox" id="cell-50:2"/> <input type="checkbox" id="cell-51:2"/>
+                    <input type="checkbox" id="cell-52:2"/> <input type="checkbox" id="cell-53:2"/> <input type="checkbox" id="cell-54:2"/> <input type="checkbox" id="cell-55:2"/>
+                    <input type="checkbox" id="cell-56:2"/> <input type="checkbox" id="cell-57:2"/> <input type="checkbox" id="cell-58:2"/> <input type="checkbox" id="cell-59:2"/>
+                    <input type="checkbox" id="cell-60:2"/> <input type="checkbox" id="cell-61:2"/> <input type="checkbox" id="cell-62:2"/> <input type="checkbox" id="cell-63:2"/>
+                    <input type="checkbox" id="cell-64:2"/> <input type="checkbox" id="cell-65:2"/> <input type="checkbox" id="cell-66:2"/> <input type="checkbox" id="cell-67:2"/>
+                    <input type="checkbox" id="cell-68:2"/> <input type="checkbox" id="cell-69:2"/> <input type="checkbox" id="cell-70:2"/> <input type="checkbox" id="cell-71:2"/>
+                    <input type="checkbox" id="cell-72:2"/> <input type="checkbox" id="cell-73:2"/> <input type="checkbox" id="cell-74:2"/> <input type="checkbox" id="cell-75:2"/>
+                    <input type="checkbox" id="cell-76:2"/> <input type="checkbox" id="cell-77:2"/> <input type="checkbox" id="cell-78:2"/> <input type="checkbox" id="cell-79:2"/>
+                </div>
+                <div id="row-3">
+                    <input type="checkbox" id="cell-0:3"/> <input type="checkbox" id="cell-1:3"/> <input type="checkbox" id="cell-2:3"/> <input type="checkbox" id="cell-3:3"/>
+                    <input type="checkbox" id="cell-4:3"/> <input type="checkbox" id="cell-5:3"/> <input type="checkbox" id="cell-6:3"/> <input type="checkbox" id="cell-7:3"/>
+                    <input type="checkbox" id="cell-8:3"/> <input type="checkbox" id="cell-9:3"/> <input type="checkbox" id="cell-10:3"/> <input type="checkbox" id="cell-11:3"/>
+                    <input type="checkbox" id="cell-12:3"/> <input type="checkbox" id="cell-13:3"/> <input type="checkbox" id="cell-14:3"/> <input type="checkbox" id="cell-15:3"/>
+                    <input type="checkbox" id="cell-16:3"/> <input type="checkbox" id="cell-17:3"/> <input type="checkbox" id="cell-18:3"/> <input type="checkbox" id="cell-19:3"/>
+                    <input type="checkbox" id="cell-20:3"/> <input type="checkbox" id="cell-21:3"/> <input type="checkbox" id="cell-22:3"/> <input type="checkbox" id="cell-23:3"/>
+                    <input type="checkbox" id="cell-24:3"/> <input type="checkbox" id="cell-25:3"/> <input type="checkbox" id="cell-26:3"/> <input type="checkbox" id="cell-27:3"/>
+                    <input type="checkbox" id="cell-28:3"/> <input type="checkbox" id="cell-29:3"/> <input type="checkbox" id="cell-30:3"/> <input type="checkbox" id="cell-31:3"/>
+                    <input type="checkbox" id="cell-32:3"/> <input type="checkbox" id="cell-33:3"/> <input type="checkbox" id="cell-34:3"/> <input type="checkbox" id="cell-35:3"/>
+                    <input type="checkbox" id="cell-36:3"/> <input type="checkbox" id="cell-37:3"/> <input type="checkbox" id="cell-38:3"/> <input type="checkbox" id="cell-39:3"/>
+                    <input type="checkbox" id="cell-40:3"/> <input type="checkbox" id="cell-41:3"/> <input type="checkbox" id="cell-42:3"/> <input type="checkbox" id="cell-43:3"/>
+                    <input type="checkbox" id="cell-44:3"/> <input type="checkbox" id="cell-45:3"/> <input type="checkbox" id="cell-46:3"/> <input type="checkbox" id="cell-47:3"/>
+                    <input type="checkbox" id="cell-48:3"/> <input type="checkbox" id="cell-49:3"/> <input type="checkbox" id="cell-50:3"/> <input type="checkbox" id="cell-51:3"/>
+                    <input type="checkbox" id="cell-52:3"/> <input type="checkbox" id="cell-53:3"/> <input type="checkbox" id="cell-54:3"/> <input type="checkbox" id="cell-55:3"/>
+                    <input type="checkbox" id="cell-56:3"/> <input type="checkbox" id="cell-57:3"/> <input type="checkbox" id="cell-58:3"/> <input type="checkbox" id="cell-59:3"/>
+                    <input type="checkbox" id="cell-60:3"/> <input type="checkbox" id="cell-61:3"/> <input type="checkbox" id="cell-62:3"/> <input type="checkbox" id="cell-63:3"/>
+                    <input type="checkbox" id="cell-64:3"/> <input type="checkbox" id="cell-65:3"/> <input type="checkbox" id="cell-66:3"/> <input type="checkbox" id="cell-67:3"/>
+                    <input type="checkbox" id="cell-68:3"/> <input type="checkbox" id="cell-69:3"/> <input type="checkbox" id="cell-70:3"/> <input type="checkbox" id="cell-71:3"/>
+                    <input type="checkbox" id="cell-72:3"/> <input type="checkbox" id="cell-73:3"/> <input type="checkbox" id="cell-74:3"/> <input type="checkbox" id="cell-75:3"/>
+                    <input type="checkbox" id="cell-76:3"/> <input type="checkbox" id="cell-77:3"/> <input type="checkbox" id="cell-78:3"/> <input type="checkbox" id="cell-79:3"/>
+                </div>
+                <div id="row-4">
+                    <input type="checkbox" id="cell-0:4"/> <input type="checkbox" id="cell-1:4"/> <input type="checkbox" id="cell-2:4"/> <input type="checkbox" id="cell-3:4"/>
+                    <input type="checkbox" id="cell-4:4"/> <input type="checkbox" id="cell-5:4"/> <input type="checkbox" id="cell-6:4"/> <input type="checkbox" id="cell-7:4"/>
+                    <input type="checkbox" id="cell-8:4"/> <input type="checkbox" id="cell-9:4"/> <input type="checkbox" id="cell-10:4"/> <input type="checkbox" id="cell-11:4"/>
+                    <input type="checkbox" id="cell-12:4"/> <input type="checkbox" id="cell-13:4"/> <input type="checkbox" id="cell-14:4"/> <input type="checkbox" id="cell-15:4"/>
+                    <input type="checkbox" id="cell-16:4"/> <input type="checkbox" id="cell-17:4"/> <input type="checkbox" id="cell-18:4"/> <input type="checkbox" id="cell-19:4"/>
+                    <input type="checkbox" id="cell-20:4"/> <input type="checkbox" id="cell-21:4"/> <input type="checkbox" id="cell-22:4"/> <input type="checkbox" id="cell-23:4"/>
+                    <input type="checkbox" id="cell-24:4"/> <input type="checkbox" id="cell-25:4"/> <input type="checkbox" id="cell-26:4"/> <input type="checkbox" id="cell-27:4"/>
+                    <input type="checkbox" id="cell-28:4"/> <input type="checkbox" id="cell-29:4"/> <input type="checkbox" id="cell-30:4"/> <input type="checkbox" id="cell-31:4"/>
+                    <input type="checkbox" id="cell-32:4"/> <input type="checkbox" id="cell-33:4"/> <input type="checkbox" id="cell-34:4"/> <input type="checkbox" id="cell-35:4"/>
+                    <input type="checkbox" id="cell-36:4"/> <input type="checkbox" id="cell-37:4"/> <input type="checkbox" id="cell-38:4"/> <input type="checkbox" id="cell-39:4"/>
+                    <input type="checkbox" id="cell-40:4"/> <input type="checkbox" id="cell-41:4"/> <input type="checkbox" id="cell-42:4"/> <input type="checkbox" id="cell-43:4"/>
+                    <input type="checkbox" id="cell-44:4"/> <input type="checkbox" id="cell-45:4"/> <input type="checkbox" id="cell-46:4"/> <input type="checkbox" id="cell-47:4"/>
+                    <input type="checkbox" id="cell-48:4"/> <input type="checkbox" id="cell-49:4"/> <input type="checkbox" id="cell-50:4"/> <input type="checkbox" id="cell-51:4"/>
+                    <input type="checkbox" id="cell-52:4"/> <input type="checkbox" id="cell-53:4"/> <input type="checkbox" id="cell-54:4"/> <input type="checkbox" id="cell-55:4"/>
+                    <input type="checkbox" id="cell-56:4"/> <input type="checkbox" id="cell-57:4"/> <input type="checkbox" id="cell-58:4"/> <input type="checkbox" id="cell-59:4"/>
+                    <input type="checkbox" id="cell-60:4"/> <input type="checkbox" id="cell-61:4"/> <input type="checkbox" id="cell-62:4"/> <input type="checkbox" id="cell-63:4"/>
+                    <input type="checkbox" id="cell-64:4"/> <input type="checkbox" id="cell-65:4"/> <input type="checkbox" id="cell-66:4"/> <input type="checkbox" id="cell-67:4"/>
+                    <input type="checkbox" id="cell-68:4"/> <input type="checkbox" id="cell-69:4"/> <input type="checkbox" id="cell-70:4"/> <input type="checkbox" id="cell-71:4"/>
+                    <input type="checkbox" id="cell-72:4"/> <input type="checkbox" id="cell-73:4"/> <input type="checkbox" id="cell-74:4"/> <input type="checkbox" id="cell-75:4"/>
+                    <input type="checkbox" id="cell-76:4"/> <input type="checkbox" id="cell-77:4"/> <input type="checkbox" id="cell-78:4"/> <input type="checkbox" id="cell-79:4"/>
+                </div>
+                <div id="row-5">
+                    <input type="checkbox" id="cell-0:5"/> <input type="checkbox" id="cell-1:5"/> <input type="checkbox" id="cell-2:5"/> <input type="checkbox" id="cell-3:5"/>
+                    <input type="checkbox" id="cell-4:5"/> <input type="checkbox" id="cell-5:5"/> <input type="checkbox" id="cell-6:5"/> <input type="checkbox" id="cell-7:5"/>
+                    <input type="checkbox" id="cell-8:5"/> <input type="checkbox" id="cell-9:5"/> <input type="checkbox" id="cell-10:5"/> <input type="checkbox" id="cell-11:5"/>
+                    <input type="checkbox" id="cell-12:5"/> <input type="checkbox" id="cell-13:5"/> <input type="checkbox" id="cell-14:5"/> <input type="checkbox" id="cell-15:5"/>
+                    <input type="checkbox" id="cell-16:5"/> <input type="checkbox" id="cell-17:5"/> <input type="checkbox" id="cell-18:5"/> <input type="checkbox" id="cell-19:5"/>
+                    <input type="checkbox" id="cell-20:5"/> <input type="checkbox" id="cell-21:5"/> <input type="checkbox" id="cell-22:5"/> <input type="checkbox" id="cell-23:5"/>
+                    <input type="checkbox" id="cell-24:5"/> <input type="checkbox" id="cell-25:5"/> <input type="checkbox" id="cell-26:5"/> <input type="checkbox" id="cell-27:5"/>
+                    <input type="checkbox" id="cell-28:5"/> <input type="checkbox" id="cell-29:5"/> <input type="checkbox" id="cell-30:5"/> <input type="checkbox" id="cell-31:5"/>
+                    <input type="checkbox" id="cell-32:5"/> <input type="checkbox" id="cell-33:5"/> <input type="checkbox" id="cell-34:5"/> <input type="checkbox" id="cell-35:5"/>
+                    <input type="checkbox" id="cell-36:5"/> <input type="checkbox" id="cell-37:5"/> <input type="checkbox" id="cell-38:5"/> <input type="checkbox" id="cell-39:5"/>
+                    <input type="checkbox" id="cell-40:5"/> <input type="checkbox" id="cell-41:5"/> <input type="checkbox" id="cell-42:5"/> <input type="checkbox" id="cell-43:5"/>
+                    <input type="checkbox" id="cell-44:5"/> <input type="checkbox" id="cell-45:5"/> <input type="checkbox" id="cell-46:5"/> <input type="checkbox" id="cell-47:5"/>
+                    <input type="checkbox" id="cell-48:5"/> <input type="checkbox" id="cell-49:5"/> <input type="checkbox" id="cell-50:5"/> <input type="checkbox" id="cell-51:5"/>
+                    <input type="checkbox" id="cell-52:5"/> <input type="checkbox" id="cell-53:5"/> <input type="checkbox" id="cell-54:5"/> <input type="checkbox" id="cell-55:5"/>
+                    <input type="checkbox" id="cell-56:5"/> <input type="checkbox" id="cell-57:5"/> <input type="checkbox" id="cell-58:5"/> <input type="checkbox" id="cell-59:5"/>
+                    <input type="checkbox" id="cell-60:5"/> <input type="checkbox" id="cell-61:5"/> <input type="checkbox" id="cell-62:5"/> <input type="checkbox" id="cell-63:5"/>
+                    <input type="checkbox" id="cell-64:5"/> <input type="checkbox" id="cell-65:5"/> <input type="checkbox" id="cell-66:5"/> <input type="checkbox" id="cell-67:5"/>
+                    <input type="checkbox" id="cell-68:5"/> <input type="checkbox" id="cell-69:5"/> <input type="checkbox" id="cell-70:5"/> <input type="checkbox" id="cell-71:5"/>
+                    <input type="checkbox" id="cell-72:5"/> <input type="checkbox" id="cell-73:5"/> <input type="checkbox" id="cell-74:5"/> <input type="checkbox" id="cell-75:5"/>
+                    <input type="checkbox" id="cell-76:5"/> <input type="checkbox" id="cell-77:5"/> <input type="checkbox" id="cell-78:5"/> <input type="checkbox" id="cell-79:5"/>
+                </div>
+                <div id="row-6">
+                    <input type="checkbox" id="cell-0:6"/> <input type="checkbox" id="cell-1:6"/> <input type="checkbox" id="cell-2:6"/> <input type="checkbox" id="cell-3:6"/>
+                    <input type="checkbox" id="cell-4:6"/> <input type="checkbox" id="cell-5:6"/> <input type="checkbox" id="cell-6:6"/> <input type="checkbox" id="cell-7:6"/>
+                    <input type="checkbox" id="cell-8:6"/> <input type="checkbox" id="cell-9:6"/> <input type="checkbox" id="cell-10:6"/> <input type="checkbox" id="cell-11:6"/>
+                    <input type="checkbox" id="cell-12:6"/> <input type="checkbox" id="cell-13:6"/> <input type="checkbox" id="cell-14:6"/> <input type="checkbox" id="cell-15:6"/>
+                    <input type="checkbox" id="cell-16:6"/> <input type="checkbox" id="cell-17:6"/> <input type="checkbox" id="cell-18:6"/> <input type="checkbox" id="cell-19:6"/>
+                    <input type="checkbox" id="cell-20:6"/> <input type="checkbox" id="cell-21:6"/> <input type="checkbox" id="cell-22:6"/> <input type="checkbox" id="cell-23:6"/>
+                    <input type="checkbox" id="cell-24:6"/> <input type="checkbox" id="cell-25:6"/> <input type="checkbox" id="cell-26:6"/> <input type="checkbox" id="cell-27:6"/>
+                    <input type="checkbox" id="cell-28:6"/> <input type="checkbox" id="cell-29:6"/> <input type="checkbox" id="cell-30:6"/> <input type="checkbox" id="cell-31:6"/>
+                    <input type="checkbox" id="cell-32:6"/> <input type="checkbox" id="cell-33:6"/> <input type="checkbox" id="cell-34:6"/> <input type="checkbox" id="cell-35:6"/>
+                    <input type="checkbox" id="cell-36:6"/> <input type="checkbox" id="cell-37:6"/> <input type="checkbox" id="cell-38:6"/> <input type="checkbox" id="cell-39:6"/>
+                    <input type="checkbox" id="cell-40:6"/> <input type="checkbox" id="cell-41:6"/> <input type="checkbox" id="cell-42:6"/> <input type="checkbox" id="cell-43:6"/>
+                    <input type="checkbox" id="cell-44:6"/> <input type="checkbox" id="cell-45:6"/> <input type="checkbox" id="cell-46:6"/> <input type="checkbox" id="cell-47:6"/>
+                    <input type="checkbox" id="cell-48:6"/> <input type="checkbox" id="cell-49:6"/> <input type="checkbox" id="cell-50:6"/> <input type="checkbox" id="cell-51:6"/>
+                    <input type="checkbox" id="cell-52:6"/> <input type="checkbox" id="cell-53:6"/> <input type="checkbox" id="cell-54:6"/> <input type="checkbox" id="cell-55:6"/>
+                    <input type="checkbox" id="cell-56:6"/> <input type="checkbox" id="cell-57:6"/> <input type="checkbox" id="cell-58:6"/> <input type="checkbox" id="cell-59:6"/>
+                    <input type="checkbox" id="cell-60:6"/> <input type="checkbox" id="cell-61:6"/> <input type="checkbox" id="cell-62:6"/> <input type="checkbox" id="cell-63:6"/>
+                    <input type="checkbox" id="cell-64:6"/> <input type="checkbox" id="cell-65:6"/> <input type="checkbox" id="cell-66:6"/> <input type="checkbox" id="cell-67:6"/>
+                    <input type="checkbox" id="cell-68:6"/> <input type="checkbox" id="cell-69:6"/> <input type="checkbox" id="cell-70:6"/> <input type="checkbox" id="cell-71:6"/>
+                    <input type="checkbox" id="cell-72:6"/> <input type="checkbox" id="cell-73:6"/> <input type="checkbox" id="cell-74:6"/> <input type="checkbox" id="cell-75:6"/>
+                    <input type="checkbox" id="cell-76:6"/> <input type="checkbox" id="cell-77:6"/> <input type="checkbox" id="cell-78:6"/> <input type="checkbox" id="cell-79:6"/>
+                </div>
+                <div id="row-7">
+                    <input type="checkbox" id="cell-0:7"/> <input type="checkbox" id="cell-1:7"/> <input type="checkbox" id="cell-2:7"/> <input type="checkbox" id="cell-3:7"/>
+                    <input type="checkbox" id="cell-4:7"/> <input type="checkbox" id="cell-5:7"/> <input type="checkbox" id="cell-6:7"/> <input type="checkbox" id="cell-7:7"/>
+                    <input type="checkbox" id="cell-8:7"/> <input type="checkbox" id="cell-9:7"/> <input type="checkbox" id="cell-10:7"/> <input type="checkbox" id="cell-11:7"/>
+                    <input type="checkbox" id="cell-12:7"/> <input type="checkbox" id="cell-13:7"/> <input type="checkbox" id="cell-14:7"/> <input type="checkbox" id="cell-15:7"/>
+                    <input type="checkbox" id="cell-16:7"/> <input type="checkbox" id="cell-17:7"/> <input type="checkbox" id="cell-18:7"/> <input type="checkbox" id="cell-19:7"/>
+                    <input type="checkbox" id="cell-20:7"/> <input type="checkbox" id="cell-21:7"/> <input type="checkbox" id="cell-22:7"/> <input type="checkbox" id="cell-23:7"/>
+                    <input type="checkbox" id="cell-24:7"/> <input type="checkbox" id="cell-25:7"/> <input type="checkbox" id="cell-26:7"/> <input type="checkbox" id="cell-27:7"/>
+                    <input type="checkbox" id="cell-28:7"/> <input type="checkbox" id="cell-29:7"/> <input type="checkbox" id="cell-30:7"/> <input type="checkbox" id="cell-31:7"/>
+                    <input type="checkbox" id="cell-32:7"/> <input type="checkbox" id="cell-33:7"/> <input type="checkbox" id="cell-34:7"/> <input type="checkbox" id="cell-35:7"/>
+                    <input type="checkbox" id="cell-36:7"/> <input type="checkbox" id="cell-37:7"/> <input type="checkbox" id="cell-38:7"/> <input type="checkbox" id="cell-39:7"/>
+                    <input type="checkbox" id="cell-40:7"/> <input type="checkbox" id="cell-41:7"/> <input type="checkbox" id="cell-42:7"/> <input type="checkbox" id="cell-43:7"/>
+                    <input type="checkbox" id="cell-44:7"/> <input type="checkbox" id="cell-45:7"/> <input type="checkbox" id="cell-46:7"/> <input type="checkbox" id="cell-47:7"/>
+                    <input type="checkbox" id="cell-48:7"/> <input type="checkbox" id="cell-49:7"/> <input type="checkbox" id="cell-50:7"/> <input type="checkbox" id="cell-51:7"/>
+                    <input type="checkbox" id="cell-52:7"/> <input type="checkbox" id="cell-53:7"/> <input type="checkbox" id="cell-54:7"/> <input type="checkbox" id="cell-55:7"/>
+                    <input type="checkbox" id="cell-56:7"/> <input type="checkbox" id="cell-57:7"/> <input type="checkbox" id="cell-58:7"/> <input type="checkbox" id="cell-59:7"/>
+                    <input type="checkbox" id="cell-60:7"/> <input type="checkbox" id="cell-61:7"/> <input type="checkbox" id="cell-62:7"/> <input type="checkbox" id="cell-63:7"/>
+                    <input type="checkbox" id="cell-64:7"/> <input type="checkbox" id="cell-65:7"/> <input type="checkbox" id="cell-66:7"/> <input type="checkbox" id="cell-67:7"/>
+                    <input type="checkbox" id="cell-68:7"/> <input type="checkbox" id="cell-69:7"/> <input type="checkbox" id="cell-70:7"/> <input type="checkbox" id="cell-71:7"/>
+                    <input type="checkbox" id="cell-72:7"/> <input type="checkbox" id="cell-73:7"/> <input type="checkbox" id="cell-74:7"/> <input type="checkbox" id="cell-75:7"/>
+                    <input type="checkbox" id="cell-76:7"/> <input type="checkbox" id="cell-77:7"/> <input type="checkbox" id="cell-78:7"/> <input type="checkbox" id="cell-79:7"/>
+                </div>
+                <div id="row-8">
+                    <input type="checkbox" id="cell-0:8"/> <input type="checkbox" id="cell-1:8"/> <input type="checkbox" id="cell-2:8"/> <input type="checkbox" id="cell-3:8"/>
+                    <input type="checkbox" id="cell-4:8"/> <input type="checkbox" id="cell-5:8"/> <input type="checkbox" id="cell-6:8"/> <input type="checkbox" id="cell-7:8"/>
+                    <input type="checkbox" id="cell-8:8"/> <input type="checkbox" id="cell-9:8"/> <input type="checkbox" id="cell-10:8"/> <input type="checkbox" id="cell-11:8"/>
+                    <input type="checkbox" id="cell-12:8"/> <input type="checkbox" id="cell-13:8"/> <input type="checkbox" id="cell-14:8"/> <input type="checkbox" id="cell-15:8"/>
+                    <input type="checkbox" id="cell-16:8"/> <input type="checkbox" id="cell-17:8"/> <input type="checkbox" id="cell-18:8"/> <input type="checkbox" id="cell-19:8"/>
+                    <input type="checkbox" id="cell-20:8"/> <input type="checkbox" id="cell-21:8"/> <input type="checkbox" id="cell-22:8"/> <input type="checkbox" id="cell-23:8"/>
+                    <input type="checkbox" id="cell-24:8"/> <input type="checkbox" id="cell-25:8"/> <input type="checkbox" id="cell-26:8"/> <input type="checkbox" id="cell-27:8"/>
+                    <input type="checkbox" id="cell-28:8"/> <input type="checkbox" id="cell-29:8"/> <input type="checkbox" id="cell-30:8"/> <input type="checkbox" id="cell-31:8"/>
+                    <input type="checkbox" id="cell-32:8"/> <input type="checkbox" id="cell-33:8"/> <input type="checkbox" id="cell-34:8"/> <input type="checkbox" id="cell-35:8"/>
+                    <input type="checkbox" id="cell-36:8"/> <input type="checkbox" id="cell-37:8"/> <input type="checkbox" id="cell-38:8"/> <input type="checkbox" id="cell-39:8"/>
+                    <input type="checkbox" id="cell-40:8"/> <input type="checkbox" id="cell-41:8"/> <input type="checkbox" id="cell-42:8"/> <input type="checkbox" id="cell-43:8"/>
+                    <input type="checkbox" id="cell-44:8"/> <input type="checkbox" id="cell-45:8"/> <input type="checkbox" id="cell-46:8"/> <input type="checkbox" id="cell-47:8"/>
+                    <input type="checkbox" id="cell-48:8"/> <input type="checkbox" id="cell-49:8"/> <input type="checkbox" id="cell-50:8"/> <input type="checkbox" id="cell-51:8"/>
+                    <input type="checkbox" id="cell-52:8"/> <input type="checkbox" id="cell-53:8"/> <input type="checkbox" id="cell-54:8"/> <input type="checkbox" id="cell-55:8"/>
+                    <input type="checkbox" id="cell-56:8"/> <input type="checkbox" id="cell-57:8"/> <input type="checkbox" id="cell-58:8"/> <input type="checkbox" id="cell-59:8"/>
+                    <input type="checkbox" id="cell-60:8"/> <input type="checkbox" id="cell-61:8"/> <input type="checkbox" id="cell-62:8"/> <input type="checkbox" id="cell-63:8"/>
+                    <input type="checkbox" id="cell-64:8"/> <input type="checkbox" id="cell-65:8"/> <input type="checkbox" id="cell-66:8"/> <input type="checkbox" id="cell-67:8"/>
+                    <input type="checkbox" id="cell-68:8"/> <input type="checkbox" id="cell-69:8"/> <input type="checkbox" id="cell-70:8"/> <input type="checkbox" id="cell-71:8"/>
+                    <input type="checkbox" id="cell-72:8"/> <input type="checkbox" id="cell-73:8"/> <input type="checkbox" id="cell-74:8"/> <input type="checkbox" id="cell-75:8"/>
+                    <input type="checkbox" id="cell-76:8"/> <input type="checkbox" id="cell-77:8"/> <input type="checkbox" id="cell-78:8"/> <input type="checkbox" id="cell-79:8"/>
+                </div>
+                <div id="row-9">
+                    <input type="checkbox" id="cell-0:9"/> <input type="checkbox" id="cell-1:9"/> <input type="checkbox" id="cell-2:9"/> <input type="checkbox" id="cell-3:9"/>
+                    <input type="checkbox" id="cell-4:9"/> <input type="checkbox" id="cell-5:9"/> <input type="checkbox" id="cell-6:9"/> <input type="checkbox" id="cell-7:9"/>
+                    <input type="checkbox" id="cell-8:9"/> <input type="checkbox" id="cell-9:9"/> <input type="checkbox" id="cell-10:9"/> <input type="checkbox" id="cell-11:9"/>
+                    <input type="checkbox" id="cell-12:9"/> <input type="checkbox" id="cell-13:9"/> <input type="checkbox" id="cell-14:9"/> <input type="checkbox" id="cell-15:9"/>
+                    <input type="checkbox" id="cell-16:9"/> <input type="checkbox" id="cell-17:9"/> <input type="checkbox" id="cell-18:9"/> <input type="checkbox" id="cell-19:9"/>
+                    <input type="checkbox" id="cell-20:9"/> <input type="checkbox" id="cell-21:9"/> <input type="checkbox" id="cell-22:9"/> <input type="checkbox" id="cell-23:9"/>
+                    <input type="checkbox" id="cell-24:9"/> <input type="checkbox" id="cell-25:9"/> <input type="checkbox" id="cell-26:9"/> <input type="checkbox" id="cell-27:9"/>
+                    <input type="checkbox" id="cell-28:9"/> <input type="checkbox" id="cell-29:9"/> <input type="checkbox" id="cell-30:9"/> <input type="checkbox" id="cell-31:9"/>
+                    <input type="checkbox" id="cell-32:9"/> <input type="checkbox" id="cell-33:9"/> <input type="checkbox" id="cell-34:9"/> <input type="checkbox" id="cell-35:9"/>
+                    <input type="checkbox" id="cell-36:9"/> <input type="checkbox" id="cell-37:9"/> <input type="checkbox" id="cell-38:9"/> <input type="checkbox" id="cell-39:9"/>
+                    <input type="checkbox" id="cell-40:9"/> <input type="checkbox" id="cell-41:9"/> <input type="checkbox" id="cell-42:9"/> <input type="checkbox" id="cell-43:9"/>
+                    <input type="checkbox" id="cell-44:9"/> <input type="checkbox" id="cell-45:9"/> <input type="checkbox" id="cell-46:9"/> <input type="checkbox" id="cell-47:9"/>
+                    <input type="checkbox" id="cell-48:9"/> <input type="checkbox" id="cell-49:9"/> <input type="checkbox" id="cell-50:9"/> <input type="checkbox" id="cell-51:9"/>
+                    <input type="checkbox" id="cell-52:9"/> <input type="checkbox" id="cell-53:9"/> <input type="checkbox" id="cell-54:9"/> <input type="checkbox" id="cell-55:9"/>
+                    <input type="checkbox" id="cell-56:9"/> <input type="checkbox" id="cell-57:9"/> <input type="checkbox" id="cell-58:9"/> <input type="checkbox" id="cell-59:9"/>
+                    <input type="checkbox" id="cell-60:9"/> <input type="checkbox" id="cell-61:9"/> <input type="checkbox" id="cell-62:9"/> <input type="checkbox" id="cell-63:9"/>
+                    <input type="checkbox" id="cell-64:9"/> <input type="checkbox" id="cell-65:9"/> <input type="checkbox" id="cell-66:9"/> <input type="checkbox" id="cell-67:9"/>
+                    <input type="checkbox" id="cell-68:9"/> <input type="checkbox" id="cell-69:9"/> <input type="checkbox" id="cell-70:9"/> <input type="checkbox" id="cell-71:9"/>
+                    <input type="checkbox" id="cell-72:9"/> <input type="checkbox" id="cell-73:9"/> <input type="checkbox" id="cell-74:9"/> <input type="checkbox" id="cell-75:9"/>
+                    <input type="checkbox" id="cell-76:9"/> <input type="checkbox" id="cell-77:9"/> <input type="checkbox" id="cell-78:9"/> <input type="checkbox" id="cell-79:9"/>
+                </div>
+                <div id="row-10">
+                    <input type="checkbox" id="cell-0:10"/> <input type="checkbox" id="cell-1:10"/> <input type="checkbox" id="cell-2:10"/> <input type="checkbox" id="cell-3:10"/>
+                    <input type="checkbox" id="cell-4:10"/> <input type="checkbox" id="cell-5:10"/> <input type="checkbox" id="cell-6:10"/> <input type="checkbox" id="cell-7:10"/>
+                    <input type="checkbox" id="cell-8:10"/> <input type="checkbox" id="cell-9:10"/> <input type="checkbox" id="cell-10:10"/> <input type="checkbox" id="cell-11:10"/>
+                    <input type="checkbox" id="cell-12:10"/> <input type="checkbox" id="cell-13:10"/> <input type="checkbox" id="cell-14:10"/> <input type="checkbox" id="cell-15:10"/>
+                    <input type="checkbox" id="cell-16:10"/> <input type="checkbox" id="cell-17:10"/> <input type="checkbox" id="cell-18:10"/> <input type="checkbox" id="cell-19:10"/>
+                    <input type="checkbox" id="cell-20:10"/> <input type="checkbox" id="cell-21:10"/> <input type="checkbox" id="cell-22:10"/> <input type="checkbox" id="cell-23:10"/>
+                    <input type="checkbox" id="cell-24:10"/> <input type="checkbox" id="cell-25:10"/> <input type="checkbox" id="cell-26:10"/> <input type="checkbox" id="cell-27:10"/>
+                    <input type="checkbox" id="cell-28:10"/> <input type="checkbox" id="cell-29:10"/> <input type="checkbox" id="cell-30:10"/> <input type="checkbox" id="cell-31:10"/>
+                    <input type="checkbox" id="cell-32:10"/> <input type="checkbox" id="cell-33:10"/> <input type="checkbox" id="cell-34:10"/> <input type="checkbox" id="cell-35:10"/>
+                    <input type="checkbox" id="cell-36:10"/> <input type="checkbox" id="cell-37:10"/> <input type="checkbox" id="cell-38:10"/> <input type="checkbox" id="cell-39:10"/>
+                    <input type="checkbox" id="cell-40:10"/> <input type="checkbox" id="cell-41:10"/> <input type="checkbox" id="cell-42:10"/> <input type="checkbox" id="cell-43:10"/>
+                    <input type="checkbox" id="cell-44:10"/> <input type="checkbox" id="cell-45:10"/> <input type="checkbox" id="cell-46:10"/> <input type="checkbox" id="cell-47:10"/>
+                    <input type="checkbox" id="cell-48:10"/> <input type="checkbox" id="cell-49:10"/> <input type="checkbox" id="cell-50:10"/> <input type="checkbox" id="cell-51:10"/>
+                    <input type="checkbox" id="cell-52:10"/> <input type="checkbox" id="cell-53:10"/> <input type="checkbox" id="cell-54:10"/> <input type="checkbox" id="cell-55:10"/>
+                    <input type="checkbox" id="cell-56:10"/> <input type="checkbox" id="cell-57:10"/> <input type="checkbox" id="cell-58:10"/> <input type="checkbox" id="cell-59:10"/>
+                    <input type="checkbox" id="cell-60:10"/> <input type="checkbox" id="cell-61:10"/> <input type="checkbox" id="cell-62:10"/> <input type="checkbox" id="cell-63:10"/>
+                    <input type="checkbox" id="cell-64:10"/> <input type="checkbox" id="cell-65:10"/> <input type="checkbox" id="cell-66:10"/> <input type="checkbox" id="cell-67:10"/>
+                    <input type="checkbox" id="cell-68:10"/> <input type="checkbox" id="cell-69:10"/> <input type="checkbox" id="cell-70:10"/> <input type="checkbox" id="cell-71:10"/>
+                    <input type="checkbox" id="cell-72:10"/> <input type="checkbox" id="cell-73:10"/> <input type="checkbox" id="cell-74:10"/> <input type="checkbox" id="cell-75:10"/>
+                    <input type="checkbox" id="cell-76:10"/> <input type="checkbox" id="cell-77:10"/> <input type="checkbox" id="cell-78:10"/> <input type="checkbox" id="cell-79:10"/>
+                </div>
+                <div id="row-11">
+                    <input type="checkbox" id="cell-0:11"/> <input type="checkbox" id="cell-1:11"/> <input type="checkbox" id="cell-2:11"/> <input type="checkbox" id="cell-3:11"/>
+                    <input type="checkbox" id="cell-4:11"/> <input type="checkbox" id="cell-5:11"/> <input type="checkbox" id="cell-6:11"/> <input type="checkbox" id="cell-7:11"/>
+                    <input type="checkbox" id="cell-8:11"/> <input type="checkbox" id="cell-9:11"/> <input type="checkbox" id="cell-10:11"/> <input type="checkbox" id="cell-11:11"/>
+                    <input type="checkbox" id="cell-12:11"/> <input type="checkbox" id="cell-13:11"/> <input type="checkbox" id="cell-14:11"/> <input type="checkbox" id="cell-15:11"/>
+                    <input type="checkbox" id="cell-16:11"/> <input type="checkbox" id="cell-17:11"/> <input type="checkbox" id="cell-18:11"/> <input type="checkbox" id="cell-19:11"/>
+                    <input type="checkbox" id="cell-20:11"/> <input type="checkbox" id="cell-21:11"/> <input type="checkbox" id="cell-22:11"/> <input type="checkbox" id="cell-23:11"/>
+                    <input type="checkbox" id="cell-24:11"/> <input type="checkbox" id="cell-25:11"/> <input type="checkbox" id="cell-26:11"/> <input type="checkbox" id="cell-27:11"/>
+                    <input type="checkbox" id="cell-28:11"/> <input type="checkbox" id="cell-29:11"/> <input type="checkbox" id="cell-30:11"/> <input type="checkbox" id="cell-31:11"/>
+                    <input type="checkbox" id="cell-32:11"/> <input type="checkbox" id="cell-33:11"/> <input type="checkbox" id="cell-34:11"/> <input type="checkbox" id="cell-35:11"/>
+                    <input type="checkbox" id="cell-36:11"/> <input type="checkbox" id="cell-37:11"/> <input type="checkbox" id="cell-38:11"/> <input type="checkbox" id="cell-39:11"/>
+                    <input type="checkbox" id="cell-40:11"/> <input type="checkbox" id="cell-41:11"/> <input type="checkbox" id="cell-42:11"/> <input type="checkbox" id="cell-43:11"/>
+                    <input type="checkbox" id="cell-44:11"/> <input type="checkbox" id="cell-45:11"/> <input type="checkbox" id="cell-46:11"/> <input type="checkbox" id="cell-47:11"/>
+                    <input type="checkbox" id="cell-48:11"/> <input type="checkbox" id="cell-49:11"/> <input type="checkbox" id="cell-50:11"/> <input type="checkbox" id="cell-51:11"/>
+                    <input type="checkbox" id="cell-52:11"/> <input type="checkbox" id="cell-53:11"/> <input type="checkbox" id="cell-54:11"/> <input type="checkbox" id="cell-55:11"/>
+                    <input type="checkbox" id="cell-56:11"/> <input type="checkbox" id="cell-57:11"/> <input type="checkbox" id="cell-58:11"/> <input type="checkbox" id="cell-59:11"/>
+                    <input type="checkbox" id="cell-60:11"/> <input type="checkbox" id="cell-61:11"/> <input type="checkbox" id="cell-62:11"/> <input type="checkbox" id="cell-63:11"/>
+                    <input type="checkbox" id="cell-64:11"/> <input type="checkbox" id="cell-65:11"/> <input type="checkbox" id="cell-66:11"/> <input type="checkbox" id="cell-67:11"/>
+                    <input type="checkbox" id="cell-68:11"/> <input type="checkbox" id="cell-69:11"/> <input type="checkbox" id="cell-70:11"/> <input type="checkbox" id="cell-71:11"/>
+                    <input type="checkbox" id="cell-72:11"/> <input type="checkbox" id="cell-73:11"/> <input type="checkbox" id="cell-74:11"/> <input type="checkbox" id="cell-75:11"/>
+                    <input type="checkbox" id="cell-76:11"/> <input type="checkbox" id="cell-77:11"/> <input type="checkbox" id="cell-78:11"/> <input type="checkbox" id="cell-79:11"/>
+                </div>
+                <div id="row-12">
+                    <input type="checkbox" id="cell-0:12"/> <input type="checkbox" id="cell-1:12"/> <input type="checkbox" id="cell-2:12"/> <input type="checkbox" id="cell-3:12"/>
+                    <input type="checkbox" id="cell-4:12"/> <input type="checkbox" id="cell-5:12"/> <input type="checkbox" id="cell-6:12"/> <input type="checkbox" id="cell-7:12"/>
+                    <input type="checkbox" id="cell-8:12"/> <input type="checkbox" id="cell-9:12"/> <input type="checkbox" id="cell-10:12"/> <input type="checkbox" id="cell-11:12"/>
+                    <input type="checkbox" id="cell-12:12"/> <input type="checkbox" id="cell-13:12"/> <input type="checkbox" id="cell-14:12"/> <input type="checkbox" id="cell-15:12"/>
+                    <input type="checkbox" id="cell-16:12"/> <input type="checkbox" id="cell-17:12"/> <input type="checkbox" id="cell-18:12"/> <input type="checkbox" id="cell-19:12"/>
+                    <input type="checkbox" id="cell-20:12"/> <input type="checkbox" id="cell-21:12"/> <input type="checkbox" id="cell-22:12"/> <input type="checkbox" id="cell-23:12"/>
+                    <input type="checkbox" id="cell-24:12"/> <input type="checkbox" id="cell-25:12"/> <input type="checkbox" id="cell-26:12"/> <input type="checkbox" id="cell-27:12"/>
+                    <input type="checkbox" id="cell-28:12"/> <input type="checkbox" id="cell-29:12"/> <input type="checkbox" id="cell-30:12"/> <input type="checkbox" id="cell-31:12"/>
+                    <input type="checkbox" id="cell-32:12"/> <input type="checkbox" id="cell-33:12"/> <input type="checkbox" id="cell-34:12"/> <input type="checkbox" id="cell-35:12"/>
+                    <input type="checkbox" id="cell-36:12"/> <input type="checkbox" id="cell-37:12"/> <input type="checkbox" id="cell-38:12"/> <input type="checkbox" id="cell-39:12"/>
+                    <input type="checkbox" id="cell-40:12"/> <input type="checkbox" id="cell-41:12"/> <input type="checkbox" id="cell-42:12"/> <input type="checkbox" id="cell-43:12"/>
+                    <input type="checkbox" id="cell-44:12"/> <input type="checkbox" id="cell-45:12"/> <input type="checkbox" id="cell-46:12"/> <input type="checkbox" id="cell-47:12"/>
+                    <input type="checkbox" id="cell-48:12"/> <input type="checkbox" id="cell-49:12"/> <input type="checkbox" id="cell-50:12"/> <input type="checkbox" id="cell-51:12"/>
+                    <input type="checkbox" id="cell-52:12"/> <input type="checkbox" id="cell-53:12"/> <input type="checkbox" id="cell-54:12"/> <input type="checkbox" id="cell-55:12"/>
+                    <input type="checkbox" id="cell-56:12"/> <input type="checkbox" id="cell-57:12"/> <input type="checkbox" id="cell-58:12"/> <input type="checkbox" id="cell-59:12"/>
+                    <input type="checkbox" id="cell-60:12"/> <input type="checkbox" id="cell-61:12"/> <input type="checkbox" id="cell-62:12"/> <input type="checkbox" id="cell-63:12"/>
+                    <input type="checkbox" id="cell-64:12"/> <input type="checkbox" id="cell-65:12"/> <input type="checkbox" id="cell-66:12"/> <input type="checkbox" id="cell-67:12"/>
+                    <input type="checkbox" id="cell-68:12"/> <input type="checkbox" id="cell-69:12"/> <input type="checkbox" id="cell-70:12"/> <input type="checkbox" id="cell-71:12"/>
+                    <input type="checkbox" id="cell-72:12"/> <input type="checkbox" id="cell-73:12"/> <input type="checkbox" id="cell-74:12"/> <input type="checkbox" id="cell-75:12"/>
+                    <input type="checkbox" id="cell-76:12"/> <input type="checkbox" id="cell-77:12"/> <input type="checkbox" id="cell-78:12"/> <input type="checkbox" id="cell-79:12"/>
+                </div>
+                <div id="row-13">
+                    <input type="checkbox" id="cell-0:13"/> <input type="checkbox" id="cell-1:13"/> <input type="checkbox" id="cell-2:13"/> <input type="checkbox" id="cell-3:13"/>
+                    <input type="checkbox" id="cell-4:13"/> <input type="checkbox" id="cell-5:13"/> <input type="checkbox" id="cell-6:13"/> <input type="checkbox" id="cell-7:13"/>
+                    <input type="checkbox" id="cell-8:13"/> <input type="checkbox" id="cell-9:13"/> <input type="checkbox" id="cell-10:13"/> <input type="checkbox" id="cell-11:13"/>
+                    <input type="checkbox" id="cell-12:13"/> <input type="checkbox" id="cell-13:13"/> <input type="checkbox" id="cell-14:13"/> <input type="checkbox" id="cell-15:13"/>
+                    <input type="checkbox" id="cell-16:13"/> <input type="checkbox" id="cell-17:13"/> <input type="checkbox" id="cell-18:13"/> <input type="checkbox" id="cell-19:13"/>
+                    <input type="checkbox" id="cell-20:13"/> <input type="checkbox" id="cell-21:13"/> <input type="checkbox" id="cell-22:13"/> <input type="checkbox" id="cell-23:13"/>
+                    <input type="checkbox" id="cell-24:13"/> <input type="checkbox" id="cell-25:13"/> <input type="checkbox" id="cell-26:13"/> <input type="checkbox" id="cell-27:13"/>
+                    <input type="checkbox" id="cell-28:13"/> <input type="checkbox" id="cell-29:13"/> <input type="checkbox" id="cell-30:13"/> <input type="checkbox" id="cell-31:13"/>
+                    <input type="checkbox" id="cell-32:13"/> <input type="checkbox" id="cell-33:13"/> <input type="checkbox" id="cell-34:13"/> <input type="checkbox" id="cell-35:13"/>
+                    <input type="checkbox" id="cell-36:13"/> <input type="checkbox" id="cell-37:13"/> <input type="checkbox" id="cell-38:13"/> <input type="checkbox" id="cell-39:13"/>
+                    <input type="checkbox" id="cell-40:13"/> <input type="checkbox" id="cell-41:13"/> <input type="checkbox" id="cell-42:13"/> <input type="checkbox" id="cell-43:13"/>
+                    <input type="checkbox" id="cell-44:13"/> <input type="checkbox" id="cell-45:13"/> <input type="checkbox" id="cell-46:13"/> <input type="checkbox" id="cell-47:13"/>
+                    <input type="checkbox" id="cell-48:13"/> <input type="checkbox" id="cell-49:13"/> <input type="checkbox" id="cell-50:13"/> <input type="checkbox" id="cell-51:13"/>
+                    <input type="checkbox" id="cell-52:13"/> <input type="checkbox" id="cell-53:13"/> <input type="checkbox" id="cell-54:13"/> <input type="checkbox" id="cell-55:13"/>
+                    <input type="checkbox" id="cell-56:13"/> <input type="checkbox" id="cell-57:13"/> <input type="checkbox" id="cell-58:13"/> <input type="checkbox" id="cell-59:13"/>
+                    <input type="checkbox" id="cell-60:13"/> <input type="checkbox" id="cell-61:13"/> <input type="checkbox" id="cell-62:13"/> <input type="checkbox" id="cell-63:13"/>
+                    <input type="checkbox" id="cell-64:13"/> <input type="checkbox" id="cell-65:13"/> <input type="checkbox" id="cell-66:13"/> <input type="checkbox" id="cell-67:13"/>
+                    <input type="checkbox" id="cell-68:13"/> <input type="checkbox" id="cell-69:13"/> <input type="checkbox" id="cell-70:13"/> <input type="checkbox" id="cell-71:13"/>
+                    <input type="checkbox" id="cell-72:13"/> <input type="checkbox" id="cell-73:13"/> <input type="checkbox" id="cell-74:13"/> <input type="checkbox" id="cell-75:13"/>
+                    <input type="checkbox" id="cell-76:13"/> <input type="checkbox" id="cell-77:13"/> <input type="checkbox" id="cell-78:13"/> <input type="checkbox" id="cell-79:13"/>
+                </div>
+                <div id="row-14">
+                    <input type="checkbox" id="cell-0:14"/> <input type="checkbox" id="cell-1:14"/> <input type="checkbox" id="cell-2:14"/> <input type="checkbox" id="cell-3:14"/>
+                    <input type="checkbox" id="cell-4:14"/> <input type="checkbox" id="cell-5:14"/> <input type="checkbox" id="cell-6:14"/> <input type="checkbox" id="cell-7:14"/>
+                    <input type="checkbox" id="cell-8:14"/> <input type="checkbox" id="cell-9:14"/> <input type="checkbox" id="cell-10:14"/> <input type="checkbox" id="cell-11:14"/>
+                    <input type="checkbox" id="cell-12:14"/> <input type="checkbox" id="cell-13:14"/> <input type="checkbox" id="cell-14:14"/> <input type="checkbox" id="cell-15:14"/>
+                    <input type="checkbox" id="cell-16:14"/> <input type="checkbox" id="cell-17:14"/> <input type="checkbox" id="cell-18:14"/> <input type="checkbox" id="cell-19:14"/>
+                    <input type="checkbox" id="cell-20:14"/> <input type="checkbox" id="cell-21:14"/> <input type="checkbox" id="cell-22:14"/> <input type="checkbox" id="cell-23:14"/>
+                    <input type="checkbox" id="cell-24:14"/> <input type="checkbox" id="cell-25:14"/> <input type="checkbox" id="cell-26:14"/> <input type="checkbox" id="cell-27:14"/>
+                    <input type="checkbox" id="cell-28:14"/> <input type="checkbox" id="cell-29:14"/> <input type="checkbox" id="cell-30:14"/> <input type="checkbox" id="cell-31:14"/>
+                    <input type="checkbox" id="cell-32:14"/> <input type="checkbox" id="cell-33:14"/> <input type="checkbox" id="cell-34:14"/> <input type="checkbox" id="cell-35:14"/>
+                    <input type="checkbox" id="cell-36:14"/> <input type="checkbox" id="cell-37:14"/> <input type="checkbox" id="cell-38:14"/> <input type="checkbox" id="cell-39:14"/>
+                    <input type="checkbox" id="cell-40:14"/> <input type="checkbox" id="cell-41:14"/> <input type="checkbox" id="cell-42:14"/> <input type="checkbox" id="cell-43:14"/>
+                    <input type="checkbox" id="cell-44:14"/> <input type="checkbox" id="cell-45:14"/> <input type="checkbox" id="cell-46:14"/> <input type="checkbox" id="cell-47:14"/>
+                    <input type="checkbox" id="cell-48:14"/> <input type="checkbox" id="cell-49:14"/> <input type="checkbox" id="cell-50:14"/> <input type="checkbox" id="cell-51:14"/>
+                    <input type="checkbox" id="cell-52:14"/> <input type="checkbox" id="cell-53:14"/> <input type="checkbox" id="cell-54:14"/> <input type="checkbox" id="cell-55:14"/>
+                    <input type="checkbox" id="cell-56:14"/> <input type="checkbox" id="cell-57:14"/> <input type="checkbox" id="cell-58:14"/> <input type="checkbox" id="cell-59:14"/>
+                    <input type="checkbox" id="cell-60:14"/> <input type="checkbox" id="cell-61:14"/> <input type="checkbox" id="cell-62:14"/> <input type="checkbox" id="cell-63:14"/>
+                    <input type="checkbox" id="cell-64:14"/> <input type="checkbox" id="cell-65:14"/> <input type="checkbox" id="cell-66:14"/> <input type="checkbox" id="cell-67:14"/>
+                    <input type="checkbox" id="cell-68:14"/> <input type="checkbox" id="cell-69:14"/> <input type="checkbox" id="cell-70:14"/> <input type="checkbox" id="cell-71:14"/>
+                    <input type="checkbox" id="cell-72:14"/> <input type="checkbox" id="cell-73:14"/> <input type="checkbox" id="cell-74:14"/> <input type="checkbox" id="cell-75:14"/>
+                    <input type="checkbox" id="cell-76:14"/> <input type="checkbox" id="cell-77:14"/> <input type="checkbox" id="cell-78:14"/> <input type="checkbox" id="cell-79:14"/>
+                </div>
+                <div id="row-15">
+                    <input type="checkbox" id="cell-0:15"/> <input type="checkbox" id="cell-1:15"/> <input type="checkbox" id="cell-2:15"/> <input type="checkbox" id="cell-3:15"/>
+                    <input type="checkbox" id="cell-4:15"/> <input type="checkbox" id="cell-5:15"/> <input type="checkbox" id="cell-6:15"/> <input type="checkbox" id="cell-7:15"/>
+                    <input type="checkbox" id="cell-8:15"/> <input type="checkbox" id="cell-9:15"/> <input type="checkbox" id="cell-10:15"/> <input type="checkbox" id="cell-11:15"/>
+                    <input type="checkbox" id="cell-12:15"/> <input type="checkbox" id="cell-13:15"/> <input type="checkbox" id="cell-14:15"/> <input type="checkbox" id="cell-15:15"/>
+                    <input type="checkbox" id="cell-16:15"/> <input type="checkbox" id="cell-17:15"/> <input type="checkbox" id="cell-18:15"/> <input type="checkbox" id="cell-19:15"/>
+                    <input type="checkbox" id="cell-20:15"/> <input type="checkbox" id="cell-21:15"/> <input type="checkbox" id="cell-22:15"/> <input type="checkbox" id="cell-23:15"/>
+                    <input type="checkbox" id="cell-24:15"/> <input type="checkbox" id="cell-25:15"/> <input type="checkbox" id="cell-26:15"/> <input type="checkbox" id="cell-27:15"/>
+                    <input type="checkbox" id="cell-28:15"/> <input type="checkbox" id="cell-29:15"/> <input type="checkbox" id="cell-30:15"/> <input type="checkbox" id="cell-31:15"/>
+                    <input type="checkbox" id="cell-32:15"/> <input type="checkbox" id="cell-33:15"/> <input type="checkbox" id="cell-34:15"/> <input type="checkbox" id="cell-35:15"/>
+                    <input type="checkbox" id="cell-36:15"/> <input type="checkbox" id="cell-37:15"/> <input type="checkbox" id="cell-38:15"/> <input type="checkbox" id="cell-39:15"/>
+                    <input type="checkbox" id="cell-40:15"/> <input type="checkbox" id="cell-41:15"/> <input type="checkbox" id="cell-42:15"/> <input type="checkbox" id="cell-43:15"/>
+                    <input type="checkbox" id="cell-44:15"/> <input type="checkbox" id="cell-45:15"/> <input type="checkbox" id="cell-46:15"/> <input type="checkbox" id="cell-47:15"/>
+                    <input type="checkbox" id="cell-48:15"/> <input type="checkbox" id="cell-49:15"/> <input type="checkbox" id="cell-50:15"/> <input type="checkbox" id="cell-51:15"/>
+                    <input type="checkbox" id="cell-52:15"/> <input type="checkbox" id="cell-53:15"/> <input type="checkbox" id="cell-54:15"/> <input type="checkbox" id="cell-55:15"/>
+                    <input type="checkbox" id="cell-56:15"/> <input type="checkbox" id="cell-57:15"/> <input type="checkbox" id="cell-58:15"/> <input type="checkbox" id="cell-59:15"/>
+                    <input type="checkbox" id="cell-60:15"/> <input type="checkbox" id="cell-61:15"/> <input type="checkbox" id="cell-62:15"/> <input type="checkbox" id="cell-63:15"/>
+                    <input type="checkbox" id="cell-64:15"/> <input type="checkbox" id="cell-65:15"/> <input type="checkbox" id="cell-66:15"/> <input type="checkbox" id="cell-67:15"/>
+                    <input type="checkbox" id="cell-68:15"/> <input type="checkbox" id="cell-69:15"/> <input type="checkbox" id="cell-70:15"/> <input type="checkbox" id="cell-71:15"/>
+                    <input type="checkbox" id="cell-72:15"/> <input type="checkbox" id="cell-73:15"/> <input type="checkbox" id="cell-74:15"/> <input type="checkbox" id="cell-75:15"/>
+                    <input type="checkbox" id="cell-76:15"/> <input type="checkbox" id="cell-77:15"/> <input type="checkbox" id="cell-78:15"/> <input type="checkbox" id="cell-79:15"/>
+                </div>
+                <div id="row-16">
+                    <input type="checkbox" id="cell-0:16"/> <input type="checkbox" id="cell-1:16"/> <input type="checkbox" id="cell-2:16"/> <input type="checkbox" id="cell-3:16"/>
+                    <input type="checkbox" id="cell-4:16"/> <input type="checkbox" id="cell-5:16"/> <input type="checkbox" id="cell-6:16"/> <input type="checkbox" id="cell-7:16"/>
+                    <input type="checkbox" id="cell-8:16"/> <input type="checkbox" id="cell-9:16"/> <input type="checkbox" id="cell-10:16"/> <input type="checkbox" id="cell-11:16"/>
+                    <input type="checkbox" id="cell-12:16"/> <input type="checkbox" id="cell-13:16"/> <input type="checkbox" id="cell-14:16"/> <input type="checkbox" id="cell-15:16"/>
+                    <input type="checkbox" id="cell-16:16"/> <input type="checkbox" id="cell-17:16"/> <input type="checkbox" id="cell-18:16"/> <input type="checkbox" id="cell-19:16"/>
+                    <input type="checkbox" id="cell-20:16"/> <input type="checkbox" id="cell-21:16"/> <input type="checkbox" id="cell-22:16"/> <input type="checkbox" id="cell-23:16"/>
+                    <input type="checkbox" id="cell-24:16"/> <input type="checkbox" id="cell-25:16"/> <input type="checkbox" id="cell-26:16"/> <input type="checkbox" id="cell-27:16"/>
+                    <input type="checkbox" id="cell-28:16"/> <input type="checkbox" id="cell-29:16"/> <input type="checkbox" id="cell-30:16"/> <input type="checkbox" id="cell-31:16"/>
+                    <input type="checkbox" id="cell-32:16"/> <input type="checkbox" id="cell-33:16"/> <input type="checkbox" id="cell-34:16"/> <input type="checkbox" id="cell-35:16"/>
+                    <input type="checkbox" id="cell-36:16"/> <input type="checkbox" id="cell-37:16"/> <input type="checkbox" id="cell-38:16"/> <input type="checkbox" id="cell-39:16"/>
+                    <input type="checkbox" id="cell-40:16"/> <input type="checkbox" id="cell-41:16"/> <input type="checkbox" id="cell-42:16"/> <input type="checkbox" id="cell-43:16"/>
+                    <input type="checkbox" id="cell-44:16"/> <input type="checkbox" id="cell-45:16"/> <input type="checkbox" id="cell-46:16"/> <input type="checkbox" id="cell-47:16"/>
+                    <input type="checkbox" id="cell-48:16"/> <input type="checkbox" id="cell-49:16"/> <input type="checkbox" id="cell-50:16"/> <input type="checkbox" id="cell-51:16"/>
+                    <input type="checkbox" id="cell-52:16"/> <input type="checkbox" id="cell-53:16"/> <input type="checkbox" id="cell-54:16"/> <input type="checkbox" id="cell-55:16"/>
+                    <input type="checkbox" id="cell-56:16"/> <input type="checkbox" id="cell-57:16"/> <input type="checkbox" id="cell-58:16"/> <input type="checkbox" id="cell-59:16"/>
+                    <input type="checkbox" id="cell-60:16"/> <input type="checkbox" id="cell-61:16"/> <input type="checkbox" id="cell-62:16"/> <input type="checkbox" id="cell-63:16"/>
+                    <input type="checkbox" id="cell-64:16"/> <input type="checkbox" id="cell-65:16"/> <input type="checkbox" id="cell-66:16"/> <input type="checkbox" id="cell-67:16"/>
+                    <input type="checkbox" id="cell-68:16"/> <input type="checkbox" id="cell-69:16"/> <input type="checkbox" id="cell-70:16"/> <input type="checkbox" id="cell-71:16"/>
+                    <input type="checkbox" id="cell-72:16"/> <input type="checkbox" id="cell-73:16"/> <input type="checkbox" id="cell-74:16"/> <input type="checkbox" id="cell-75:16"/>
+                    <input type="checkbox" id="cell-76:16"/> <input type="checkbox" id="cell-77:16"/> <input type="checkbox" id="cell-78:16"/> <input type="checkbox" id="cell-79:16"/>
+                </div>
+                <div id="row-17">
+                    <input type="checkbox" id="cell-0:17"/> <input type="checkbox" id="cell-1:17"/> <input type="checkbox" id="cell-2:17"/> <input type="checkbox" id="cell-3:17"/>
+                    <input type="checkbox" id="cell-4:17"/> <input type="checkbox" id="cell-5:17"/> <input type="checkbox" id="cell-6:17"/> <input type="checkbox" id="cell-7:17"/>
+                    <input type="checkbox" id="cell-8:17"/> <input type="checkbox" id="cell-9:17"/> <input type="checkbox" id="cell-10:17"/> <input type="checkbox" id="cell-11:17"/>
+                    <input type="checkbox" id="cell-12:17"/> <input type="checkbox" id="cell-13:17"/> <input type="checkbox" id="cell-14:17"/> <input type="checkbox" id="cell-15:17"/>
+                    <input type="checkbox" id="cell-16:17"/> <input type="checkbox" id="cell-17:17"/> <input type="checkbox" id="cell-18:17"/> <input type="checkbox" id="cell-19:17"/>
+                    <input type="checkbox" id="cell-20:17"/> <input type="checkbox" id="cell-21:17"/> <input type="checkbox" id="cell-22:17"/> <input type="checkbox" id="cell-23:17"/>
+                    <input type="checkbox" id="cell-24:17"/> <input type="checkbox" id="cell-25:17"/> <input type="checkbox" id="cell-26:17"/> <input type="checkbox" id="cell-27:17"/>
+                    <input type="checkbox" id="cell-28:17"/> <input type="checkbox" id="cell-29:17"/> <input type="checkbox" id="cell-30:17"/> <input type="checkbox" id="cell-31:17"/>
+                    <input type="checkbox" id="cell-32:17"/> <input type="checkbox" id="cell-33:17"/> <input type="checkbox" id="cell-34:17"/> <input type="checkbox" id="cell-35:17"/>
+                    <input type="checkbox" id="cell-36:17"/> <input type="checkbox" id="cell-37:17"/> <input type="checkbox" id="cell-38:17"/> <input type="checkbox" id="cell-39:17"/>
+                    <input type="checkbox" id="cell-40:17"/> <input type="checkbox" id="cell-41:17"/> <input type="checkbox" id="cell-42:17"/> <input type="checkbox" id="cell-43:17"/>
+                    <input type="checkbox" id="cell-44:17"/> <input type="checkbox" id="cell-45:17"/> <input type="checkbox" id="cell-46:17"/> <input type="checkbox" id="cell-47:17"/>
+                    <input type="checkbox" id="cell-48:17"/> <input type="checkbox" id="cell-49:17"/> <input type="checkbox" id="cell-50:17"/> <input type="checkbox" id="cell-51:17"/>
+                    <input type="checkbox" id="cell-52:17"/> <input type="checkbox" id="cell-53:17"/> <input type="checkbox" id="cell-54:17"/> <input type="checkbox" id="cell-55:17"/>
+                    <input type="checkbox" id="cell-56:17"/> <input type="checkbox" id="cell-57:17"/> <input type="checkbox" id="cell-58:17"/> <input type="checkbox" id="cell-59:17"/>
+                    <input type="checkbox" id="cell-60:17"/> <input type="checkbox" id="cell-61:17"/> <input type="checkbox" id="cell-62:17"/> <input type="checkbox" id="cell-63:17"/>
+                    <input type="checkbox" id="cell-64:17"/> <input type="checkbox" id="cell-65:17"/> <input type="checkbox" id="cell-66:17"/> <input type="checkbox" id="cell-67:17"/>
+                    <input type="checkbox" id="cell-68:17"/> <input type="checkbox" id="cell-69:17"/> <input type="checkbox" id="cell-70:17"/> <input type="checkbox" id="cell-71:17"/>
+                    <input type="checkbox" id="cell-72:17"/> <input type="checkbox" id="cell-73:17"/> <input type="checkbox" id="cell-74:17"/> <input type="checkbox" id="cell-75:17"/>
+                    <input type="checkbox" id="cell-76:17"/> <input type="checkbox" id="cell-77:17"/> <input type="checkbox" id="cell-78:17"/> <input type="checkbox" id="cell-79:17"/>
+                </div>
+                <div id="row-18">
+                    <input type="checkbox" id="cell-0:18"/> <input type="checkbox" id="cell-1:18"/> <input type="checkbox" id="cell-2:18"/> <input type="checkbox" id="cell-3:18"/>
+                    <input type="checkbox" id="cell-4:18"/> <input type="checkbox" id="cell-5:18"/> <input type="checkbox" id="cell-6:18"/> <input type="checkbox" id="cell-7:18"/>
+                    <input type="checkbox" id="cell-8:18"/> <input type="checkbox" id="cell-9:18"/> <input type="checkbox" id="cell-10:18"/> <input type="checkbox" id="cell-11:18"/>
+                    <input type="checkbox" id="cell-12:18"/> <input type="checkbox" id="cell-13:18"/> <input type="checkbox" id="cell-14:18"/> <input type="checkbox" id="cell-15:18"/>
+                    <input type="checkbox" id="cell-16:18"/> <input type="checkbox" id="cell-17:18"/> <input type="checkbox" id="cell-18:18"/> <input type="checkbox" id="cell-19:18"/>
+                    <input type="checkbox" id="cell-20:18"/> <input type="checkbox" id="cell-21:18"/> <input type="checkbox" id="cell-22:18"/> <input type="checkbox" id="cell-23:18"/>
+                    <input type="checkbox" id="cell-24:18"/> <input type="checkbox" id="cell-25:18"/> <input type="checkbox" id="cell-26:18"/> <input type="checkbox" id="cell-27:18"/>
+                    <input type="checkbox" id="cell-28:18"/> <input type="checkbox" id="cell-29:18"/> <input type="checkbox" id="cell-30:18"/> <input type="checkbox" id="cell-31:18"/>
+                    <input type="checkbox" id="cell-32:18"/> <input type="checkbox" id="cell-33:18"/> <input type="checkbox" id="cell-34:18"/> <input type="checkbox" id="cell-35:18"/>
+                    <input type="checkbox" id="cell-36:18"/> <input type="checkbox" id="cell-37:18"/> <input type="checkbox" id="cell-38:18"/> <input type="checkbox" id="cell-39:18"/>
+                    <input type="checkbox" id="cell-40:18"/> <input type="checkbox" id="cell-41:18"/> <input type="checkbox" id="cell-42:18"/> <input type="checkbox" id="cell-43:18"/>
+                    <input type="checkbox" id="cell-44:18"/> <input type="checkbox" id="cell-45:18"/> <input type="checkbox" id="cell-46:18"/> <input type="checkbox" id="cell-47:18"/>
+                    <input type="checkbox" id="cell-48:18"/> <input type="checkbox" id="cell-49:18"/> <input type="checkbox" id="cell-50:18"/> <input type="checkbox" id="cell-51:18"/>
+                    <input type="checkbox" id="cell-52:18"/> <input type="checkbox" id="cell-53:18"/> <input type="checkbox" id="cell-54:18"/> <input type="checkbox" id="cell-55:18"/>
+                    <input type="checkbox" id="cell-56:18"/> <input type="checkbox" id="cell-57:18"/> <input type="checkbox" id="cell-58:18"/> <input type="checkbox" id="cell-59:18"/>
+                    <input type="checkbox" id="cell-60:18"/> <input type="checkbox" id="cell-61:18"/> <input type="checkbox" id="cell-62:18"/> <input type="checkbox" id="cell-63:18"/>
+                    <input type="checkbox" id="cell-64:18"/> <input type="checkbox" id="cell-65:18"/> <input type="checkbox" id="cell-66:18"/> <input type="checkbox" id="cell-67:18"/>
+                    <input type="checkbox" id="cell-68:18"/> <input type="checkbox" id="cell-69:18"/> <input type="checkbox" id="cell-70:18"/> <input type="checkbox" id="cell-71:18"/>
+                    <input type="checkbox" id="cell-72:18"/> <input type="checkbox" id="cell-73:18"/> <input type="checkbox" id="cell-74:18"/> <input type="checkbox" id="cell-75:18"/>
+                    <input type="checkbox" id="cell-76:18"/> <input type="checkbox" id="cell-77:18"/> <input type="checkbox" id="cell-78:18"/> <input type="checkbox" id="cell-79:18"/>
+                </div>
+                <div id="row-19">
+                    <input type="checkbox" id="cell-0:19"/> <input type="checkbox" id="cell-1:19"/> <input type="checkbox" id="cell-2:19"/> <input type="checkbox" id="cell-3:19"/>
+                    <input type="checkbox" id="cell-4:19"/> <input type="checkbox" id="cell-5:19"/> <input type="checkbox" id="cell-6:19"/> <input type="checkbox" id="cell-7:19"/>
+                    <input type="checkbox" id="cell-8:19"/> <input type="checkbox" id="cell-9:19"/> <input type="checkbox" id="cell-10:19"/> <input type="checkbox" id="cell-11:19"/>
+                    <input type="checkbox" id="cell-12:19"/> <input type="checkbox" id="cell-13:19"/> <input type="checkbox" id="cell-14:19"/> <input type="checkbox" id="cell-15:19"/>
+                    <input type="checkbox" id="cell-16:19"/> <input type="checkbox" id="cell-17:19"/> <input type="checkbox" id="cell-18:19"/> <input type="checkbox" id="cell-19:19"/>
+                    <input type="checkbox" id="cell-20:19"/> <input type="checkbox" id="cell-21:19"/> <input type="checkbox" id="cell-22:19"/> <input type="checkbox" id="cell-23:19"/>
+                    <input type="checkbox" id="cell-24:19"/> <input type="checkbox" id="cell-25:19"/> <input type="checkbox" id="cell-26:19"/> <input type="checkbox" id="cell-27:19"/>
+                    <input type="checkbox" id="cell-28:19"/> <input type="checkbox" id="cell-29:19"/> <input type="checkbox" id="cell-30:19"/> <input type="checkbox" id="cell-31:19"/>
+                    <input type="checkbox" id="cell-32:19"/> <input type="checkbox" id="cell-33:19"/> <input type="checkbox" id="cell-34:19"/> <input type="checkbox" id="cell-35:19"/>
+                    <input type="checkbox" id="cell-36:19"/> <input type="checkbox" id="cell-37:19"/> <input type="checkbox" id="cell-38:19"/> <input type="checkbox" id="cell-39:19"/>
+                    <input type="checkbox" id="cell-40:19"/> <input type="checkbox" id="cell-41:19"/> <input type="checkbox" id="cell-42:19"/> <input type="checkbox" id="cell-43:19"/>
+                    <input type="checkbox" id="cell-44:19"/> <input type="checkbox" id="cell-45:19"/> <input type="checkbox" id="cell-46:19"/> <input type="checkbox" id="cell-47:19"/>
+                    <input type="checkbox" id="cell-48:19"/> <input type="checkbox" id="cell-49:19"/> <input type="checkbox" id="cell-50:19"/> <input type="checkbox" id="cell-51:19"/>
+                    <input type="checkbox" id="cell-52:19"/> <input type="checkbox" id="cell-53:19"/> <input type="checkbox" id="cell-54:19"/> <input type="checkbox" id="cell-55:19"/>
+                    <input type="checkbox" id="cell-56:19"/> <input type="checkbox" id="cell-57:19"/> <input type="checkbox" id="cell-58:19"/> <input type="checkbox" id="cell-59:19"/>
+                    <input type="checkbox" id="cell-60:19"/> <input type="checkbox" id="cell-61:19"/> <input type="checkbox" id="cell-62:19"/> <input type="checkbox" id="cell-63:19"/>
+                    <input type="checkbox" id="cell-64:19"/> <input type="checkbox" id="cell-65:19"/> <input type="checkbox" id="cell-66:19"/> <input type="checkbox" id="cell-67:19"/>
+                    <input type="checkbox" id="cell-68:19"/> <input type="checkbox" id="cell-69:19"/> <input type="checkbox" id="cell-70:19"/> <input type="checkbox" id="cell-71:19"/>
+                    <input type="checkbox" id="cell-72:19"/> <input type="checkbox" id="cell-73:19"/> <input type="checkbox" id="cell-74:19"/> <input type="checkbox" id="cell-75:19"/>
+                    <input type="checkbox" id="cell-76:19"/> <input type="checkbox" id="cell-77:19"/> <input type="checkbox" id="cell-78:19"/> <input type="checkbox" id="cell-79:19"/>
+                </div>
+                <div id="row-20">
+                    <input type="checkbox" id="cell-0:20"/> <input type="checkbox" id="cell-1:20"/> <input type="checkbox" id="cell-2:20"/> <input type="checkbox" id="cell-3:20"/>
+                    <input type="checkbox" id="cell-4:20"/> <input type="checkbox" id="cell-5:20"/> <input type="checkbox" id="cell-6:20"/> <input type="checkbox" id="cell-7:20"/>
+                    <input type="checkbox" id="cell-8:20"/> <input type="checkbox" id="cell-9:20"/> <input type="checkbox" id="cell-10:20"/> <input type="checkbox" id="cell-11:20"/>
+                    <input type="checkbox" id="cell-12:20"/> <input type="checkbox" id="cell-13:20"/> <input type="checkbox" id="cell-14:20"/> <input type="checkbox" id="cell-15:20"/>
+                    <input type="checkbox" id="cell-16:20"/> <input type="checkbox" id="cell-17:20"/> <input type="checkbox" id="cell-18:20"/> <input type="checkbox" id="cell-19:20"/>
+                    <input type="checkbox" id="cell-20:20"/> <input type="checkbox" id="cell-21:20"/> <input type="checkbox" id="cell-22:20"/> <input type="checkbox" id="cell-23:20"/>
+                    <input type="checkbox" id="cell-24:20"/> <input type="checkbox" id="cell-25:20"/> <input type="checkbox" id="cell-26:20"/> <input type="checkbox" id="cell-27:20"/>
+                    <input type="checkbox" id="cell-28:20"/> <input type="checkbox" id="cell-29:20"/> <input type="checkbox" id="cell-30:20"/> <input type="checkbox" id="cell-31:20"/>
+                    <input type="checkbox" id="cell-32:20"/> <input type="checkbox" id="cell-33:20"/> <input type="checkbox" id="cell-34:20"/> <input type="checkbox" id="cell-35:20"/>
+                    <input type="checkbox" id="cell-36:20"/> <input type="checkbox" id="cell-37:20"/> <input type="checkbox" id="cell-38:20"/> <input type="checkbox" id="cell-39:20"/>
+                    <input type="checkbox" id="cell-40:20"/> <input type="checkbox" id="cell-41:20"/> <input type="checkbox" id="cell-42:20"/> <input type="checkbox" id="cell-43:20"/>
+                    <input type="checkbox" id="cell-44:20"/> <input type="checkbox" id="cell-45:20"/> <input type="checkbox" id="cell-46:20"/> <input type="checkbox" id="cell-47:20"/>
+                    <input type="checkbox" id="cell-48:20"/> <input type="checkbox" id="cell-49:20"/> <input type="checkbox" id="cell-50:20"/> <input type="checkbox" id="cell-51:20"/>
+                    <input type="checkbox" id="cell-52:20"/> <input type="checkbox" id="cell-53:20"/> <input type="checkbox" id="cell-54:20"/> <input type="checkbox" id="cell-55:20"/>
+                    <input type="checkbox" id="cell-56:20"/> <input type="checkbox" id="cell-57:20"/> <input type="checkbox" id="cell-58:20"/> <input type="checkbox" id="cell-59:20"/>
+                    <input type="checkbox" id="cell-60:20"/> <input type="checkbox" id="cell-61:20"/> <input type="checkbox" id="cell-62:20"/> <input type="checkbox" id="cell-63:20"/>
+                    <input type="checkbox" id="cell-64:20"/> <input type="checkbox" id="cell-65:20"/> <input type="checkbox" id="cell-66:20"/> <input type="checkbox" id="cell-67:20"/>
+                    <input type="checkbox" id="cell-68:20"/> <input type="checkbox" id="cell-69:20"/> <input type="checkbox" id="cell-70:20"/> <input type="checkbox" id="cell-71:20"/>
+                    <input type="checkbox" id="cell-72:20"/> <input type="checkbox" id="cell-73:20"/> <input type="checkbox" id="cell-74:20"/> <input type="checkbox" id="cell-75:20"/>
+                    <input type="checkbox" id="cell-76:20"/> <input type="checkbox" id="cell-77:20"/> <input type="checkbox" id="cell-78:20"/> <input type="checkbox" id="cell-79:20"/>
+                </div>
+                <div id="row-21">
+                    <input type="checkbox" id="cell-0:21"/> <input type="checkbox" id="cell-1:21"/> <input type="checkbox" id="cell-2:21"/> <input type="checkbox" id="cell-3:21"/>
+                    <input type="checkbox" id="cell-4:21"/> <input type="checkbox" id="cell-5:21"/> <input type="checkbox" id="cell-6:21"/> <input type="checkbox" id="cell-7:21"/>
+                    <input type="checkbox" id="cell-8:21"/> <input type="checkbox" id="cell-9:21"/> <input type="checkbox" id="cell-10:21"/> <input type="checkbox" id="cell-11:21"/>
+                    <input type="checkbox" id="cell-12:21"/> <input type="checkbox" id="cell-13:21"/> <input type="checkbox" id="cell-14:21"/> <input type="checkbox" id="cell-15:21"/>
+                    <input type="checkbox" id="cell-16:21"/> <input type="checkbox" id="cell-17:21"/> <input type="checkbox" id="cell-18:21"/> <input type="checkbox" id="cell-19:21"/>
+                    <input type="checkbox" id="cell-20:21"/> <input type="checkbox" id="cell-21:21"/> <input type="checkbox" id="cell-22:21"/> <input type="checkbox" id="cell-23:21"/>
+                    <input type="checkbox" id="cell-24:21"/> <input type="checkbox" id="cell-25:21"/> <input type="checkbox" id="cell-26:21"/> <input type="checkbox" id="cell-27:21"/>
+                    <input type="checkbox" id="cell-28:21"/> <input type="checkbox" id="cell-29:21"/> <input type="checkbox" id="cell-30:21"/> <input type="checkbox" id="cell-31:21"/>
+                    <input type="checkbox" id="cell-32:21"/> <input type="checkbox" id="cell-33:21"/> <input type="checkbox" id="cell-34:21"/> <input type="checkbox" id="cell-35:21"/>
+                    <input type="checkbox" id="cell-36:21"/> <input type="checkbox" id="cell-37:21"/> <input type="checkbox" id="cell-38:21"/> <input type="checkbox" id="cell-39:21"/>
+                    <input type="checkbox" id="cell-40:21"/> <input type="checkbox" id="cell-41:21"/> <input type="checkbox" id="cell-42:21"/> <input type="checkbox" id="cell-43:21"/>
+                    <input type="checkbox" id="cell-44:21"/> <input type="checkbox" id="cell-45:21"/> <input type="checkbox" id="cell-46:21"/> <input type="checkbox" id="cell-47:21"/>
+                    <input type="checkbox" id="cell-48:21"/> <input type="checkbox" id="cell-49:21"/> <input type="checkbox" id="cell-50:21"/> <input type="checkbox" id="cell-51:21"/>
+                    <input type="checkbox" id="cell-52:21"/> <input type="checkbox" id="cell-53:21"/> <input type="checkbox" id="cell-54:21"/> <input type="checkbox" id="cell-55:21"/>
+                    <input type="checkbox" id="cell-56:21"/> <input type="checkbox" id="cell-57:21"/> <input type="checkbox" id="cell-58:21"/> <input type="checkbox" id="cell-59:21"/>
+                    <input type="checkbox" id="cell-60:21"/> <input type="checkbox" id="cell-61:21"/> <input type="checkbox" id="cell-62:21"/> <input type="checkbox" id="cell-63:21"/>
+                    <input type="checkbox" id="cell-64:21"/> <input type="checkbox" id="cell-65:21"/> <input type="checkbox" id="cell-66:21"/> <input type="checkbox" id="cell-67:21"/>
+                    <input type="checkbox" id="cell-68:21"/> <input type="checkbox" id="cell-69:21"/> <input type="checkbox" id="cell-70:21"/> <input type="checkbox" id="cell-71:21"/>
+                    <input type="checkbox" id="cell-72:21"/> <input type="checkbox" id="cell-73:21"/> <input type="checkbox" id="cell-74:21"/> <input type="checkbox" id="cell-75:21"/>
+                    <input type="checkbox" id="cell-76:21"/> <input type="checkbox" id="cell-77:21"/> <input type="checkbox" id="cell-78:21"/> <input type="checkbox" id="cell-79:21"/>
+                </div>
+                <div id="row-22">
+                    <input type="checkbox" id="cell-0:22"/> <input type="checkbox" id="cell-1:22"/> <input type="checkbox" id="cell-2:22"/> <input type="checkbox" id="cell-3:22"/>
+                    <input type="checkbox" id="cell-4:22"/> <input type="checkbox" id="cell-5:22"/> <input type="checkbox" id="cell-6:22"/> <input type="checkbox" id="cell-7:22"/>
+                    <input type="checkbox" id="cell-8:22"/> <input type="checkbox" id="cell-9:22"/> <input type="checkbox" id="cell-10:22"/> <input type="checkbox" id="cell-11:22"/>
+                    <input type="checkbox" id="cell-12:22"/> <input type="checkbox" id="cell-13:22"/> <input type="checkbox" id="cell-14:22"/> <input type="checkbox" id="cell-15:22"/>
+                    <input type="checkbox" id="cell-16:22"/> <input type="checkbox" id="cell-17:22"/> <input type="checkbox" id="cell-18:22"/> <input type="checkbox" id="cell-19:22"/>
+                    <input type="checkbox" id="cell-20:22"/> <input type="checkbox" id="cell-21:22"/> <input type="checkbox" id="cell-22:22"/> <input type="checkbox" id="cell-23:22"/>
+                    <input type="checkbox" id="cell-24:22"/> <input type="checkbox" id="cell-25:22"/> <input type="checkbox" id="cell-26:22"/> <input type="checkbox" id="cell-27:22"/>
+                    <input type="checkbox" id="cell-28:22"/> <input type="checkbox" id="cell-29:22"/> <input type="checkbox" id="cell-30:22"/> <input type="checkbox" id="cell-31:22"/>
+                    <input type="checkbox" id="cell-32:22"/> <input type="checkbox" id="cell-33:22"/> <input type="checkbox" id="cell-34:22"/> <input type="checkbox" id="cell-35:22"/>
+                    <input type="checkbox" id="cell-36:22"/> <input type="checkbox" id="cell-37:22"/> <input type="checkbox" id="cell-38:22"/> <input type="checkbox" id="cell-39:22"/>
+                    <input type="checkbox" id="cell-40:22"/> <input type="checkbox" id="cell-41:22"/> <input type="checkbox" id="cell-42:22"/> <input type="checkbox" id="cell-43:22"/>
+                    <input type="checkbox" id="cell-44:22"/> <input type="checkbox" id="cell-45:22"/> <input type="checkbox" id="cell-46:22"/> <input type="checkbox" id="cell-47:22"/>
+                    <input type="checkbox" id="cell-48:22"/> <input type="checkbox" id="cell-49:22"/> <input type="checkbox" id="cell-50:22"/> <input type="checkbox" id="cell-51:22"/>
+                    <input type="checkbox" id="cell-52:22"/> <input type="checkbox" id="cell-53:22"/> <input type="checkbox" id="cell-54:22"/> <input type="checkbox" id="cell-55:22"/>
+                    <input type="checkbox" id="cell-56:22"/> <input type="checkbox" id="cell-57:22"/> <input type="checkbox" id="cell-58:22"/> <input type="checkbox" id="cell-59:22"/>
+                    <input type="checkbox" id="cell-60:22"/> <input type="checkbox" id="cell-61:22"/> <input type="checkbox" id="cell-62:22"/> <input type="checkbox" id="cell-63:22"/>
+                    <input type="checkbox" id="cell-64:22"/> <input type="checkbox" id="cell-65:22"/> <input type="checkbox" id="cell-66:22"/> <input type="checkbox" id="cell-67:22"/>
+                    <input type="checkbox" id="cell-68:22"/> <input type="checkbox" id="cell-69:22"/> <input type="checkbox" id="cell-70:22"/> <input type="checkbox" id="cell-71:22"/>
+                    <input type="checkbox" id="cell-72:22"/> <input type="checkbox" id="cell-73:22"/> <input type="checkbox" id="cell-74:22"/> <input type="checkbox" id="cell-75:22"/>
+                    <input type="checkbox" id="cell-76:22"/> <input type="checkbox" id="cell-77:22"/> <input type="checkbox" id="cell-78:22"/> <input type="checkbox" id="cell-79:22"/>
+                </div>
+                <div id="row-23">
+                    <input type="checkbox" id="cell-0:23"/> <input type="checkbox" id="cell-1:23"/> <input type="checkbox" id="cell-2:23"/> <input type="checkbox" id="cell-3:23"/>
+                    <input type="checkbox" id="cell-4:23"/> <input type="checkbox" id="cell-5:23"/> <input type="checkbox" id="cell-6:23"/> <input type="checkbox" id="cell-7:23"/>
+                    <input type="checkbox" id="cell-8:23"/> <input type="checkbox" id="cell-9:23"/> <input type="checkbox" id="cell-10:23"/> <input type="checkbox" id="cell-11:23"/>
+                    <input type="checkbox" id="cell-12:23"/> <input type="checkbox" id="cell-13:23"/> <input type="checkbox" id="cell-14:23"/> <input type="checkbox" id="cell-15:23"/>
+                    <input type="checkbox" id="cell-16:23"/> <input type="checkbox" id="cell-17:23"/> <input type="checkbox" id="cell-18:23"/> <input type="checkbox" id="cell-19:23"/>
+                    <input type="checkbox" id="cell-20:23"/> <input type="checkbox" id="cell-21:23"/> <input type="checkbox" id="cell-22:23"/> <input type="checkbox" id="cell-23:23"/>
+                    <input type="checkbox" id="cell-24:23"/> <input type="checkbox" id="cell-25:23"/> <input type="checkbox" id="cell-26:23"/> <input type="checkbox" id="cell-27:23"/>
+                    <input type="checkbox" id="cell-28:23"/> <input type="checkbox" id="cell-29:23"/> <input type="checkbox" id="cell-30:23"/> <input type="checkbox" id="cell-31:23"/>
+                    <input type="checkbox" id="cell-32:23"/> <input type="checkbox" id="cell-33:23"/> <input type="checkbox" id="cell-34:23"/> <input type="checkbox" id="cell-35:23"/>
+                    <input type="checkbox" id="cell-36:23"/> <input type="checkbox" id="cell-37:23"/> <input type="checkbox" id="cell-38:23"/> <input type="checkbox" id="cell-39:23"/>
+                    <input type="checkbox" id="cell-40:23"/> <input type="checkbox" id="cell-41:23"/> <input type="checkbox" id="cell-42:23"/> <input type="checkbox" id="cell-43:23"/>
+                    <input type="checkbox" id="cell-44:23"/> <input type="checkbox" id="cell-45:23"/> <input type="checkbox" id="cell-46:23"/> <input type="checkbox" id="cell-47:23"/>
+                    <input type="checkbox" id="cell-48:23"/> <input type="checkbox" id="cell-49:23"/> <input type="checkbox" id="cell-50:23"/> <input type="checkbox" id="cell-51:23"/>
+                    <input type="checkbox" id="cell-52:23"/> <input type="checkbox" id="cell-53:23"/> <input type="checkbox" id="cell-54:23"/> <input type="checkbox" id="cell-55:23"/>
+                    <input type="checkbox" id="cell-56:23"/> <input type="checkbox" id="cell-57:23"/> <input type="checkbox" id="cell-58:23"/> <input type="checkbox" id="cell-59:23"/>
+                    <input type="checkbox" id="cell-60:23"/> <input type="checkbox" id="cell-61:23"/> <input type="checkbox" id="cell-62:23"/> <input type="checkbox" id="cell-63:23"/>
+                    <input type="checkbox" id="cell-64:23"/> <input type="checkbox" id="cell-65:23"/> <input type="checkbox" id="cell-66:23"/> <input type="checkbox" id="cell-67:23"/>
+                    <input type="checkbox" id="cell-68:23"/> <input type="checkbox" id="cell-69:23"/> <input type="checkbox" id="cell-70:23"/> <input type="checkbox" id="cell-71:23"/>
+                    <input type="checkbox" id="cell-72:23"/> <input type="checkbox" id="cell-73:23"/> <input type="checkbox" id="cell-74:23"/> <input type="checkbox" id="cell-75:23"/>
+                    <input type="checkbox" id="cell-76:23"/> <input type="checkbox" id="cell-77:23"/> <input type="checkbox" id="cell-78:23"/> <input type="checkbox" id="cell-79:23"/>
+                </div>
+                <div id="row-24">
+                    <input type="checkbox" id="cell-0:24"/> <input type="checkbox" id="cell-1:24"/> <input type="checkbox" id="cell-2:24"/> <input type="checkbox" id="cell-3:24"/>
+                    <input type="checkbox" id="cell-4:24"/> <input type="checkbox" id="cell-5:24"/> <input type="checkbox" id="cell-6:24"/> <input type="checkbox" id="cell-7:24"/>
+                    <input type="checkbox" id="cell-8:24"/> <input type="checkbox" id="cell-9:24"/> <input type="checkbox" id="cell-10:24"/> <input type="checkbox" id="cell-11:24"/>
+                    <input type="checkbox" id="cell-12:24"/> <input type="checkbox" id="cell-13:24"/> <input type="checkbox" id="cell-14:24"/> <input type="checkbox" id="cell-15:24"/>
+                    <input type="checkbox" id="cell-16:24"/> <input type="checkbox" id="cell-17:24"/> <input type="checkbox" id="cell-18:24"/> <input type="checkbox" id="cell-19:24"/>
+                    <input type="checkbox" id="cell-20:24"/> <input type="checkbox" id="cell-21:24"/> <input type="checkbox" id="cell-22:24"/> <input type="checkbox" id="cell-23:24"/>
+                    <input type="checkbox" id="cell-24:24"/> <input type="checkbox" id="cell-25:24"/> <input type="checkbox" id="cell-26:24"/> <input type="checkbox" id="cell-27:24"/>
+                    <input type="checkbox" id="cell-28:24"/> <input type="checkbox" id="cell-29:24"/> <input type="checkbox" id="cell-30:24"/> <input type="checkbox" id="cell-31:24"/>
+                    <input type="checkbox" id="cell-32:24"/> <input type="checkbox" id="cell-33:24"/> <input type="checkbox" id="cell-34:24"/> <input type="checkbox" id="cell-35:24"/>
+                    <input type="checkbox" id="cell-36:24"/> <input type="checkbox" id="cell-37:24"/> <input type="checkbox" id="cell-38:24"/> <input type="checkbox" id="cell-39:24"/>
+                    <input type="checkbox" id="cell-40:24"/> <input type="checkbox" id="cell-41:24"/> <input type="checkbox" id="cell-42:24"/> <input type="checkbox" id="cell-43:24"/>
+                    <input type="checkbox" id="cell-44:24"/> <input type="checkbox" id="cell-45:24"/> <input type="checkbox" id="cell-46:24"/> <input type="checkbox" id="cell-47:24"/>
+                    <input type="checkbox" id="cell-48:24"/> <input type="checkbox" id="cell-49:24"/> <input type="checkbox" id="cell-50:24"/> <input type="checkbox" id="cell-51:24"/>
+                    <input type="checkbox" id="cell-52:24"/> <input type="checkbox" id="cell-53:24"/> <input type="checkbox" id="cell-54:24"/> <input type="checkbox" id="cell-55:24"/>
+                    <input type="checkbox" id="cell-56:24"/> <input type="checkbox" id="cell-57:24"/> <input type="checkbox" id="cell-58:24"/> <input type="checkbox" id="cell-59:24"/>
+                    <input type="checkbox" id="cell-60:24"/> <input type="checkbox" id="cell-61:24"/> <input type="checkbox" id="cell-62:24"/> <input type="checkbox" id="cell-63:24"/>
+                    <input type="checkbox" id="cell-64:24"/> <input type="checkbox" id="cell-65:24"/> <input type="checkbox" id="cell-66:24"/> <input type="checkbox" id="cell-67:24"/>
+                    <input type="checkbox" id="cell-68:24"/> <input type="checkbox" id="cell-69:24"/> <input type="checkbox" id="cell-70:24"/> <input type="checkbox" id="cell-71:24"/>
+                    <input type="checkbox" id="cell-72:24"/> <input type="checkbox" id="cell-73:24"/> <input type="checkbox" id="cell-74:24"/> <input type="checkbox" id="cell-75:24"/>
+                    <input type="checkbox" id="cell-76:24"/> <input type="checkbox" id="cell-77:24"/> <input type="checkbox" id="cell-78:24"/> <input type="checkbox" id="cell-79:24"/>
+                </div>
+                <div id="row-25">
+                    <input type="checkbox" id="cell-0:25"/> <input type="checkbox" id="cell-1:25"/> <input type="checkbox" id="cell-2:25"/> <input type="checkbox" id="cell-3:25"/>
+                    <input type="checkbox" id="cell-4:25"/> <input type="checkbox" id="cell-5:25"/> <input type="checkbox" id="cell-6:25"/> <input type="checkbox" id="cell-7:25"/>
+                    <input type="checkbox" id="cell-8:25"/> <input type="checkbox" id="cell-9:25"/> <input type="checkbox" id="cell-10:25"/> <input type="checkbox" id="cell-11:25"/>
+                    <input type="checkbox" id="cell-12:25"/> <input type="checkbox" id="cell-13:25"/> <input type="checkbox" id="cell-14:25"/> <input type="checkbox" id="cell-15:25"/>
+                    <input type="checkbox" id="cell-16:25"/> <input type="checkbox" id="cell-17:25"/> <input type="checkbox" id="cell-18:25"/> <input type="checkbox" id="cell-19:25"/>
+                    <input type="checkbox" id="cell-20:25"/> <input type="checkbox" id="cell-21:25"/> <input type="checkbox" id="cell-22:25"/> <input type="checkbox" id="cell-23:25"/>
+                    <input type="checkbox" id="cell-24:25"/> <input type="checkbox" id="cell-25:25"/> <input type="checkbox" id="cell-26:25"/> <input type="checkbox" id="cell-27:25"/>
+                    <input type="checkbox" id="cell-28:25"/> <input type="checkbox" id="cell-29:25"/> <input type="checkbox" id="cell-30:25"/> <input type="checkbox" id="cell-31:25"/>
+                    <input type="checkbox" id="cell-32:25"/> <input type="checkbox" id="cell-33:25"/> <input type="checkbox" id="cell-34:25"/> <input type="checkbox" id="cell-35:25"/>
+                    <input type="checkbox" id="cell-36:25"/> <input type="checkbox" id="cell-37:25"/> <input type="checkbox" id="cell-38:25"/> <input type="checkbox" id="cell-39:25"/>
+                    <input type="checkbox" id="cell-40:25"/> <input type="checkbox" id="cell-41:25"/> <input type="checkbox" id="cell-42:25"/> <input type="checkbox" id="cell-43:25"/>
+                    <input type="checkbox" id="cell-44:25"/> <input type="checkbox" id="cell-45:25"/> <input type="checkbox" id="cell-46:25"/> <input type="checkbox" id="cell-47:25"/>
+                    <input type="checkbox" id="cell-48:25"/> <input type="checkbox" id="cell-49:25"/> <input type="checkbox" id="cell-50:25"/> <input type="checkbox" id="cell-51:25"/>
+                    <input type="checkbox" id="cell-52:25"/> <input type="checkbox" id="cell-53:25"/> <input type="checkbox" id="cell-54:25"/> <input type="checkbox" id="cell-55:25"/>
+                    <input type="checkbox" id="cell-56:25"/> <input type="checkbox" id="cell-57:25"/> <input type="checkbox" id="cell-58:25"/> <input type="checkbox" id="cell-59:25"/>
+                    <input type="checkbox" id="cell-60:25"/> <input type="checkbox" id="cell-61:25"/> <input type="checkbox" id="cell-62:25"/> <input type="checkbox" id="cell-63:25"/>
+                    <input type="checkbox" id="cell-64:25"/> <input type="checkbox" id="cell-65:25"/> <input type="checkbox" id="cell-66:25"/> <input type="checkbox" id="cell-67:25"/>
+                    <input type="checkbox" id="cell-68:25"/> <input type="checkbox" id="cell-69:25"/> <input type="checkbox" id="cell-70:25"/> <input type="checkbox" id="cell-71:25"/>
+                    <input type="checkbox" id="cell-72:25"/> <input type="checkbox" id="cell-73:25"/> <input type="checkbox" id="cell-74:25"/> <input type="checkbox" id="cell-75:25"/>
+                    <input type="checkbox" id="cell-76:25"/> <input type="checkbox" id="cell-77:25"/> <input type="checkbox" id="cell-78:25"/> <input type="checkbox" id="cell-79:25"/>
+                </div>
+                <div id="row-26">
+                    <input type="checkbox" id="cell-0:26"/> <input type="checkbox" id="cell-1:26"/> <input type="checkbox" id="cell-2:26"/> <input type="checkbox" id="cell-3:26"/>
+                    <input type="checkbox" id="cell-4:26"/> <input type="checkbox" id="cell-5:26"/> <input type="checkbox" id="cell-6:26"/> <input type="checkbox" id="cell-7:26"/>
+                    <input type="checkbox" id="cell-8:26"/> <input type="checkbox" id="cell-9:26"/> <input type="checkbox" id="cell-10:26"/> <input type="checkbox" id="cell-11:26"/>
+                    <input type="checkbox" id="cell-12:26"/> <input type="checkbox" id="cell-13:26"/> <input type="checkbox" id="cell-14:26"/> <input type="checkbox" id="cell-15:26"/>
+                    <input type="checkbox" id="cell-16:26"/> <input type="checkbox" id="cell-17:26"/> <input type="checkbox" id="cell-18:26"/> <input type="checkbox" id="cell-19:26"/>
+                    <input type="checkbox" id="cell-20:26"/> <input type="checkbox" id="cell-21:26"/> <input type="checkbox" id="cell-22:26"/> <input type="checkbox" id="cell-23:26"/>
+                    <input type="checkbox" id="cell-24:26"/> <input type="checkbox" id="cell-25:26"/> <input type="checkbox" id="cell-26:26"/> <input type="checkbox" id="cell-27:26"/>
+                    <input type="checkbox" id="cell-28:26"/> <input type="checkbox" id="cell-29:26"/> <input type="checkbox" id="cell-30:26"/> <input type="checkbox" id="cell-31:26"/>
+                    <input type="checkbox" id="cell-32:26"/> <input type="checkbox" id="cell-33:26"/> <input type="checkbox" id="cell-34:26"/> <input type="checkbox" id="cell-35:26"/>
+                    <input type="checkbox" id="cell-36:26"/> <input type="checkbox" id="cell-37:26"/> <input type="checkbox" id="cell-38:26"/> <input type="checkbox" id="cell-39:26"/>
+                    <input type="checkbox" id="cell-40:26"/> <input type="checkbox" id="cell-41:26"/> <input type="checkbox" id="cell-42:26"/> <input type="checkbox" id="cell-43:26"/>
+                    <input type="checkbox" id="cell-44:26"/> <input type="checkbox" id="cell-45:26"/> <input type="checkbox" id="cell-46:26"/> <input type="checkbox" id="cell-47:26"/>
+                    <input type="checkbox" id="cell-48:26"/> <input type="checkbox" id="cell-49:26"/> <input type="checkbox" id="cell-50:26"/> <input type="checkbox" id="cell-51:26"/>
+                    <input type="checkbox" id="cell-52:26"/> <input type="checkbox" id="cell-53:26"/> <input type="checkbox" id="cell-54:26"/> <input type="checkbox" id="cell-55:26"/>
+                    <input type="checkbox" id="cell-56:26"/> <input type="checkbox" id="cell-57:26"/> <input type="checkbox" id="cell-58:26"/> <input type="checkbox" id="cell-59:26"/>
+                    <input type="checkbox" id="cell-60:26"/> <input type="checkbox" id="cell-61:26"/> <input type="checkbox" id="cell-62:26"/> <input type="checkbox" id="cell-63:26"/>
+                    <input type="checkbox" id="cell-64:26"/> <input type="checkbox" id="cell-65:26"/> <input type="checkbox" id="cell-66:26"/> <input type="checkbox" id="cell-67:26"/>
+                    <input type="checkbox" id="cell-68:26"/> <input type="checkbox" id="cell-69:26"/> <input type="checkbox" id="cell-70:26"/> <input type="checkbox" id="cell-71:26"/>
+                    <input type="checkbox" id="cell-72:26"/> <input type="checkbox" id="cell-73:26"/> <input type="checkbox" id="cell-74:26"/> <input type="checkbox" id="cell-75:26"/>
+                    <input type="checkbox" id="cell-76:26"/> <input type="checkbox" id="cell-77:26"/> <input type="checkbox" id="cell-78:26"/> <input type="checkbox" id="cell-79:26"/>
+                </div>
+                <div id="row-27">
+                    <input type="checkbox" id="cell-0:27"/> <input type="checkbox" id="cell-1:27"/> <input type="checkbox" id="cell-2:27"/> <input type="checkbox" id="cell-3:27"/>
+                    <input type="checkbox" id="cell-4:27"/> <input type="checkbox" id="cell-5:27"/> <input type="checkbox" id="cell-6:27"/> <input type="checkbox" id="cell-7:27"/>
+                    <input type="checkbox" id="cell-8:27"/> <input type="checkbox" id="cell-9:27"/> <input type="checkbox" id="cell-10:27"/> <input type="checkbox" id="cell-11:27"/>
+                    <input type="checkbox" id="cell-12:27"/> <input type="checkbox" id="cell-13:27"/> <input type="checkbox" id="cell-14:27"/> <input type="checkbox" id="cell-15:27"/>
+                    <input type="checkbox" id="cell-16:27"/> <input type="checkbox" id="cell-17:27"/> <input type="checkbox" id="cell-18:27"/> <input type="checkbox" id="cell-19:27"/>
+                    <input type="checkbox" id="cell-20:27"/> <input type="checkbox" id="cell-21:27"/> <input type="checkbox" id="cell-22:27"/> <input type="checkbox" id="cell-23:27"/>
+                    <input type="checkbox" id="cell-24:27"/> <input type="checkbox" id="cell-25:27"/> <input type="checkbox" id="cell-26:27"/> <input type="checkbox" id="cell-27:27"/>
+                    <input type="checkbox" id="cell-28:27"/> <input type="checkbox" id="cell-29:27"/> <input type="checkbox" id="cell-30:27"/> <input type="checkbox" id="cell-31:27"/>
+                    <input type="checkbox" id="cell-32:27"/> <input type="checkbox" id="cell-33:27"/> <input type="checkbox" id="cell-34:27"/> <input type="checkbox" id="cell-35:27"/>
+                    <input type="checkbox" id="cell-36:27"/> <input type="checkbox" id="cell-37:27"/> <input type="checkbox" id="cell-38:27"/> <input type="checkbox" id="cell-39:27"/>
+                    <input type="checkbox" id="cell-40:27"/> <input type="checkbox" id="cell-41:27"/> <input type="checkbox" id="cell-42:27"/> <input type="checkbox" id="cell-43:27"/>
+                    <input type="checkbox" id="cell-44:27"/> <input type="checkbox" id="cell-45:27"/> <input type="checkbox" id="cell-46:27"/> <input type="checkbox" id="cell-47:27"/>
+                    <input type="checkbox" id="cell-48:27"/> <input type="checkbox" id="cell-49:27"/> <input type="checkbox" id="cell-50:27"/> <input type="checkbox" id="cell-51:27"/>
+                    <input type="checkbox" id="cell-52:27"/> <input type="checkbox" id="cell-53:27"/> <input type="checkbox" id="cell-54:27"/> <input type="checkbox" id="cell-55:27"/>
+                    <input type="checkbox" id="cell-56:27"/> <input type="checkbox" id="cell-57:27"/> <input type="checkbox" id="cell-58:27"/> <input type="checkbox" id="cell-59:27"/>
+                    <input type="checkbox" id="cell-60:27"/> <input type="checkbox" id="cell-61:27"/> <input type="checkbox" id="cell-62:27"/> <input type="checkbox" id="cell-63:27"/>
+                    <input type="checkbox" id="cell-64:27"/> <input type="checkbox" id="cell-65:27"/> <input type="checkbox" id="cell-66:27"/> <input type="checkbox" id="cell-67:27"/>
+                    <input type="checkbox" id="cell-68:27"/> <input type="checkbox" id="cell-69:27"/> <input type="checkbox" id="cell-70:27"/> <input type="checkbox" id="cell-71:27"/>
+                    <input type="checkbox" id="cell-72:27"/> <input type="checkbox" id="cell-73:27"/> <input type="checkbox" id="cell-74:27"/> <input type="checkbox" id="cell-75:27"/>
+                    <input type="checkbox" id="cell-76:27"/> <input type="checkbox" id="cell-77:27"/> <input type="checkbox" id="cell-78:27"/> <input type="checkbox" id="cell-79:27"/>
+                </div>
+                <div id="row-28">
+                    <input type="checkbox" id="cell-0:28"/> <input type="checkbox" id="cell-1:28"/> <input type="checkbox" id="cell-2:28"/> <input type="checkbox" id="cell-3:28"/>
+                    <input type="checkbox" id="cell-4:28"/> <input type="checkbox" id="cell-5:28"/> <input type="checkbox" id="cell-6:28"/> <input type="checkbox" id="cell-7:28"/>
+                    <input type="checkbox" id="cell-8:28"/> <input type="checkbox" id="cell-9:28"/> <input type="checkbox" id="cell-10:28"/> <input type="checkbox" id="cell-11:28"/>
+                    <input type="checkbox" id="cell-12:28"/> <input type="checkbox" id="cell-13:28"/> <input type="checkbox" id="cell-14:28"/> <input type="checkbox" id="cell-15:28"/>
+                    <input type="checkbox" id="cell-16:28"/> <input type="checkbox" id="cell-17:28"/> <input type="checkbox" id="cell-18:28"/> <input type="checkbox" id="cell-19:28"/>
+                    <input type="checkbox" id="cell-20:28"/> <input type="checkbox" id="cell-21:28"/> <input type="checkbox" id="cell-22:28"/> <input type="checkbox" id="cell-23:28"/>
+                    <input type="checkbox" id="cell-24:28"/> <input type="checkbox" id="cell-25:28"/> <input type="checkbox" id="cell-26:28"/> <input type="checkbox" id="cell-27:28"/>
+                    <input type="checkbox" id="cell-28:28"/> <input type="checkbox" id="cell-29:28"/> <input type="checkbox" id="cell-30:28"/> <input type="checkbox" id="cell-31:28"/>
+                    <input type="checkbox" id="cell-32:28"/> <input type="checkbox" id="cell-33:28"/> <input type="checkbox" id="cell-34:28"/> <input type="checkbox" id="cell-35:28"/>
+                    <input type="checkbox" id="cell-36:28"/> <input type="checkbox" id="cell-37:28"/> <input type="checkbox" id="cell-38:28"/> <input type="checkbox" id="cell-39:28"/>
+                    <input type="checkbox" id="cell-40:28"/> <input type="checkbox" id="cell-41:28"/> <input type="checkbox" id="cell-42:28"/> <input type="checkbox" id="cell-43:28"/>
+                    <input type="checkbox" id="cell-44:28"/> <input type="checkbox" id="cell-45:28"/> <input type="checkbox" id="cell-46:28"/> <input type="checkbox" id="cell-47:28"/>
+                    <input type="checkbox" id="cell-48:28"/> <input type="checkbox" id="cell-49:28"/> <input type="checkbox" id="cell-50:28"/> <input type="checkbox" id="cell-51:28"/>
+                    <input type="checkbox" id="cell-52:28"/> <input type="checkbox" id="cell-53:28"/> <input type="checkbox" id="cell-54:28"/> <input type="checkbox" id="cell-55:28"/>
+                    <input type="checkbox" id="cell-56:28"/> <input type="checkbox" id="cell-57:28"/> <input type="checkbox" id="cell-58:28"/> <input type="checkbox" id="cell-59:28"/>
+                    <input type="checkbox" id="cell-60:28"/> <input type="checkbox" id="cell-61:28"/> <input type="checkbox" id="cell-62:28"/> <input type="checkbox" id="cell-63:28"/>
+                    <input type="checkbox" id="cell-64:28"/> <input type="checkbox" id="cell-65:28"/> <input type="checkbox" id="cell-66:28"/> <input type="checkbox" id="cell-67:28"/>
+                    <input type="checkbox" id="cell-68:28"/> <input type="checkbox" id="cell-69:28"/> <input type="checkbox" id="cell-70:28"/> <input type="checkbox" id="cell-71:28"/>
+                    <input type="checkbox" id="cell-72:28"/> <input type="checkbox" id="cell-73:28"/> <input type="checkbox" id="cell-74:28"/> <input type="checkbox" id="cell-75:28"/>
+                    <input type="checkbox" id="cell-76:28"/> <input type="checkbox" id="cell-77:28"/> <input type="checkbox" id="cell-78:28"/> <input type="checkbox" id="cell-79:28"/>
+                </div>
+                <div id="row-29">
+                    <input type="checkbox" id="cell-0:29"/> <input type="checkbox" id="cell-1:29"/> <input type="checkbox" id="cell-2:29"/> <input type="checkbox" id="cell-3:29"/>
+                    <input type="checkbox" id="cell-4:29"/> <input type="checkbox" id="cell-5:29"/> <input type="checkbox" id="cell-6:29"/> <input type="checkbox" id="cell-7:29"/>
+                    <input type="checkbox" id="cell-8:29"/> <input type="checkbox" id="cell-9:29"/> <input type="checkbox" id="cell-10:29"/> <input type="checkbox" id="cell-11:29"/>
+                    <input type="checkbox" id="cell-12:29"/> <input type="checkbox" id="cell-13:29"/> <input type="checkbox" id="cell-14:29"/> <input type="checkbox" id="cell-15:29"/>
+                    <input type="checkbox" id="cell-16:29"/> <input type="checkbox" id="cell-17:29"/> <input type="checkbox" id="cell-18:29"/> <input type="checkbox" id="cell-19:29"/>
+                    <input type="checkbox" id="cell-20:29"/> <input type="checkbox" id="cell-21:29"/> <input type="checkbox" id="cell-22:29"/> <input type="checkbox" id="cell-23:29"/>
+                    <input type="checkbox" id="cell-24:29"/> <input type="checkbox" id="cell-25:29"/> <input type="checkbox" id="cell-26:29"/> <input type="checkbox" id="cell-27:29"/>
+                    <input type="checkbox" id="cell-28:29"/> <input type="checkbox" id="cell-29:29"/> <input type="checkbox" id="cell-30:29"/> <input type="checkbox" id="cell-31:29"/>
+                    <input type="checkbox" id="cell-32:29"/> <input type="checkbox" id="cell-33:29"/> <input type="checkbox" id="cell-34:29"/> <input type="checkbox" id="cell-35:29"/>
+                    <input type="checkbox" id="cell-36:29"/> <input type="checkbox" id="cell-37:29"/> <input type="checkbox" id="cell-38:29"/> <input type="checkbox" id="cell-39:29"/>
+                    <input type="checkbox" id="cell-40:29"/> <input type="checkbox" id="cell-41:29"/> <input type="checkbox" id="cell-42:29"/> <input type="checkbox" id="cell-43:29"/>
+                    <input type="checkbox" id="cell-44:29"/> <input type="checkbox" id="cell-45:29"/> <input type="checkbox" id="cell-46:29"/> <input type="checkbox" id="cell-47:29"/>
+                    <input type="checkbox" id="cell-48:29"/> <input type="checkbox" id="cell-49:29"/> <input type="checkbox" id="cell-50:29"/> <input type="checkbox" id="cell-51:29"/>
+                    <input type="checkbox" id="cell-52:29"/> <input type="checkbox" id="cell-53:29"/> <input type="checkbox" id="cell-54:29"/> <input type="checkbox" id="cell-55:29"/>
+                    <input type="checkbox" id="cell-56:29"/> <input type="checkbox" id="cell-57:29"/> <input type="checkbox" id="cell-58:29"/> <input type="checkbox" id="cell-59:29"/>
+                    <input type="checkbox" id="cell-60:29"/> <input type="checkbox" id="cell-61:29"/> <input type="checkbox" id="cell-62:29"/> <input type="checkbox" id="cell-63:29"/>
+                    <input type="checkbox" id="cell-64:29"/> <input type="checkbox" id="cell-65:29"/> <input type="checkbox" id="cell-66:29"/> <input type="checkbox" id="cell-67:29"/>
+                    <input type="checkbox" id="cell-68:29"/> <input type="checkbox" id="cell-69:29"/> <input type="checkbox" id="cell-70:29"/> <input type="checkbox" id="cell-71:29"/>
+                    <input type="checkbox" id="cell-72:29"/> <input type="checkbox" id="cell-73:29"/> <input type="checkbox" id="cell-74:29"/> <input type="checkbox" id="cell-75:29"/>
+                    <input type="checkbox" id="cell-76:29"/> <input type="checkbox" id="cell-77:29"/> <input type="checkbox" id="cell-78:29"/> <input type="checkbox" id="cell-79:29"/>
+                </div>
+                <div id="row-30">
+                    <input type="checkbox" id="cell-0:30"/> <input type="checkbox" id="cell-1:30"/> <input type="checkbox" id="cell-2:30"/> <input type="checkbox" id="cell-3:30"/>
+                    <input type="checkbox" id="cell-4:30"/> <input type="checkbox" id="cell-5:30"/> <input type="checkbox" id="cell-6:30"/> <input type="checkbox" id="cell-7:30"/>
+                    <input type="checkbox" id="cell-8:30"/> <input type="checkbox" id="cell-9:30"/> <input type="checkbox" id="cell-10:30"/> <input type="checkbox" id="cell-11:30"/>
+                    <input type="checkbox" id="cell-12:30"/> <input type="checkbox" id="cell-13:30"/> <input type="checkbox" id="cell-14:30"/> <input type="checkbox" id="cell-15:30"/>
+                    <input type="checkbox" id="cell-16:30"/> <input type="checkbox" id="cell-17:30"/> <input type="checkbox" id="cell-18:30"/> <input type="checkbox" id="cell-19:30"/>
+                    <input type="checkbox" id="cell-20:30"/> <input type="checkbox" id="cell-21:30"/> <input type="checkbox" id="cell-22:30"/> <input type="checkbox" id="cell-23:30"/>
+                    <input type="checkbox" id="cell-24:30"/> <input type="checkbox" id="cell-25:30"/> <input type="checkbox" id="cell-26:30"/> <input type="checkbox" id="cell-27:30"/>
+                    <input type="checkbox" id="cell-28:30"/> <input type="checkbox" id="cell-29:30"/> <input type="checkbox" id="cell-30:30"/> <input type="checkbox" id="cell-31:30"/>
+                    <input type="checkbox" id="cell-32:30"/> <input type="checkbox" id="cell-33:30"/> <input type="checkbox" id="cell-34:30"/> <input type="checkbox" id="cell-35:30"/>
+                    <input type="checkbox" id="cell-36:30"/> <input type="checkbox" id="cell-37:30"/> <input type="checkbox" id="cell-38:30"/> <input type="checkbox" id="cell-39:30"/>
+                    <input type="checkbox" id="cell-40:30"/> <input type="checkbox" id="cell-41:30"/> <input type="checkbox" id="cell-42:30"/> <input type="checkbox" id="cell-43:30"/>
+                    <input type="checkbox" id="cell-44:30"/> <input type="checkbox" id="cell-45:30"/> <input type="checkbox" id="cell-46:30"/> <input type="checkbox" id="cell-47:30"/>
+                    <input type="checkbox" id="cell-48:30"/> <input type="checkbox" id="cell-49:30"/> <input type="checkbox" id="cell-50:30"/> <input type="checkbox" id="cell-51:30"/>
+                    <input type="checkbox" id="cell-52:30"/> <input type="checkbox" id="cell-53:30"/> <input type="checkbox" id="cell-54:30"/> <input type="checkbox" id="cell-55:30"/>
+                    <input type="checkbox" id="cell-56:30"/> <input type="checkbox" id="cell-57:30"/> <input type="checkbox" id="cell-58:30"/> <input type="checkbox" id="cell-59:30"/>
+                    <input type="checkbox" id="cell-60:30"/> <input type="checkbox" id="cell-61:30"/> <input type="checkbox" id="cell-62:30"/> <input type="checkbox" id="cell-63:30"/>
+                    <input type="checkbox" id="cell-64:30"/> <input type="checkbox" id="cell-65:30"/> <input type="checkbox" id="cell-66:30"/> <input type="checkbox" id="cell-67:30"/>
+                    <input type="checkbox" id="cell-68:30"/> <input type="checkbox" id="cell-69:30"/> <input type="checkbox" id="cell-70:30"/> <input type="checkbox" id="cell-71:30"/>
+                    <input type="checkbox" id="cell-72:30"/> <input type="checkbox" id="cell-73:30"/> <input type="checkbox" id="cell-74:30"/> <input type="checkbox" id="cell-75:30"/>
+                    <input type="checkbox" id="cell-76:30"/> <input type="checkbox" id="cell-77:30"/> <input type="checkbox" id="cell-78:30"/> <input type="checkbox" id="cell-79:30"/>
+                </div>
+                <div id="row-31">
+                    <input type="checkbox" id="cell-0:31"/> <input type="checkbox" id="cell-1:31"/> <input type="checkbox" id="cell-2:31"/> <input type="checkbox" id="cell-3:31"/>
+                    <input type="checkbox" id="cell-4:31"/> <input type="checkbox" id="cell-5:31"/> <input type="checkbox" id="cell-6:31"/> <input type="checkbox" id="cell-7:31"/>
+                    <input type="checkbox" id="cell-8:31"/> <input type="checkbox" id="cell-9:31"/> <input type="checkbox" id="cell-10:31"/> <input type="checkbox" id="cell-11:31"/>
+                    <input type="checkbox" id="cell-12:31"/> <input type="checkbox" id="cell-13:31"/> <input type="checkbox" id="cell-14:31"/> <input type="checkbox" id="cell-15:31"/>
+                    <input type="checkbox" id="cell-16:31"/> <input type="checkbox" id="cell-17:31"/> <input type="checkbox" id="cell-18:31"/> <input type="checkbox" id="cell-19:31"/>
+                    <input type="checkbox" id="cell-20:31"/> <input type="checkbox" id="cell-21:31"/> <input type="checkbox" id="cell-22:31"/> <input type="checkbox" id="cell-23:31"/>
+                    <input type="checkbox" id="cell-24:31"/> <input type="checkbox" id="cell-25:31"/> <input type="checkbox" id="cell-26:31"/> <input type="checkbox" id="cell-27:31"/>
+                    <input type="checkbox" id="cell-28:31"/> <input type="checkbox" id="cell-29:31"/> <input type="checkbox" id="cell-30:31"/> <input type="checkbox" id="cell-31:31"/>
+                    <input type="checkbox" id="cell-32:31"/> <input type="checkbox" id="cell-33:31"/> <input type="checkbox" id="cell-34:31"/> <input type="checkbox" id="cell-35:31"/>
+                    <input type="checkbox" id="cell-36:31"/> <input type="checkbox" id="cell-37:31"/> <input type="checkbox" id="cell-38:31"/> <input type="checkbox" id="cell-39:31"/>
+                    <input type="checkbox" id="cell-40:31"/> <input type="checkbox" id="cell-41:31"/> <input type="checkbox" id="cell-42:31"/> <input type="checkbox" id="cell-43:31"/>
+                    <input type="checkbox" id="cell-44:31"/> <input type="checkbox" id="cell-45:31"/> <input type="checkbox" id="cell-46:31"/> <input type="checkbox" id="cell-47:31"/>
+                    <input type="checkbox" id="cell-48:31"/> <input type="checkbox" id="cell-49:31"/> <input type="checkbox" id="cell-50:31"/> <input type="checkbox" id="cell-51:31"/>
+                    <input type="checkbox" id="cell-52:31"/> <input type="checkbox" id="cell-53:31"/> <input type="checkbox" id="cell-54:31"/> <input type="checkbox" id="cell-55:31"/>
+                    <input type="checkbox" id="cell-56:31"/> <input type="checkbox" id="cell-57:31"/> <input type="checkbox" id="cell-58:31"/> <input type="checkbox" id="cell-59:31"/>
+                    <input type="checkbox" id="cell-60:31"/> <input type="checkbox" id="cell-61:31"/> <input type="checkbox" id="cell-62:31"/> <input type="checkbox" id="cell-63:31"/>
+                    <input type="checkbox" id="cell-64:31"/> <input type="checkbox" id="cell-65:31"/> <input type="checkbox" id="cell-66:31"/> <input type="checkbox" id="cell-67:31"/>
+                    <input type="checkbox" id="cell-68:31"/> <input type="checkbox" id="cell-69:31"/> <input type="checkbox" id="cell-70:31"/> <input type="checkbox" id="cell-71:31"/>
+                    <input type="checkbox" id="cell-72:31"/> <input type="checkbox" id="cell-73:31"/> <input type="checkbox" id="cell-74:31"/> <input type="checkbox" id="cell-75:31"/>
+                    <input type="checkbox" id="cell-76:31"/> <input type="checkbox" id="cell-77:31"/> <input type="checkbox" id="cell-78:31"/> <input type="checkbox" id="cell-79:31"/>
+                </div>
+                <div id="row-32">
+                    <input type="checkbox" id="cell-0:32"/> <input type="checkbox" id="cell-1:32"/> <input type="checkbox" id="cell-2:32"/> <input type="checkbox" id="cell-3:32"/>
+                    <input type="checkbox" id="cell-4:32"/> <input type="checkbox" id="cell-5:32"/> <input type="checkbox" id="cell-6:32"/> <input type="checkbox" id="cell-7:32"/>
+                    <input type="checkbox" id="cell-8:32"/> <input type="checkbox" id="cell-9:32"/> <input type="checkbox" id="cell-10:32"/> <input type="checkbox" id="cell-11:32"/>
+                    <input type="checkbox" id="cell-12:32"/> <input type="checkbox" id="cell-13:32"/> <input type="checkbox" id="cell-14:32"/> <input type="checkbox" id="cell-15:32"/>
+                    <input type="checkbox" id="cell-16:32"/> <input type="checkbox" id="cell-17:32"/> <input type="checkbox" id="cell-18:32"/> <input type="checkbox" id="cell-19:32"/>
+                    <input type="checkbox" id="cell-20:32"/> <input type="checkbox" id="cell-21:32"/> <input type="checkbox" id="cell-22:32"/> <input type="checkbox" id="cell-23:32"/>
+                    <input type="checkbox" id="cell-24:32"/> <input type="checkbox" id="cell-25:32"/> <input type="checkbox" id="cell-26:32"/> <input type="checkbox" id="cell-27:32"/>
+                    <input type="checkbox" id="cell-28:32"/> <input type="checkbox" id="cell-29:32"/> <input type="checkbox" id="cell-30:32"/> <input type="checkbox" id="cell-31:32"/>
+                    <input type="checkbox" id="cell-32:32"/> <input type="checkbox" id="cell-33:32"/> <input type="checkbox" id="cell-34:32"/> <input type="checkbox" id="cell-35:32"/>
+                    <input type="checkbox" id="cell-36:32"/> <input type="checkbox" id="cell-37:32"/> <input type="checkbox" id="cell-38:32"/> <input type="checkbox" id="cell-39:32"/>
+                    <input type="checkbox" id="cell-40:32"/> <input type="checkbox" id="cell-41:32"/> <input type="checkbox" id="cell-42:32"/> <input type="checkbox" id="cell-43:32"/>
+                    <input type="checkbox" id="cell-44:32"/> <input type="checkbox" id="cell-45:32"/> <input type="checkbox" id="cell-46:32"/> <input type="checkbox" id="cell-47:32"/>
+                    <input type="checkbox" id="cell-48:32"/> <input type="checkbox" id="cell-49:32"/> <input type="checkbox" id="cell-50:32"/> <input type="checkbox" id="cell-51:32"/>
+                    <input type="checkbox" id="cell-52:32"/> <input type="checkbox" id="cell-53:32"/> <input type="checkbox" id="cell-54:32"/> <input type="checkbox" id="cell-55:32"/>
+                    <input type="checkbox" id="cell-56:32"/> <input type="checkbox" id="cell-57:32"/> <input type="checkbox" id="cell-58:32"/> <input type="checkbox" id="cell-59:32"/>
+                    <input type="checkbox" id="cell-60:32"/> <input type="checkbox" id="cell-61:32"/> <input type="checkbox" id="cell-62:32"/> <input type="checkbox" id="cell-63:32"/>
+                    <input type="checkbox" id="cell-64:32"/> <input type="checkbox" id="cell-65:32"/> <input type="checkbox" id="cell-66:32"/> <input type="checkbox" id="cell-67:32"/>
+                    <input type="checkbox" id="cell-68:32"/> <input type="checkbox" id="cell-69:32"/> <input type="checkbox" id="cell-70:32"/> <input type="checkbox" id="cell-71:32"/>
+                    <input type="checkbox" id="cell-72:32"/> <input type="checkbox" id="cell-73:32"/> <input type="checkbox" id="cell-74:32"/> <input type="checkbox" id="cell-75:32"/>
+                    <input type="checkbox" id="cell-76:32"/> <input type="checkbox" id="cell-77:32"/> <input type="checkbox" id="cell-78:32"/> <input type="checkbox" id="cell-79:32"/>
+                </div>
+                <div id="row-33">
+                    <input type="checkbox" id="cell-0:33"/> <input type="checkbox" id="cell-1:33"/> <input type="checkbox" id="cell-2:33"/> <input type="checkbox" id="cell-3:33"/>
+                    <input type="checkbox" id="cell-4:33"/> <input type="checkbox" id="cell-5:33"/> <input type="checkbox" id="cell-6:33"/> <input type="checkbox" id="cell-7:33"/>
+                    <input type="checkbox" id="cell-8:33"/> <input type="checkbox" id="cell-9:33"/> <input type="checkbox" id="cell-10:33"/> <input type="checkbox" id="cell-11:33"/>
+                    <input type="checkbox" id="cell-12:33"/> <input type="checkbox" id="cell-13:33"/> <input type="checkbox" id="cell-14:33"/> <input type="checkbox" id="cell-15:33"/>
+                    <input type="checkbox" id="cell-16:33"/> <input type="checkbox" id="cell-17:33"/> <input type="checkbox" id="cell-18:33"/> <input type="checkbox" id="cell-19:33"/>
+                    <input type="checkbox" id="cell-20:33"/> <input type="checkbox" id="cell-21:33"/> <input type="checkbox" id="cell-22:33"/> <input type="checkbox" id="cell-23:33"/>
+                    <input type="checkbox" id="cell-24:33"/> <input type="checkbox" id="cell-25:33"/> <input type="checkbox" id="cell-26:33"/> <input type="checkbox" id="cell-27:33"/>
+                    <input type="checkbox" id="cell-28:33"/> <input type="checkbox" id="cell-29:33"/> <input type="checkbox" id="cell-30:33"/> <input type="checkbox" id="cell-31:33"/>
+                    <input type="checkbox" id="cell-32:33"/> <input type="checkbox" id="cell-33:33"/> <input type="checkbox" id="cell-34:33"/> <input type="checkbox" id="cell-35:33"/>
+                    <input type="checkbox" id="cell-36:33"/> <input type="checkbox" id="cell-37:33"/> <input type="checkbox" id="cell-38:33"/> <input type="checkbox" id="cell-39:33"/>
+                    <input type="checkbox" id="cell-40:33"/> <input type="checkbox" id="cell-41:33"/> <input type="checkbox" id="cell-42:33"/> <input type="checkbox" id="cell-43:33"/>
+                    <input type="checkbox" id="cell-44:33"/> <input type="checkbox" id="cell-45:33"/> <input type="checkbox" id="cell-46:33"/> <input type="checkbox" id="cell-47:33"/>
+                    <input type="checkbox" id="cell-48:33"/> <input type="checkbox" id="cell-49:33"/> <input type="checkbox" id="cell-50:33"/> <input type="checkbox" id="cell-51:33"/>
+                    <input type="checkbox" id="cell-52:33"/> <input type="checkbox" id="cell-53:33"/> <input type="checkbox" id="cell-54:33"/> <input type="checkbox" id="cell-55:33"/>
+                    <input type="checkbox" id="cell-56:33"/> <input type="checkbox" id="cell-57:33"/> <input type="checkbox" id="cell-58:33"/> <input type="checkbox" id="cell-59:33"/>
+                    <input type="checkbox" id="cell-60:33"/> <input type="checkbox" id="cell-61:33"/> <input type="checkbox" id="cell-62:33"/> <input type="checkbox" id="cell-63:33"/>
+                    <input type="checkbox" id="cell-64:33"/> <input type="checkbox" id="cell-65:33"/> <input type="checkbox" id="cell-66:33"/> <input type="checkbox" id="cell-67:33"/>
+                    <input type="checkbox" id="cell-68:33"/> <input type="checkbox" id="cell-69:33"/> <input type="checkbox" id="cell-70:33"/> <input type="checkbox" id="cell-71:33"/>
+                    <input type="checkbox" id="cell-72:33"/> <input type="checkbox" id="cell-73:33"/> <input type="checkbox" id="cell-74:33"/> <input type="checkbox" id="cell-75:33"/>
+                    <input type="checkbox" id="cell-76:33"/> <input type="checkbox" id="cell-77:33"/> <input type="checkbox" id="cell-78:33"/> <input type="checkbox" id="cell-79:33"/>
+                </div>
+                <div id="row-34">
+                    <input type="checkbox" id="cell-0:34"/> <input type="checkbox" id="cell-1:34"/> <input type="checkbox" id="cell-2:34"/> <input type="checkbox" id="cell-3:34"/>
+                    <input type="checkbox" id="cell-4:34"/> <input type="checkbox" id="cell-5:34"/> <input type="checkbox" id="cell-6:34"/> <input type="checkbox" id="cell-7:34"/>
+                    <input type="checkbox" id="cell-8:34"/> <input type="checkbox" id="cell-9:34"/> <input type="checkbox" id="cell-10:34"/> <input type="checkbox" id="cell-11:34"/>
+                    <input type="checkbox" id="cell-12:34"/> <input type="checkbox" id="cell-13:34"/> <input type="checkbox" id="cell-14:34"/> <input type="checkbox" id="cell-15:34"/>
+                    <input type="checkbox" id="cell-16:34"/> <input type="checkbox" id="cell-17:34"/> <input type="checkbox" id="cell-18:34"/> <input type="checkbox" id="cell-19:34"/>
+                    <input type="checkbox" id="cell-20:34"/> <input type="checkbox" id="cell-21:34"/> <input type="checkbox" id="cell-22:34"/> <input type="checkbox" id="cell-23:34"/>
+                    <input type="checkbox" id="cell-24:34"/> <input type="checkbox" id="cell-25:34"/> <input type="checkbox" id="cell-26:34"/> <input type="checkbox" id="cell-27:34"/>
+                    <input type="checkbox" id="cell-28:34"/> <input type="checkbox" id="cell-29:34"/> <input type="checkbox" id="cell-30:34"/> <input type="checkbox" id="cell-31:34"/>
+                    <input type="checkbox" id="cell-32:34"/> <input type="checkbox" id="cell-33:34"/> <input type="checkbox" id="cell-34:34"/> <input type="checkbox" id="cell-35:34"/>
+                    <input type="checkbox" id="cell-36:34"/> <input type="checkbox" id="cell-37:34"/> <input type="checkbox" id="cell-38:34"/> <input type="checkbox" id="cell-39:34"/>
+                    <input type="checkbox" id="cell-40:34"/> <input type="checkbox" id="cell-41:34"/> <input type="checkbox" id="cell-42:34"/> <input type="checkbox" id="cell-43:34"/>
+                    <input type="checkbox" id="cell-44:34"/> <input type="checkbox" id="cell-45:34"/> <input type="checkbox" id="cell-46:34"/> <input type="checkbox" id="cell-47:34"/>
+                    <input type="checkbox" id="cell-48:34"/> <input type="checkbox" id="cell-49:34"/> <input type="checkbox" id="cell-50:34"/> <input type="checkbox" id="cell-51:34"/>
+                    <input type="checkbox" id="cell-52:34"/> <input type="checkbox" id="cell-53:34"/> <input type="checkbox" id="cell-54:34"/> <input type="checkbox" id="cell-55:34"/>
+                    <input type="checkbox" id="cell-56:34"/> <input type="checkbox" id="cell-57:34"/> <input type="checkbox" id="cell-58:34"/> <input type="checkbox" id="cell-59:34"/>
+                    <input type="checkbox" id="cell-60:34"/> <input type="checkbox" id="cell-61:34"/> <input type="checkbox" id="cell-62:34"/> <input type="checkbox" id="cell-63:34"/>
+                    <input type="checkbox" id="cell-64:34"/> <input type="checkbox" id="cell-65:34"/> <input type="checkbox" id="cell-66:34"/> <input type="checkbox" id="cell-67:34"/>
+                    <input type="checkbox" id="cell-68:34"/> <input type="checkbox" id="cell-69:34"/> <input type="checkbox" id="cell-70:34"/> <input type="checkbox" id="cell-71:34"/>
+                    <input type="checkbox" id="cell-72:34"/> <input type="checkbox" id="cell-73:34"/> <input type="checkbox" id="cell-74:34"/> <input type="checkbox" id="cell-75:34"/>
+                    <input type="checkbox" id="cell-76:34"/> <input type="checkbox" id="cell-77:34"/> <input type="checkbox" id="cell-78:34"/> <input type="checkbox" id="cell-79:34"/>
+                </div>
+                <div id="row-35">
+                    <input type="checkbox" id="cell-0:35"/> <input type="checkbox" id="cell-1:35"/> <input type="checkbox" id="cell-2:35"/> <input type="checkbox" id="cell-3:35"/>
+                    <input type="checkbox" id="cell-4:35"/> <input type="checkbox" id="cell-5:35"/> <input type="checkbox" id="cell-6:35"/> <input type="checkbox" id="cell-7:35"/>
+                    <input type="checkbox" id="cell-8:35"/> <input type="checkbox" id="cell-9:35"/> <input type="checkbox" id="cell-10:35"/> <input type="checkbox" id="cell-11:35"/>
+                    <input type="checkbox" id="cell-12:35"/> <input type="checkbox" id="cell-13:35"/> <input type="checkbox" id="cell-14:35"/> <input type="checkbox" id="cell-15:35"/>
+                    <input type="checkbox" id="cell-16:35"/> <input type="checkbox" id="cell-17:35"/> <input type="checkbox" id="cell-18:35"/> <input type="checkbox" id="cell-19:35"/>
+                    <input type="checkbox" id="cell-20:35"/> <input type="checkbox" id="cell-21:35"/> <input type="checkbox" id="cell-22:35"/> <input type="checkbox" id="cell-23:35"/>
+                    <input type="checkbox" id="cell-24:35"/> <input type="checkbox" id="cell-25:35"/> <input type="checkbox" id="cell-26:35"/> <input type="checkbox" id="cell-27:35"/>
+                    <input type="checkbox" id="cell-28:35"/> <input type="checkbox" id="cell-29:35"/> <input type="checkbox" id="cell-30:35"/> <input type="checkbox" id="cell-31:35"/>
+                    <input type="checkbox" id="cell-32:35"/> <input type="checkbox" id="cell-33:35"/> <input type="checkbox" id="cell-34:35"/> <input type="checkbox" id="cell-35:35"/>
+                    <input type="checkbox" id="cell-36:35"/> <input type="checkbox" id="cell-37:35"/> <input type="checkbox" id="cell-38:35"/> <input type="checkbox" id="cell-39:35"/>
+                    <input type="checkbox" id="cell-40:35"/> <input type="checkbox" id="cell-41:35"/> <input type="checkbox" id="cell-42:35"/> <input type="checkbox" id="cell-43:35"/>
+                    <input type="checkbox" id="cell-44:35"/> <input type="checkbox" id="cell-45:35"/> <input type="checkbox" id="cell-46:35"/> <input type="checkbox" id="cell-47:35"/>
+                    <input type="checkbox" id="cell-48:35"/> <input type="checkbox" id="cell-49:35"/> <input type="checkbox" id="cell-50:35"/> <input type="checkbox" id="cell-51:35"/>
+                    <input type="checkbox" id="cell-52:35"/> <input type="checkbox" id="cell-53:35"/> <input type="checkbox" id="cell-54:35"/> <input type="checkbox" id="cell-55:35"/>
+                    <input type="checkbox" id="cell-56:35"/> <input type="checkbox" id="cell-57:35"/> <input type="checkbox" id="cell-58:35"/> <input type="checkbox" id="cell-59:35"/>
+                    <input type="checkbox" id="cell-60:35"/> <input type="checkbox" id="cell-61:35"/> <input type="checkbox" id="cell-62:35"/> <input type="checkbox" id="cell-63:35"/>
+                    <input type="checkbox" id="cell-64:35"/> <input type="checkbox" id="cell-65:35"/> <input type="checkbox" id="cell-66:35"/> <input type="checkbox" id="cell-67:35"/>
+                    <input type="checkbox" id="cell-68:35"/> <input type="checkbox" id="cell-69:35"/> <input type="checkbox" id="cell-70:35"/> <input type="checkbox" id="cell-71:35"/>
+                    <input type="checkbox" id="cell-72:35"/> <input type="checkbox" id="cell-73:35"/> <input type="checkbox" id="cell-74:35"/> <input type="checkbox" id="cell-75:35"/>
+                    <input type="checkbox" id="cell-76:35"/> <input type="checkbox" id="cell-77:35"/> <input type="checkbox" id="cell-78:35"/> <input type="checkbox" id="cell-79:35"/>
+                </div>
+                <div id="row-36">
+                    <input type="checkbox" id="cell-0:36"/> <input type="checkbox" id="cell-1:36"/> <input type="checkbox" id="cell-2:36"/> <input type="checkbox" id="cell-3:36"/>
+                    <input type="checkbox" id="cell-4:36"/> <input type="checkbox" id="cell-5:36"/> <input type="checkbox" id="cell-6:36"/> <input type="checkbox" id="cell-7:36"/>
+                    <input type="checkbox" id="cell-8:36"/> <input type="checkbox" id="cell-9:36"/> <input type="checkbox" id="cell-10:36"/> <input type="checkbox" id="cell-11:36"/>
+                    <input type="checkbox" id="cell-12:36"/> <input type="checkbox" id="cell-13:36"/> <input type="checkbox" id="cell-14:36"/> <input type="checkbox" id="cell-15:36"/>
+                    <input type="checkbox" id="cell-16:36"/> <input type="checkbox" id="cell-17:36"/> <input type="checkbox" id="cell-18:36"/> <input type="checkbox" id="cell-19:36"/>
+                    <input type="checkbox" id="cell-20:36"/> <input type="checkbox" id="cell-21:36"/> <input type="checkbox" id="cell-22:36"/> <input type="checkbox" id="cell-23:36"/>
+                    <input type="checkbox" id="cell-24:36"/> <input type="checkbox" id="cell-25:36"/> <input type="checkbox" id="cell-26:36"/> <input type="checkbox" id="cell-27:36"/>
+                    <input type="checkbox" id="cell-28:36"/> <input type="checkbox" id="cell-29:36"/> <input type="checkbox" id="cell-30:36"/> <input type="checkbox" id="cell-31:36"/>
+                    <input type="checkbox" id="cell-32:36"/> <input type="checkbox" id="cell-33:36"/> <input type="checkbox" id="cell-34:36"/> <input type="checkbox" id="cell-35:36"/>
+                    <input type="checkbox" id="cell-36:36"/> <input type="checkbox" id="cell-37:36"/> <input type="checkbox" id="cell-38:36"/> <input type="checkbox" id="cell-39:36"/>
+                    <input type="checkbox" id="cell-40:36"/> <input type="checkbox" id="cell-41:36"/> <input type="checkbox" id="cell-42:36"/> <input type="checkbox" id="cell-43:36"/>
+                    <input type="checkbox" id="cell-44:36"/> <input type="checkbox" id="cell-45:36"/> <input type="checkbox" id="cell-46:36"/> <input type="checkbox" id="cell-47:36"/>
+                    <input type="checkbox" id="cell-48:36"/> <input type="checkbox" id="cell-49:36"/> <input type="checkbox" id="cell-50:36"/> <input type="checkbox" id="cell-51:36"/>
+                    <input type="checkbox" id="cell-52:36"/> <input type="checkbox" id="cell-53:36"/> <input type="checkbox" id="cell-54:36"/> <input type="checkbox" id="cell-55:36"/>
+                    <input type="checkbox" id="cell-56:36"/> <input type="checkbox" id="cell-57:36"/> <input type="checkbox" id="cell-58:36"/> <input type="checkbox" id="cell-59:36"/>
+                    <input type="checkbox" id="cell-60:36"/> <input type="checkbox" id="cell-61:36"/> <input type="checkbox" id="cell-62:36"/> <input type="checkbox" id="cell-63:36"/>
+                    <input type="checkbox" id="cell-64:36"/> <input type="checkbox" id="cell-65:36"/> <input type="checkbox" id="cell-66:36"/> <input type="checkbox" id="cell-67:36"/>
+                    <input type="checkbox" id="cell-68:36"/> <input type="checkbox" id="cell-69:36"/> <input type="checkbox" id="cell-70:36"/> <input type="checkbox" id="cell-71:36"/>
+                    <input type="checkbox" id="cell-72:36"/> <input type="checkbox" id="cell-73:36"/> <input type="checkbox" id="cell-74:36"/> <input type="checkbox" id="cell-75:36"/>
+                    <input type="checkbox" id="cell-76:36"/> <input type="checkbox" id="cell-77:36"/> <input type="checkbox" id="cell-78:36"/> <input type="checkbox" id="cell-79:36"/>
+                </div>
+                <div id="row-37">
+                    <input type="checkbox" id="cell-0:37"/> <input type="checkbox" id="cell-1:37"/> <input type="checkbox" id="cell-2:37"/> <input type="checkbox" id="cell-3:37"/>
+                    <input type="checkbox" id="cell-4:37"/> <input type="checkbox" id="cell-5:37"/> <input type="checkbox" id="cell-6:37"/> <input type="checkbox" id="cell-7:37"/>
+                    <input type="checkbox" id="cell-8:37"/> <input type="checkbox" id="cell-9:37"/> <input type="checkbox" id="cell-10:37"/> <input type="checkbox" id="cell-11:37"/>
+                    <input type="checkbox" id="cell-12:37"/> <input type="checkbox" id="cell-13:37"/> <input type="checkbox" id="cell-14:37"/> <input type="checkbox" id="cell-15:37"/>
+                    <input type="checkbox" id="cell-16:37"/> <input type="checkbox" id="cell-17:37"/> <input type="checkbox" id="cell-18:37"/> <input type="checkbox" id="cell-19:37"/>
+                    <input type="checkbox" id="cell-20:37"/> <input type="checkbox" id="cell-21:37"/> <input type="checkbox" id="cell-22:37"/> <input type="checkbox" id="cell-23:37"/>
+                    <input type="checkbox" id="cell-24:37"/> <input type="checkbox" id="cell-25:37"/> <input type="checkbox" id="cell-26:37"/> <input type="checkbox" id="cell-27:37"/>
+                    <input type="checkbox" id="cell-28:37"/> <input type="checkbox" id="cell-29:37"/> <input type="checkbox" id="cell-30:37"/> <input type="checkbox" id="cell-31:37"/>
+                    <input type="checkbox" id="cell-32:37"/> <input type="checkbox" id="cell-33:37"/> <input type="checkbox" id="cell-34:37"/> <input type="checkbox" id="cell-35:37"/>
+                    <input type="checkbox" id="cell-36:37"/> <input type="checkbox" id="cell-37:37"/> <input type="checkbox" id="cell-38:37"/> <input type="checkbox" id="cell-39:37"/>
+                    <input type="checkbox" id="cell-40:37"/> <input type="checkbox" id="cell-41:37"/> <input type="checkbox" id="cell-42:37"/> <input type="checkbox" id="cell-43:37"/>
+                    <input type="checkbox" id="cell-44:37"/> <input type="checkbox" id="cell-45:37"/> <input type="checkbox" id="cell-46:37"/> <input type="checkbox" id="cell-47:37"/>
+                    <input type="checkbox" id="cell-48:37"/> <input type="checkbox" id="cell-49:37"/> <input type="checkbox" id="cell-50:37"/> <input type="checkbox" id="cell-51:37"/>
+                    <input type="checkbox" id="cell-52:37"/> <input type="checkbox" id="cell-53:37"/> <input type="checkbox" id="cell-54:37"/> <input type="checkbox" id="cell-55:37"/>
+                    <input type="checkbox" id="cell-56:37"/> <input type="checkbox" id="cell-57:37"/> <input type="checkbox" id="cell-58:37"/> <input type="checkbox" id="cell-59:37"/>
+                    <input type="checkbox" id="cell-60:37"/> <input type="checkbox" id="cell-61:37"/> <input type="checkbox" id="cell-62:37"/> <input type="checkbox" id="cell-63:37"/>
+                    <input type="checkbox" id="cell-64:37"/> <input type="checkbox" id="cell-65:37"/> <input type="checkbox" id="cell-66:37"/> <input type="checkbox" id="cell-67:37"/>
+                    <input type="checkbox" id="cell-68:37"/> <input type="checkbox" id="cell-69:37"/> <input type="checkbox" id="cell-70:37"/> <input type="checkbox" id="cell-71:37"/>
+                    <input type="checkbox" id="cell-72:37"/> <input type="checkbox" id="cell-73:37"/> <input type="checkbox" id="cell-74:37"/> <input type="checkbox" id="cell-75:37"/>
+                    <input type="checkbox" id="cell-76:37"/> <input type="checkbox" id="cell-77:37"/> <input type="checkbox" id="cell-78:37"/> <input type="checkbox" id="cell-79:37"/>
+                </div>
+                <div id="row-38">
+                    <input type="checkbox" id="cell-0:38"/> <input type="checkbox" id="cell-1:38"/> <input type="checkbox" id="cell-2:38"/> <input type="checkbox" id="cell-3:38"/>
+                    <input type="checkbox" id="cell-4:38"/> <input type="checkbox" id="cell-5:38"/> <input type="checkbox" id="cell-6:38"/> <input type="checkbox" id="cell-7:38"/>
+                    <input type="checkbox" id="cell-8:38"/> <input type="checkbox" id="cell-9:38"/> <input type="checkbox" id="cell-10:38"/> <input type="checkbox" id="cell-11:38"/>
+                    <input type="checkbox" id="cell-12:38"/> <input type="checkbox" id="cell-13:38"/> <input type="checkbox" id="cell-14:38"/> <input type="checkbox" id="cell-15:38"/>
+                    <input type="checkbox" id="cell-16:38"/> <input type="checkbox" id="cell-17:38"/> <input type="checkbox" id="cell-18:38"/> <input type="checkbox" id="cell-19:38"/>
+                    <input type="checkbox" id="cell-20:38"/> <input type="checkbox" id="cell-21:38"/> <input type="checkbox" id="cell-22:38"/> <input type="checkbox" id="cell-23:38"/>
+                    <input type="checkbox" id="cell-24:38"/> <input type="checkbox" id="cell-25:38"/> <input type="checkbox" id="cell-26:38"/> <input type="checkbox" id="cell-27:38"/>
+                    <input type="checkbox" id="cell-28:38"/> <input type="checkbox" id="cell-29:38"/> <input type="checkbox" id="cell-30:38"/> <input type="checkbox" id="cell-31:38"/>
+                    <input type="checkbox" id="cell-32:38"/> <input type="checkbox" id="cell-33:38"/> <input type="checkbox" id="cell-34:38"/> <input type="checkbox" id="cell-35:38"/>
+                    <input type="checkbox" id="cell-36:38"/> <input type="checkbox" id="cell-37:38"/> <input type="checkbox" id="cell-38:38"/> <input type="checkbox" id="cell-39:38"/>
+                    <input type="checkbox" id="cell-40:38"/> <input type="checkbox" id="cell-41:38"/> <input type="checkbox" id="cell-42:38"/> <input type="checkbox" id="cell-43:38"/>
+                    <input type="checkbox" id="cell-44:38"/> <input type="checkbox" id="cell-45:38"/> <input type="checkbox" id="cell-46:38"/> <input type="checkbox" id="cell-47:38"/>
+                    <input type="checkbox" id="cell-48:38"/> <input type="checkbox" id="cell-49:38"/> <input type="checkbox" id="cell-50:38"/> <input type="checkbox" id="cell-51:38"/>
+                    <input type="checkbox" id="cell-52:38"/> <input type="checkbox" id="cell-53:38"/> <input type="checkbox" id="cell-54:38"/> <input type="checkbox" id="cell-55:38"/>
+                    <input type="checkbox" id="cell-56:38"/> <input type="checkbox" id="cell-57:38"/> <input type="checkbox" id="cell-58:38"/> <input type="checkbox" id="cell-59:38"/>
+                    <input type="checkbox" id="cell-60:38"/> <input type="checkbox" id="cell-61:38"/> <input type="checkbox" id="cell-62:38"/> <input type="checkbox" id="cell-63:38"/>
+                    <input type="checkbox" id="cell-64:38"/> <input type="checkbox" id="cell-65:38"/> <input type="checkbox" id="cell-66:38"/> <input type="checkbox" id="cell-67:38"/>
+                    <input type="checkbox" id="cell-68:38"/> <input type="checkbox" id="cell-69:38"/> <input type="checkbox" id="cell-70:38"/> <input type="checkbox" id="cell-71:38"/>
+                    <input type="checkbox" id="cell-72:38"/> <input type="checkbox" id="cell-73:38"/> <input type="checkbox" id="cell-74:38"/> <input type="checkbox" id="cell-75:38"/>
+                    <input type="checkbox" id="cell-76:38"/> <input type="checkbox" id="cell-77:38"/> <input type="checkbox" id="cell-78:38"/> <input type="checkbox" id="cell-79:38"/>
+                </div>
+                <div id="row-39">
+                    <input type="checkbox" id="cell-0:39"/> <input type="checkbox" id="cell-1:39"/> <input type="checkbox" id="cell-2:39"/> <input type="checkbox" id="cell-3:39"/>
+                    <input type="checkbox" id="cell-4:39"/> <input type="checkbox" id="cell-5:39"/> <input type="checkbox" id="cell-6:39"/> <input type="checkbox" id="cell-7:39"/>
+                    <input type="checkbox" id="cell-8:39"/> <input type="checkbox" id="cell-9:39"/> <input type="checkbox" id="cell-10:39"/> <input type="checkbox" id="cell-11:39"/>
+                    <input type="checkbox" id="cell-12:39"/> <input type="checkbox" id="cell-13:39"/> <input type="checkbox" id="cell-14:39"/> <input type="checkbox" id="cell-15:39"/>
+                    <input type="checkbox" id="cell-16:39"/> <input type="checkbox" id="cell-17:39"/> <input type="checkbox" id="cell-18:39"/> <input type="checkbox" id="cell-19:39"/>
+                    <input type="checkbox" id="cell-20:39"/> <input type="checkbox" id="cell-21:39"/> <input type="checkbox" id="cell-22:39"/> <input type="checkbox" id="cell-23:39"/>
+                    <input type="checkbox" id="cell-24:39"/> <input type="checkbox" id="cell-25:39"/> <input type="checkbox" id="cell-26:39"/> <input type="checkbox" id="cell-27:39"/>
+                    <input type="checkbox" id="cell-28:39"/> <input type="checkbox" id="cell-29:39"/> <input type="checkbox" id="cell-30:39"/> <input type="checkbox" id="cell-31:39"/>
+                    <input type="checkbox" id="cell-32:39"/> <input type="checkbox" id="cell-33:39"/> <input type="checkbox" id="cell-34:39"/> <input type="checkbox" id="cell-35:39"/>
+                    <input type="checkbox" id="cell-36:39"/> <input type="checkbox" id="cell-37:39"/> <input type="checkbox" id="cell-38:39"/> <input type="checkbox" id="cell-39:39"/>
+                    <input type="checkbox" id="cell-40:39"/> <input type="checkbox" id="cell-41:39"/> <input type="checkbox" id="cell-42:39"/> <input type="checkbox" id="cell-43:39"/>
+                    <input type="checkbox" id="cell-44:39"/> <input type="checkbox" id="cell-45:39"/> <input type="checkbox" id="cell-46:39"/> <input type="checkbox" id="cell-47:39"/>
+                    <input type="checkbox" id="cell-48:39"/> <input type="checkbox" id="cell-49:39"/> <input type="checkbox" id="cell-50:39"/> <input type="checkbox" id="cell-51:39"/>
+                    <input type="checkbox" id="cell-52:39"/> <input type="checkbox" id="cell-53:39"/> <input type="checkbox" id="cell-54:39"/> <input type="checkbox" id="cell-55:39"/>
+                    <input type="checkbox" id="cell-56:39"/> <input type="checkbox" id="cell-57:39"/> <input type="checkbox" id="cell-58:39"/> <input type="checkbox" id="cell-59:39"/>
+                    <input type="checkbox" id="cell-60:39"/> <input type="checkbox" id="cell-61:39"/> <input type="checkbox" id="cell-62:39"/> <input type="checkbox" id="cell-63:39"/>
+                    <input type="checkbox" id="cell-64:39"/> <input type="checkbox" id="cell-65:39"/> <input type="checkbox" id="cell-66:39"/> <input type="checkbox" id="cell-67:39"/>
+                    <input type="checkbox" id="cell-68:39"/> <input type="checkbox" id="cell-69:39"/> <input type="checkbox" id="cell-70:39"/> <input type="checkbox" id="cell-71:39"/>
+                    <input type="checkbox" id="cell-72:39"/> <input type="checkbox" id="cell-73:39"/> <input type="checkbox" id="cell-74:39"/> <input type="checkbox" id="cell-75:39"/>
+                    <input type="checkbox" id="cell-76:39"/> <input type="checkbox" id="cell-77:39"/> <input type="checkbox" id="cell-78:39"/> <input type="checkbox" id="cell-79:39"/>
+                </div>
+                <button type="submit" id="advance-generation">Advance Generation</button>
+            </div>
+        </form>
         <script>
+let advGenButton = document.getElementById("advance-generation");
+
+// A 2d array, 80 x 40, storing all checkbox nodes in the document, such that
+// for a checkbox with id cell-X:Y, checkboxCellGrid[X][Y] will store that
+// checkbox.
+let checkboxCellGrid = [];
+
+// A 2d array, also 80 x 40, which will be used to temporarily store the next
+// generation of the automation, such that bufferCellGrid[x][y] == true if
+// checkboxCellGrid[x][y].checked will be set to true, and bufferCellGrid[x][y]
+// == false if checkboxCellGrid[x][y].checked will be set to false.
+let bufferCellGrid = [];
+
+// Populating both checkboxCellGrid and bufferCellGrid, also setting 1 in 8
+// checkboxes to checked.
+for (x = 0; x < 80; x++) {
+    checkboxCellGrid.push(new Array(80));
+    bufferCellGrid.push(new Array(80));
+    for (y = 0; y < 40; y++) {
+        checkboxCellGrid[x][y] = document.getElementById(`cell-${x}:${y}`);
+        if (Math.random() < 1/8) {
+            checkboxCellGrid[x][y].checked = true;
+        }
+    }
+}
+
+// Attaching the advanceGeneration() function to the [Advance Generation]
+// button.
+advGenButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    advanceGeneration();
+});
+
+// Computes the sum of the neighbors to a cell, specially handling a cell that
+// lies on the border of the cell grid.
+function sumOfNeighbors(x, y) {
+    let leftX  = x == 0 ? 79 : x - 1;
+    let thisX = x;
+    let rightX = x == 79 ? 0 : x + 1;
+    let upperY = y == 0 ? 39 : y - 1;
+    let thisY = y;
+    let lowerY = y == 39 ? 0 : y + 1;
+
+    let upperLeftNeighbor  = checkboxCellGrid[leftX][upperY].checked  ? 1 : 0;
+    let upperNeighbor      = checkboxCellGrid[thisX][upperY].checked  ? 1 : 0;
+    let upperRightNeighbor = checkboxCellGrid[rightX][upperY].checked ? 1 : 0;
+
+    let leftNeighbor       = checkboxCellGrid[leftX][thisY].checked   ? 1 : 0;
+    let rightNeighbor      = checkboxCellGrid[rightX][thisY].checked  ? 1 : 0;
+
+    let lowerLeftNeighbor  = checkboxCellGrid[leftX][lowerY].checked  ? 1 : 0;
+    let lowerNeighbor      = checkboxCellGrid[thisX][lowerY].checked  ? 1 : 0;
+    let lowerRightNeighbor = checkboxCellGrid[rightX][lowerY].checked ? 1 : 0;
+
+    return upperLeftNeighbor + upperNeighbor + upperRightNeighbor
+         + leftNeighbor                      + rightNeighbor
+         + lowerLeftNeighbor + lowerNeighbor + lowerRightNeighbor;
+}
+
+// Computes the next generation, storing it in bufferCellGrid as it goes, then
+// copies those booleans to the .checked properties of the checkboxes stored in
+// checkboxCellGrid.
+function advanceGeneration() {
+    for (x = 0; x < 80; x++) {
+        for (y = 0; y < 40; y++) {
+            let neighborSum = sumOfNeighbors(x, y);
+            if (checkboxCellGrid[x][y].checked) {
+                if (neighborSum < 2 || neighborSum > 3) {
+                    bufferCellGrid[x][y] = false;
+                } else {
+                    bufferCellGrid[x][y] = true;
+                }
+            } else {
+                if (neighborSum == 3) {
+                    bufferCellGrid[x][y] = true;
+                } else {
+                    bufferCellGrid[x][y] = false;
+                }
+            }
+        }
+    }
+    for (x = 0; x < 80; x++) {
+        for (y = 0; y < 40; y++) {
+            checkboxCellGrid[x][y].checked = bufferCellGrid[x][y];
+        }
+    }
+}
         </script>
     </body>
 </html>
