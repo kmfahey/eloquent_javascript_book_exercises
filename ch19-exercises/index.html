@@ -1,8 +1,33 @@
 <!doctype html>
 <script src="code/chapter/19_paint.js"></script>
 
-<div></div>
+<div id="wrapper" tabindex="0"></div>
 <script>
-  document.querySelector("div")
-    .appendChild(startPixelEditor({}));
+    let app = startPixelEditor({});
+    document.querySelector("div")
+        .appendChild(app.dom);
+
+    const changeEvent = new Event('change');
+    const clickEvent = new Event('click');
+
+    let keyToolNames = {d: 'draw', f: 'fill', r: 'rectangle', p: 'pick'};
+    let enclDiv = document.getElementById("wrapper");
+    let selectElt = app.controls[0].select;
+    // Finding the undo button by filtering all button elements for the one
+    // whose innerHTML contains "Undo"
+    let undoButton = Array.from(document.getElementsByTagName("button"))
+                          .filter(elt => elt.innerHTML.indexOf("Undo") >= 0)[0];
+
+    enclDiv.addEventListener("keyup", (event) => {
+        // shield statement blocking events that have any other modifier keys
+        // pressed
+        if (event.shiftKey || event.altKey || (event.metaKey && event.ctrlKey)) {
+            return;
+        } else if (event.key === 'z' && (event.ctrlKey || event.metaKey)) {
+            undoButton.dispatchEvent(clickEvent);
+        } else if (!event.ctrlKey && !event.metaKey && event.key in keyToolNames) {
+            selectElt.value = keyToolNames[event.key];
+            selectElt.dispatchEvent(changeEvent);
+        }
+    });
 </script>
