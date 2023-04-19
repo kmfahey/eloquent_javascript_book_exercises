@@ -119,6 +119,7 @@ var PixelEditor = class PixelEditor {
       let onMove = tool(pos, this.state, dispatch);
       if (onMove) return pos => onMove(pos, this.state);
     });
+// INSTANTIATION OF EVERY CLASS IN baseControls IS HERE, INCL. ToolSelect AT INDEX 0
     this.controls = controls.map(
       Control => new Control(state, config));
     this.dom = elt("div", {}, this.canvas.dom, elt("br"),
@@ -134,6 +135,7 @@ var PixelEditor = class PixelEditor {
 
 var ToolSelect = class ToolSelect {
   constructor(state, {tools, dispatch}) {
+// DEFINITION OF THE select
     this.select = elt("select", {
       onchange: () => dispatch({tool: this.select.value})
     }, ...Object.keys(tools).map(name => elt("option", {
@@ -156,6 +158,7 @@ var ColorSelect = class ColorSelect {
   syncState(state) { this.input.value = state.color; }
 }
 
+// BEGIN TOOLS
 function draw(pos, state, dispatch) {
   function drawPixel({x, y}, state) {
     let drawn = {x, y, color: state.color};
@@ -206,6 +209,7 @@ function fill({x, y}, state, dispatch) {
 function pick(pos, state, dispatch) {
   dispatch({color: state.picture.pixel(pos.x, pos.y)});
 }
+// END TOOLS
 
 var SaveButton = class SaveButton {
   constructor(state) {
@@ -319,22 +323,28 @@ var startState = {
   doneAt: 0
 };
 
+// DEFINTIION OF tools/baseTools
 var baseTools = {draw, fill, rectangle, pick};
 
 var baseControls = [
   ToolSelect, ColorSelect, SaveButton, LoadButton, UndoButton
 ];
 
+// Altered return value of function in order to access 'app' object outside of
+// function scope.
 function startPixelEditor({state = startState,
                            tools = baseTools,
                            controls = baseControls}) {
   let app = new PixelEditor(state, {
     tools,
     controls,
+// DEFINITION OF dispatch()
     dispatch(action) {
       state = historyUpdateState(state, action);
       app.syncState(state);
     }
   });
-  return app.dom;
+  return app;
 }
+
+
