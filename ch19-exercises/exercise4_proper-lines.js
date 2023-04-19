@@ -12,7 +12,7 @@
  * quickly enough to hit every pixel.
  *
  * Improve the draw tool to make it draw a full line. This means you have to
- * make the motion handler function remember the previous po- sition and connect
+ * make the motion handler function remember the previous position and connect
  * that to the current one.
  *
  * To do this, since the pixels can be an arbitrary distance apart, you’ll
